@@ -1,42 +1,135 @@
+/* ============================================
+   MUJERTECH - TALLER INTRODUCTORIO DE IA
+   Global Styles - Next.js Migration
+   Mobile-First Design
+   ============================================ */
+
+/* ============================================
+   RESET
+   ============================================ */
+
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============================================
+   CSS CUSTOM PROPERTIES
+   ============================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    /* Colores de marca MujerTech */
+    --primary: #2c8e9c;
+    --primary-dark: #1f6b77;
+    --primary-light: #E6F4F6;
+    --secondary: #ff6978;
+    --secondary-light: #FFE8EB;
+    --dark: #232443;
+    --light: #fffcf9;
+    --gray: #6B7280;
+    --gray-light: #F3F4F6;
+    --border: #E5E7EB;
+    --success: #10B981;
+    --success-light: #D1FAE5;
+    --error: #EF4444;
+    --error-light: #FEE2E2;
+    --warning: #F59E0B;
+    --warning-light: #FEF3C7;
+    
+    /* Gradientes */
+    --gradient: linear-gradient(135deg, #2c8e9c 0%, #ff6978 100%);
+    --gradient-soft: linear-gradient(135deg, rgba(44, 142, 156, 0.1) 0%, rgba(255, 105, 120, 0.1) 100%);
+    
+    /* Tipografía */
+    --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    
+    /* Espaciado */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    
+    /* Bordes */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    
+    /* Sombras */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.15);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
 }
 
-html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+    font-family: var(--font-main);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--dark);
+    background: var(--light);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+a, button, input, select, textarea {
+    -webkit-tap-highlight-color: rgba(44, 142, 156, 0.2);
+    touch-action: manipulation;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+button {
+    font-family: inherit;
+    cursor: pointer;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+input, textarea {
+    font-family: inherit;
+    font-size: 16px;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* ============================================
+   UTILITY: FADE IN ANIMATION
+   ============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
