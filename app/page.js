@@ -5,6 +5,9 @@ import Header from './components/Header/Header';
 import ProgressBar from './components/ProgressBar/ProgressBar';
 import ModuleNavBar from './components/ModuleNavBar/ModuleNavBar';
 import Glossary from './components/Glossary/Glossary';
+import Notification from './components/Notification/Notification';
+import Timer from './components/Timer/Timer';
+import { useNotification } from './lib/useNotification';
 
 const TEST_MODULES = [
     { id: 'presessionCheck', label: 'Verificación' },
@@ -19,8 +22,15 @@ const TEST_MODULES = [
 export default function Home() {
     const [currentModule, setCurrentModule] = useState('welcome');
     const [isGlossaryOpen, setIsGlossaryOpen] = useState(false);
+    const { notification, showNotification, hideNotification } = useNotification();
 
     const isNavVisible = currentModule !== 'presessionCheck' && currentModule !== 'presession';
+
+    const handleModuleChange = (moduleId) => {
+        setCurrentModule(moduleId);
+        const moduleName = TEST_MODULES.find(m => m.id === moduleId)?.label || moduleId;
+        showNotification(`Navegando a: ${moduleName}`, 'success');
+    };
 
     return (
         <>
@@ -52,7 +62,7 @@ export default function Home() {
                         {TEST_MODULES.map((mod) => (
                             <button
                                 key={mod.id}
-                                onClick={() => setCurrentModule(mod.id)}
+                                onClick={() => handleModuleChange(mod.id)}
                                 style={{
                                     padding: 'var(--spacing-sm) var(--spacing-md)',
                                     background: currentModule === mod.id ? 'var(--primary)' : 'var(--gray-light)',
@@ -66,12 +76,59 @@ export default function Home() {
                             </button>
                         ))}
                     </div>
+                    
+                    <div style={{ marginTop: 'var(--spacing-xl)', paddingTop: 'var(--spacing-lg)', borderTop: '1px solid var(--border)' }}>
+                        <p style={{ color: 'var(--gray)', marginBottom: 'var(--spacing-md)', fontSize: '0.9rem' }}>
+                            Probar notificaciones:
+                        </p>
+                        <div style={{ display: 'flex', gap: 'var(--spacing-sm)', flexWrap: 'wrap', justifyContent: 'center' }}>
+                            <button
+                                onClick={() => showNotification('¡Texto copiado! 📋', 'success')}
+                                style={{
+                                    padding: 'var(--spacing-sm) var(--spacing-md)',
+                                    background: 'var(--success)',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: 'var(--radius-md)',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                Éxito
+                            </button>
+                            <button
+                                onClick={() => showNotification('Por favor completa todos los campos', 'error')}
+                                style={{
+                                    padding: 'var(--spacing-sm) var(--spacing-md)',
+                                    background: 'var(--error)',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: 'var(--radius-md)',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                Error
+                            </button>
+                            <button
+                                onClick={() => showNotification('Generando tu certificado... ⏳', 'info')}
+                                style={{
+                                    padding: 'var(--spacing-sm) var(--spacing-md)',
+                                    background: 'var(--primary)',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: 'var(--radius-md)',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                Info
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </main>
 
             <ModuleNavBar 
                 currentModule={currentModule}
-                onModuleChange={setCurrentModule}
+                onModuleChange={handleModuleChange}
                 isVisible={isNavVisible}
             />
 
@@ -79,6 +136,15 @@ export default function Home() {
                 isOpen={isGlossaryOpen}
                 onClose={() => setIsGlossaryOpen(false)}
             />
+
+            <Notification 
+                message={notification.message}
+                type={notification.type}
+                isVisible={notification.isVisible}
+                onHide={hideNotification}
+            />
+
+            <Timer />
         </>
     );
 }

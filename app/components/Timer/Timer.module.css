@@ -1,0 +1,25 @@
+.timerContainer {
+    position: fixed;
+    bottom: 80px;
+    right: var(--spacing-md);
+    background: white;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    z-index: 100;
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+.timerIcon {
+    font-size: 1rem;
+}
+
+.timer {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    min-width: 45px;
+}
