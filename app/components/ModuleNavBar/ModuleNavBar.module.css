@@ -1,0 +1,98 @@
+.navBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    padding-bottom: calc(var(--spacing-sm) + env(safe-area-inset-bottom));
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    height: 64px;
+}
+
+.navBar.visible {
+    display: flex;
+}
+
+.navItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    background: none;
+    border: none;
+    padding: var(--spacing-xs);
+    min-width: 60px;
+    cursor: pointer;
+    transition: all 0.2s;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.navItem:active {
+    transform: scale(0.95);
+}
+
+.navItemIcon {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.navItemLabel {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.navItem.current .navItemLabel {
+    color: var(--primary);
+}
+
+.navItem.current .navItemIcon {
+    transform: scale(1.1);
+}
+
+.navItem.completed .navItemLabel {
+    color: var(--success);
+}
+
+.navItem.upcoming .navItemLabel {
+    color: var(--gray);
+    opacity: 0.5;
+}
+
+.navItem.upcoming .navItemIcon {
+    opacity: 0.5;
+}
+
+@media (min-width: 768px) {
+    .navBar {
+        height: 72px;
+    }
+    
+    .navItem {
+        min-width: 80px;
+    }
+    
+    .navItemIcon {
+        font-size: 1.75rem;
+    }
+    
+    .navItemLabel {
+        font-size: 0.75rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .navItem:hover {
+        background: var(--gray-light);
+        border-radius: var(--radius-md);
+    }
+}
