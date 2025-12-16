@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './Module2.module.css';
+import SuccessCriteria from '../../SuccessCriteria/SuccessCriteria';
 
 const NEED_OPTIONS = [
     { id: 'social', icon: '📱', label: 'Ideas para redes sociales' },
@@ -33,7 +34,14 @@ Que sean cortos, con emojis, y que inviten a preguntar por WhatsApp.
 
 Usa un tono amigable y cercano, como si le hablara a una amiga.`;
 
-export default function Module2({ onNext, onPrev, showNotification }) {
+const MODULE_OUTCOMES = [
+    'Escribir un mensaje claro a la IA para que te ayude',
+    'Conocer las herramientas gratuitas que puedes usar hoy'
+];
+
+const MODULE_COMPLETION = 'Ahora sabes cómo hablarle a la IA para obtener buenos resultados.';
+
+export default function Module2({ onNext, onPrev, showNotification, hidePrev }) {
     const [business, setBusiness] = useState('');
     const [selectedNeed, setSelectedNeed] = useState(null);
     const [selectedTone, setSelectedTone] = useState(null);
@@ -86,8 +94,14 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
             <header className={styles.moduleHeader}>
                 <h1>Cómo hablarle a la IA</h1>
                 <p className={styles.moduleSubtitle}>Aprende a pedir lo que necesitas</p>
-                <span className={styles.timeBadge}>⏱️ 30 minutos</span>
+                <span className={styles.timeBadge}>⏱️ 15 minutos</span>
             </header>
+
+            {/* Success Criteria - Intro */}
+            <SuccessCriteria 
+                mode="intro"
+                outcomes={MODULE_OUTCOMES}
+            />
 
             {/* What is a Prompt */}
             <div className={`${styles.card} ${styles.explanationCard}`}>
@@ -429,15 +443,23 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
                 </button>
             </div>
 
+            {/* Success Criteria - Completion */}
+            <SuccessCriteria 
+                mode="completion"
+                completionText={MODULE_COMPLETION}
+            />
+
             {/* Navigation */}
             <div className={styles.navButtons}>
-                <button 
-                    className={`${styles.btnNav} ${styles.btnPrev}`}
-                    onClick={onPrev}
-                    type="button"
-                >
-                    ← ANTERIOR
-                </button>
+                {!hidePrev && (
+                    <button 
+                        className={`${styles.btnNav} ${styles.btnPrev}`}
+                        onClick={onPrev}
+                        type="button"
+                    >
+                        ← ANTERIOR
+                    </button>
+                )}
                 <button 
                     className={`${styles.btnNav} ${styles.btnNext}`}
                     onClick={onNext}

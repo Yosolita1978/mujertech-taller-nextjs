@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './Module1.module.css';
+import SuccessCriteria from '../../SuccessCriteria/SuccessCriteria';
 
 const MYTH_ANSWERS = {
     1: { correct: 'mentira', explanation: 'La IA no piensa de verdad. Solo imita patrones que aprendió.' },
@@ -7,7 +8,14 @@ const MYTH_ANSWERS = {
     3: { correct: 'mentira', explanation: 'La IA puede equivocarse. Siempre debes revisar lo que te da.' }
 };
 
-export default function Module1({ onNext, onPrev, showNotification }) {
+const MODULE_OUTCOMES = [
+    'Explicar qué es la IA en tus propias palabras',
+    'Saber qué puede y qué NO puede hacer la IA'
+];
+
+const MODULE_COMPLETION = 'Ahora entiendes qué es la IA y cómo puede ayudarte en tu negocio.';
+
+export default function Module1({ onNext, onPrev, showNotification, hidePrev }) {
     const [quizAnswers, setQuizAnswers] = useState({});
 
     const handleQuizAnswer = (questionNum, answer) => {
@@ -34,8 +42,14 @@ export default function Module1({ onNext, onPrev, showNotification }) {
             <header className={styles.moduleHeader}>
                 <h1>¿Qué es la Inteligencia Artificial?</h1>
                 <p className={styles.moduleSubtitle}>Explicado de forma simple</p>
-                <span className={styles.timeBadge}>⏱️ 15 minutos</span>
+                <span className={styles.timeBadge}>⏱️ 10 minutos</span>
             </header>
+
+            {/* Success Criteria - Intro */}
+            <SuccessCriteria 
+                mode="intro"
+                outcomes={MODULE_OUTCOMES}
+            />
 
             {/* Explanation Card */}
             <div className={`${styles.card} ${styles.explanationCard}`}>
@@ -246,15 +260,23 @@ export default function Module1({ onNext, onPrev, showNotification }) {
                 </button>
             </div>
 
+            {/* Success Criteria - Completion */}
+            <SuccessCriteria 
+                mode="completion"
+                completionText={MODULE_COMPLETION}
+            />
+
             {/* Navigation */}
             <div className={styles.navButtons}>
-                <button 
-                    className={`${styles.btnNav} ${styles.btnPrev}`}
-                    onClick={onPrev}
-                    type="button"
-                >
-                    ← ANTERIOR
-                </button>
+                {!hidePrev && (
+                    <button 
+                        className={`${styles.btnNav} ${styles.btnPrev}`}
+                        onClick={onPrev}
+                        type="button"
+                    >
+                        ← ANTERIOR
+                    </button>
+                )}
                 <button 
                     className={`${styles.btnNav} ${styles.btnNext}`}
                     onClick={onNext}

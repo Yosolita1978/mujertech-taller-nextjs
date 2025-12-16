@@ -18,16 +18,6 @@ import Module6 from './components/modules/Module6/Module6';
 import { useNotification } from './lib/useNotification';
 import { useProgress } from './lib/useProgress';
 
-const TEST_MODULES = [
-    { id: 'presessionCheck', label: 'Verificación' },
-    { id: 'presession', label: 'Pre-sesión' },
-    { id: 'welcome', label: 'Bienvenida' },
-    { id: 'module1', label: 'Qué es IA' },
-    { id: 'module2', label: 'Prompts' },
-    { id: 'module4', label: 'Imágenes' },
-    { id: 'module6', label: 'Final' }
-];
-
 const EXPERIENCE_MESSAGES = {
     nunca: '¡Perfecto! Este taller está hecho para ti. Vamos paso a paso.',
     poco: 'Muy bien, hoy vas a pasar de la teoría a la práctica.',
@@ -35,9 +25,29 @@ const EXPERIENCE_MESSAGES = {
     mucho: '¡Excelente! Descubrirás nuevas formas de usar la IA.'
 };
 
+function getStartingModule(experience, businessType) {
+    if (!experience || experience === 'nunca' || experience === 'poco') {
+        return 'module1';
+    }
+    
+    if (experience === 'algo' || experience === 'mucho') {
+        if (businessType === 'producto') {
+            return 'module4';
+        }
+        if (businessType === 'servicio') {
+            return 'module2';
+        }
+    }
+    
+    return 'module1';
+}
+
 export default function Home() {
     const [currentModule, setCurrentModule] = useState('presessionCheck');
     const [isGlossaryOpen, setIsGlossaryOpen] = useState(false);
+    const [userProfile, setUserProfile] = useState({ experience: null, businessType: null });
+    const [entryModule, setEntryModule] = useState(null);
+    
     const { notification, showNotification, hideNotification } = useNotification();
     const { 
         savedModule, 
@@ -45,15 +55,13 @@ export default function Home() {
         showResumeModal, 
         closeResumeModal, 
         saveProgress, 
-        clearProgress 
+        clearProgress
     } = useProgress();
 
     const isNavVisible = currentModule !== 'presessionCheck' && currentModule !== 'presession';
 
-    // Track if this is the first render
     const isFirstRender = useRef(true);
 
-    // Save progress whenever module changes (skip first render)
     useEffect(() => {
         if (isFirstRender.current) {
             isFirstRender.current = false;
@@ -81,16 +89,22 @@ export default function Home() {
         showNotification('¡Muy bien! Ya estás lista para el taller 🎉', 'success');
     };
 
-    const handleExperienceSelect = (experience) => {
-        const message = EXPERIENCE_MESSAGES[experience];
-        if (message) {
-            showNotification(message, 'success');
+    const handleWelcomeNext = ({ experience, businessType }) => {
+        setUserProfile({ experience, businessType });
+        
+        if (experience && EXPERIENCE_MESSAGES[experience]) {
+            showNotification(EXPERIENCE_MESSAGES[experience], 'success');
         }
+        
+        const startingModule = getStartingModule(experience, businessType);
+        setEntryModule(startingModule);
+        handleModuleChange(startingModule);
     };
 
     const handleResume = () => {
         closeResumeModal();
         if (savedModule) {
+            setEntryModule(savedModule);
             setCurrentModule(savedModule);
         }
     };
@@ -99,6 +113,23 @@ export default function Home() {
         closeResumeModal();
         clearProgress();
         setCurrentModule('presessionCheck');
+    };
+
+    const handleJumpToModule = (moduleId) => {
+        closeResumeModal();
+        setEntryModule(moduleId);
+        setCurrentModule(moduleId);
+        showNotification('¡Vamos allá! 🚀', 'success');
+    };
+
+    const shouldHidePrev = (moduleId) => {
+        if (moduleId === 'welcome') {
+            return true;
+        }
+        if (entryModule && moduleId === entryModule) {
+            return true;
+        }
+        return false;
     };
 
     const renderModule = () => {
@@ -116,10 +147,7 @@ export default function Home() {
                 );
             case 'welcome':
                 return (
-                    <Welcome 
-                        onNext={() => handleModuleChange('module1')}
-                        onExperienceSelect={handleExperienceSelect}
-                    />
+                    <Welcome onNext={handleWelcomeNext} />
                 );
             case 'module1':
                 return (
@@ -127,6 +155,7 @@ export default function Home() {
                         onNext={() => handleModuleChange('module2')}
                         onPrev={() => handleModuleChange('welcome')}
                         showNotification={showNotification}
+                        hidePrev={shouldHidePrev('module1')}
                     />
                 );
             case 'module2':
@@ -135,6 +164,7 @@ export default function Home() {
                         onNext={() => handleModuleChange('module4')}
                         onPrev={() => handleModuleChange('module1')}
                         showNotification={showNotification}
+                        hidePrev={shouldHidePrev('module2')}
                     />
                 );
             case 'module4':
@@ -143,6 +173,7 @@ export default function Home() {
                         onNext={() => handleModuleChange('module6')}
                         onPrev={() => handleModuleChange('module2')}
                         showNotification={showNotification}
+                        hidePrev={shouldHidePrev('module4')}
                     />
                 );
             case 'module6':
@@ -190,38 +221,6 @@ export default function Home() {
                 marginRight: 'auto'
             }}>
                 {renderModule()}
-
-                {/* Temporary navigation for testing */}
-                <div style={{ 
-                    marginTop: 'var(--spacing-xl)',
-                    padding: 'var(--spacing-lg)',
-                    background: 'var(--gray-light)',
-                    borderRadius: 'var(--radius-md)',
-                    textAlign: 'center'
-                }}>
-                    <p style={{ color: 'var(--gray)', marginBottom: 'var(--spacing-md)', fontSize: '0.8rem' }}>
-                        Navegación temporal (para pruebas):
-                    </p>
-                    <div style={{ display: 'flex', gap: 'var(--spacing-xs)', flexWrap: 'wrap', justifyContent: 'center' }}>
-                        {TEST_MODULES.map((mod) => (
-                            <button
-                                key={mod.id}
-                                onClick={() => handleModuleChange(mod.id)}
-                                style={{
-                                    padding: 'var(--spacing-xs) var(--spacing-sm)',
-                                    background: currentModule === mod.id ? 'var(--primary)' : 'white',
-                                    color: currentModule === mod.id ? 'white' : 'var(--dark)',
-                                    border: '1px solid var(--border)',
-                                    borderRadius: 'var(--radius-sm)',
-                                    cursor: 'pointer',
-                                    fontSize: '0.75rem'
-                                }}
-                            >
-                                {mod.label}
-                            </button>
-                        ))}
-                    </div>
-                </div>
             </main>
 
             <ModuleNavBar 
@@ -249,6 +248,7 @@ export default function Home() {
                     moduleName={savedModuleName}
                     onResume={handleResume}
                     onStartFresh={handleStartFresh}
+                    onJumpToModule={handleJumpToModule}
                 />
             )}
         </>

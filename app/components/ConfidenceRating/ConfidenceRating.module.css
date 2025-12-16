@@ -1,0 +1,177 @@
+/* Main Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+/* Scale */
+.scale {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-xs);
+}
+
+.option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: var(--spacing-sm);
+    background: var(--gray-light);
+    border: 3px solid transparent;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s;
+    flex: 1;
+    min-width: 50px;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.option:active {
+    transform: scale(0.95);
+}
+
+.option:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.option.selected {
+    background: var(--primary-light);
+    border-color: var(--primary);
+}
+
+.emoji {
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.value {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gray);
+}
+
+.option.selected .value {
+    color: var(--primary);
+}
+
+/* Labels */
+.labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--gray);
+}
+
+/* Comparison Container */
+.comparisonContainer {
+    background: var(--success-light);
+    border: 2px solid var(--success);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    text-align: center;
+    animation: fadeIn 0.4s ease;
+}
+
+.comparisonHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.comparisonIcon {
+    font-size: 1.5rem;
+}
+
+.comparisonHeader h3 {
+    margin: 0;
+    color: #065F46;
+    font-size: 1.2rem;
+}
+
+.comparisonBody {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.comparisonItem {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.comparisonLabel {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #065F46;
+}
+
+.comparisonEmoji {
+    font-size: 2rem;
+}
+
+.comparisonValue {
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.comparisonArrow {
+    font-size: 1.5rem;
+    color: var(--success);
+    font-weight: bold;
+}
+
+.comparisonMessage {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.comparisonMessage.positive {
+    color: #065F46;
+}
+
+.comparisonMessage.neutral {
+    color: var(--gray);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 768px) {
+    .option {
+        min-width: 60px;
+        padding: var(--spacing-md);
+    }
+    
+    .emoji {
+        font-size: 2.2rem;
+    }
+    
+    .value {
+        font-size: 0.85rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .option:hover:not(:disabled) {
+        background: var(--primary-light);
+        border-color: var(--primary);
+    }
+}

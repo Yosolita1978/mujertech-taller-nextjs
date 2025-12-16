@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './Module4.module.css';
+import SuccessCriteria from '../../SuccessCriteria/SuccessCriteria';
 
 const BACKGROUND_OPTIONS = [
     { id: 'mesa', icon: '🪵', label: 'Mesa de madera' },
@@ -27,7 +28,14 @@ const COLOR_TEXTS = {
 
 const MARIA_IMAGE_PROMPT = 'Foto de jabones artesanales coloridos sobre una mesa de madera, con flores secas alrededor, luz natural suave, colores pastel, foto profesional';
 
-export default function Module4({ onNext, onPrev, showNotification }) {
+const MODULE_OUTCOMES = [
+    'Crear una descripción para generar una imagen con IA',
+    'Saber dónde usar imágenes generadas en tu negocio'
+];
+
+const MODULE_COMPLETION = 'Ahora puedes crear descripciones para generar imágenes profesionales con IA.';
+
+export default function Module4({ onNext, onPrev, showNotification, hidePrev }) {
     const [product, setProduct] = useState('');
     const [selectedBackground, setSelectedBackground] = useState(null);
     const [selectedColors, setSelectedColors] = useState(null);
@@ -76,8 +84,14 @@ export default function Module4({ onNext, onPrev, showNotification }) {
             <header className={styles.moduleHeader}>
                 <h1>Crea una imagen para tu negocio</h1>
                 <p className={styles.moduleSubtitle}>Imágenes profesionales para promocionar tu negocio</p>
-                <span className={styles.timeBadge}>⏱️ 20 minutos</span>
+                <span className={styles.timeBadge}>⏱️ 10 minutos</span>
             </header>
+
+            {/* Success Criteria - Intro */}
+            <SuccessCriteria 
+                mode="intro"
+                outcomes={MODULE_OUTCOMES}
+            />
 
             {/* Why Images Matter */}
             <div className={styles.card}>
@@ -166,7 +180,7 @@ export default function Module4({ onNext, onPrev, showNotification }) {
                     <div className={styles.imageResult}>
                         <img 
                             src="/images/jabones-maria.png" 
-                            alt="Jabones artesanales generados con IA" 
+                            alt="Imagen generada por inteligencia artificial mostrando jabones artesanales de colores pastel (rosa, lavanda, verde menta) dispuestos sobre una mesa de madera rústica, decorados con flores secas de lavanda y pétalos, iluminados con luz natural suave que entra por una ventana. Esta imagen fue creada con IA, no es una fotografía real." 
                             className={styles.generatedImage}
                         />
                     </div>
@@ -287,15 +301,23 @@ export default function Module4({ onNext, onPrev, showNotification }) {
                 </button>
             </div>
 
+            {/* Success Criteria - Completion */}
+            <SuccessCriteria 
+                mode="completion"
+                completionText={MODULE_COMPLETION}
+            />
+
             {/* Navigation */}
             <div className={styles.navButtons}>
-                <button 
-                    className={`${styles.btnNav} ${styles.btnPrev}`}
-                    onClick={onPrev}
-                    type="button"
-                >
-                    ← ANTERIOR
-                </button>
+                {!hidePrev && (
+                    <button 
+                        className={`${styles.btnNav} ${styles.btnPrev}`}
+                        onClick={onPrev}
+                        type="button"
+                    >
+                        ← ANTERIOR
+                    </button>
+                )}
                 <button 
                     className={`${styles.btnNav} ${styles.btnNext}`}
                     onClick={onNext}

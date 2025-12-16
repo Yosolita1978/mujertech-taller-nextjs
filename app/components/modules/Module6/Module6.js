@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import styles from './Module6.module.css';
+import ConfidenceRating, { ConfidenceComparison } from '../../ConfidenceRating/ConfidenceRating';
+import { useConfidence } from '../../../lib/useConfidence';
+import SuccessCriteria from '../../SuccessCriteria/SuccessCriteria';
 
 const LEARNED_ITEMS = [
     'Qué es la Inteligencia Artificial',
@@ -71,6 +74,17 @@ export default function Module6({ onPrev, onGoToStart, showNotification }) {
     const [emailSubmitted, setEmailSubmitted] = useState(false);
     const [emailSkipped, setEmailSkipped] = useState(false);
     const [certificateName, setCertificateName] = useState('');
+    const [afterConfidence, setAfterConfidence] = useState(null);
+    const [showComparison, setShowComparison] = useState(false);
+    
+    const { beforeRating, saveAfterRating } = useConfidence();
+
+    const handleAfterConfidenceSelect = (value) => {
+        setAfterConfidence(value);
+        saveAfterRating(value);
+        setShowComparison(true);
+        showNotification('¡Gracias por tu respuesta! 🎉', 'success');
+    };
 
     const handleEmailSubmit = () => {
         if (!email.trim()) {
@@ -84,8 +98,6 @@ export default function Module6({ onPrev, onGoToStart, showNotification }) {
             return;
         }
 
-        // Here you would normally send to Airtable or your backend
-        // For now, we just show success
         setEmailSubmitted(true);
         showNotification('¡Gracias! Te avisaremos pronto 💌', 'success');
     };
@@ -108,44 +120,36 @@ export default function Module6({ onPrev, onGoToStart, showNotification }) {
         canvas.width = 1200;
         canvas.height = 850;
 
-        // Background gradient
         const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
         gradient.addColorStop(0, '#fffcf9');
         gradient.addColorStop(1, '#f0f9fa');
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Outer border
         ctx.strokeStyle = '#2c8e9c';
         ctx.lineWidth = 12;
         ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
 
-        // Inner border
         ctx.strokeStyle = '#ff6978';
         ctx.lineWidth = 3;
         ctx.strokeRect(40, 40, canvas.width - 80, canvas.height - 80);
 
-        // Trophy emoji
         ctx.font = '80px Arial';
         ctx.textAlign = 'center';
         ctx.fillText('🏆', canvas.width / 2, 130);
 
-        // Certificate title
         ctx.font = 'bold 48px Georgia';
         ctx.fillStyle = '#2c8e9c';
         ctx.fillText('CERTIFICADO', canvas.width / 2, 200);
 
-        // MujerTech
         ctx.font = 'bold 36px Georgia';
         ctx.fillStyle = '#232443';
         ctx.fillText('MujerTech', canvas.width / 2, 250);
 
-        // Subtitle
         ctx.font = '18px Arial';
         ctx.fillStyle = '#6B7280';
         ctx.fillText('Women Business & AI', canvas.width / 2, 280);
 
-        // Divider line
         ctx.strokeStyle = '#E5E7EB';
         ctx.lineWidth = 2;
         ctx.beginPath();
@@ -153,45 +157,37 @@ export default function Module6({ onPrev, onGoToStart, showNotification }) {
         ctx.lineTo(canvas.width - 200, 310);
         ctx.stroke();
 
-        // "Se certifica que"
         ctx.font = '20px Arial';
         ctx.fillStyle = '#6B7280';
         ctx.fillText('Se certifica que', canvas.width / 2, 360);
 
-        // Name
         ctx.font = 'bold 42px Georgia';
         ctx.fillStyle = '#232443';
         ctx.fillText(certificateName.trim().toUpperCase(), canvas.width / 2, 420);
 
-        // "ha completado exitosamente el"
         ctx.font = '20px Arial';
         ctx.fillStyle = '#6B7280';
         ctx.fillText('ha completado exitosamente el', canvas.width / 2, 470);
 
-        // Workshop title
         ctx.font = 'bold 28px Georgia';
         ctx.fillStyle = '#ff6978';
         ctx.fillText('TALLER INTRODUCTORIO DE IA', canvas.width / 2, 520);
         ctx.fillText('PARA EMPRENDEDORAS', canvas.width / 2, 555);
 
-        // Divider line
         ctx.strokeStyle = '#E5E7EB';
         ctx.beginPath();
         ctx.moveTo(200, 590);
         ctx.lineTo(canvas.width - 200, 590);
         ctx.stroke();
 
-        // Skills background
         ctx.fillStyle = 'rgba(44, 142, 156, 0.1)';
         ctx.fillRect(150, 610, canvas.width - 300, 80);
 
-        // Skills text
         ctx.font = '16px Arial';
         ctx.fillStyle = '#232443';
         const skills = '✓ Fundamentos de IA   ✓ Creación de prompts   ✓ Herramientas de IA   ✓ Generación de imágenes   ✓ Uso ético';
         ctx.fillText(skills, canvas.width / 2, 655);
 
-        // Date
         const date = new Date().toLocaleDateString('es-CO', {
             day: '2-digit',
             month: 'long',
@@ -201,17 +197,10 @@ export default function Module6({ onPrev, onGoToStart, showNotification }) {
         ctx.fillStyle = '#232443';
         ctx.fillText(`Fecha: ${date}`, canvas.width / 2, 730);
 
-        // Duration
-        ctx.font = '16px Arial';
-        ctx.fillStyle = '#6B7280';
-        ctx.fillText('Duración: 2 horas', canvas.width / 2, 755);
-
-        // Website
         ctx.font = '18px Arial';
         ctx.fillStyle = '#2c8e9c';
-        ctx.fillText('www.mujertech.org', canvas.width / 2, 800);
+        ctx.fillText('www.mujertech.org', canvas.width / 2, 760);
 
-        // Download
         const link = document.createElement('a');
         link.download = `Certificado_MujerTech_${certificateName.trim().replace(/\s+/g, '_')}.png`;
         link.href = canvas.toDataURL('image/png');
@@ -233,6 +222,27 @@ export default function Module6({ onPrev, onGoToStart, showNotification }) {
                 <div className={styles.celebrationIcon}>🎉</div>
                 <h2>¡Lo lograste!</h2>
                 <p>Has completado el Taller Introductorio de IA de MujerTech</p>
+            </div>
+
+            {/* After Confidence Rating */}
+            <div className={styles.confidenceCard}>
+                <h2 className={styles.cardTitle}>
+                    <span className={styles.cardIcon}>📊</span>
+                    ¿Y ahora? ¿Qué tan segura te sientes usando IA?
+                </h2>
+                {!showComparison ? (
+                    <ConfidenceRating 
+                        selectedValue={afterConfidence}
+                        onSelect={handleAfterConfidenceSelect}
+                    />
+                ) : (
+                    beforeRating && afterConfidence && (
+                        <ConfidenceComparison 
+                            beforeValue={beforeRating}
+                            afterValue={afterConfidence}
+                        />
+                    )
+                )}
             </div>
 
             {/* Summary Card */}

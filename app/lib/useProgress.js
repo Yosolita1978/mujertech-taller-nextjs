@@ -1,4 +1,4 @@
-import { useState, useCallback, useSyncExternalStore } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 
 const STORAGE_KEY = 'mujertech_progress';
 
@@ -32,24 +32,80 @@ function getStoredProgress() {
     return null;
 }
 
-function subscribe(callback) {
-    window.addEventListener('storage', callback);
-    return () => window.removeEventListener('storage', callback);
+// Modal visibility store
+let modalInitialized = false;
+let modalVisible = false;
+const modalListeners = new Set();
+
+function notifyModalListeners() {
+    modalListeners.forEach(listener => listener());
 }
 
-function getSnapshot() {
+function getModalSnapshot() {
+    if (!modalInitialized) {
+        modalInitialized = true;
+        const stored = getStoredProgress();
+        modalVisible = stored !== null;
+    }
+    return modalVisible;
+}
+
+function getModalServerSnapshot() {
+    return false;
+}
+
+function subscribeToModal(callback) {
+    modalListeners.add(callback);
+    return () => modalListeners.delete(callback);
+}
+
+function setModalVisible(value) {
+    modalVisible = value;
+    notifyModalListeners();
+}
+
+// Progress store
+const storageListeners = new Set();
+
+function notifyStorageListeners() {
+    storageListeners.forEach(listener => listener());
+}
+
+function subscribeToStorage(callback) {
+    storageListeners.add(callback);
+    
+    const handleStorageEvent = () => {
+        notifyStorageListeners();
+    };
+    
+    window.addEventListener('storage', handleStorageEvent);
+    
+    return () => {
+        storageListeners.delete(callback);
+        window.removeEventListener('storage', handleStorageEvent);
+    };
+}
+
+function getProgressSnapshot() {
     return getStoredProgress();
 }
 
-function getServerSnapshot() {
+function getProgressServerSnapshot() {
     return null;
 }
 
 export function useProgress() {
-    const savedModule = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-    const [showResumeModal, setShowResumeModal] = useState(() => {
-        return getStoredProgress() !== null;
-    });
+    const savedModule = useSyncExternalStore(
+        subscribeToStorage,
+        getProgressSnapshot,
+        getProgressServerSnapshot
+    );
+    
+    const showResumeModal = useSyncExternalStore(
+        subscribeToModal,
+        getModalSnapshot,
+        getModalServerSnapshot
+    );
 
     const saveProgress = useCallback((moduleId) => {
         try {
@@ -76,7 +132,7 @@ export function useProgress() {
     }, []);
 
     const closeResumeModal = useCallback(() => {
-        setShowResumeModal(false);
+        setModalVisible(false);
     }, []);
 
     return {
