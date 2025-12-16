@@ -1,0 +1,280 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 60vh;
+    padding: var(--spacing-xl);
+}
+
+.stepIcon {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.title {
+    font-size: 1.8rem;
+    color: var(--dark);
+    margin-bottom: var(--spacing-md);
+}
+
+.subtitle {
+    font-size: 1.4rem;
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.text {
+    font-size: 1.1rem;
+    color: var(--gray);
+    margin-bottom: var(--spacing-sm);
+    max-width: 400px;
+}
+
+.encouragement {
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+/* Practice Area */
+.practiceArea {
+    margin: var(--spacing-xl) 0;
+    width: 100%;
+    max-width: 300px;
+}
+
+.instruction {
+    font-size: 1rem;
+    color: var(--dark);
+    margin-bottom: var(--spacing-md);
+}
+
+.practiceBtn {
+    width: 100%;
+    padding: var(--spacing-lg);
+    font-size: 1.3rem;
+    font-weight: 700;
+    background: var(--success);
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.3s;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.practiceBtn:active {
+    transform: scale(0.95);
+}
+
+.practiceBtn.success {
+    background: var(--success);
+    pointer-events: none;
+}
+
+.practiceInput {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: 18px;
+    border: 3px solid var(--primary);
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+
+.practiceInput:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 4px rgba(255, 105, 120, 0.2);
+}
+
+/* Feedback Area */
+.feedbackArea {
+    margin-top: var(--spacing-lg);
+    width: 100%;
+    max-width: 350px;
+    animation: fadeIn 0.4s ease;
+}
+
+.successMessage {
+    background: var(--success-light);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.successIcon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: var(--spacing-xs);
+}
+
+.successMessage p {
+    color: #065F46;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Copy Instructions */
+.copyInstructions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+    text-align: left;
+    max-width: 350px;
+}
+
+.copyStep {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+}
+
+.stepNumber {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.copyStep p {
+    font-size: 1rem;
+    color: var(--dark);
+    margin: 0;
+    text-align: left;
+}
+
+/* Tip Box */
+.tipBox {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    background: var(--warning-light);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin: var(--spacing-lg) 0;
+    max-width: 350px;
+    text-align: left;
+}
+
+.tipIcon {
+    font-size: 1.5rem;
+}
+
+.tipBox p {
+    font-size: 0.95rem;
+    color: #92400E;
+    margin: 0;
+}
+
+/* Navigation Explanation */
+.navExplanation {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+    max-width: 350px;
+}
+
+.navItemExplain {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    text-align: left;
+}
+
+.navIconBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background: var(--gray-light);
+    border-radius: var(--radius-sm);
+    font-size: 1.2rem;
+}
+
+.progressBarMini {
+    background: var(--gradient);
+    height: 8px;
+    width: 30px;
+    border-radius: 4px;
+}
+
+.navItemExplain p {
+    font-size: 0.95rem;
+    color: var(--dark);
+    margin: 0;
+}
+
+/* Learned List */
+.learnedList {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin: var(--spacing-lg) 0;
+    text-align: left;
+    box-shadow: var(--shadow-sm);
+}
+
+.learnedList p {
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--dark);
+}
+
+.learnedList ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.learnedList li {
+    padding: var(--spacing-xs) 0;
+    font-size: 1rem;
+    color: var(--dark);
+}
+
+/* Buttons */
+.btnLarge {
+    width: 100%;
+    max-width: 350px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-height: 56px;
+    background: var(--primary);
+    color: white;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.btnLarge:active {
+    background: var(--primary-dark);
+    transform: scale(0.98);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
