@@ -9,6 +9,8 @@ import Notification from './components/Notification/Notification';
 import Timer from './components/Timer/Timer';
 import PresessionCheck from './components/modules/PresessionCheck/PresessionCheck';
 import Presession from './components/modules/Presession/Presession';
+import Welcome from './components/modules/Welcome/Welcome';
+import Module1 from './components/modules/Module1/Module1';
 import { useNotification } from './lib/useNotification';
 
 const TEST_MODULES = [
@@ -21,6 +23,13 @@ const TEST_MODULES = [
     { id: 'module6', label: 'Final' }
 ];
 
+const EXPERIENCE_MESSAGES = {
+    nunca: '¡Perfecto! Este taller está hecho para ti. Vamos paso a paso.',
+    poco: 'Muy bien, hoy vas a pasar de la teoría a la práctica.',
+    algo: 'Genial, vas a aprender trucos para mejorar tus resultados.',
+    mucho: '¡Excelente! Descubrirás nuevas formas de usar la IA.'
+};
+
 export default function Home() {
     const [currentModule, setCurrentModule] = useState('presessionCheck');
     const [isGlossaryOpen, setIsGlossaryOpen] = useState(false);
@@ -30,6 +39,7 @@ export default function Home() {
 
     const handleModuleChange = (moduleId) => {
         setCurrentModule(moduleId);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handleStartPresession = () => {
@@ -46,6 +56,13 @@ export default function Home() {
         showNotification('¡Muy bien! Ya estás lista para el taller 🎉', 'success');
     };
 
+    const handleExperienceSelect = (experience) => {
+        const message = EXPERIENCE_MESSAGES[experience];
+        if (message) {
+            showNotification(message, 'success');
+        }
+    };
+
     const renderModule = () => {
         switch (currentModule) {
             case 'presessionCheck':
@@ -58,6 +75,21 @@ export default function Home() {
             case 'presession':
                 return (
                     <Presession onComplete={handlePresessionComplete} />
+                );
+            case 'welcome':
+                return (
+                    <Welcome 
+                        onNext={() => handleModuleChange('module1')}
+                        onExperienceSelect={handleExperienceSelect}
+                    />
+                );
+            case 'module1':
+                return (
+                    <Module1 
+                        onNext={() => handleModuleChange('module2')}
+                        onPrev={() => handleModuleChange('welcome')}
+                        showNotification={showNotification}
+                    />
                 );
             default:
                 return (

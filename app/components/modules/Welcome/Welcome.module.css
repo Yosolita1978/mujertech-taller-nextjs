@@ -1,0 +1,282 @@
+.moduleContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* Hero Section */
+.heroSection {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.heroLogo {
+    max-height: 120px;
+    width: auto;
+    margin-bottom: var(--spacing-lg);
+}
+
+.heroTitle {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.heroSubtitle {
+    font-size: 1rem;
+    color: var(--gray);
+    margin-bottom: var(--spacing-md);
+}
+
+.timeBadge {
+    display: inline-block;
+    background: var(--secondary);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-lg);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* Cards */
+.card {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.cardTitle {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 1.2rem;
+    color: var(--dark);
+    margin-bottom: var(--spacing-md);
+}
+
+.cardIcon {
+    font-size: 1.5rem;
+}
+
+.cardText {
+    color: var(--gray);
+    margin-bottom: var(--spacing-sm);
+}
+
+.cardText:last-child {
+    margin-bottom: 0;
+}
+
+/* Highlight Card */
+.highlightCard {
+    background: var(--gradient);
+    color: white;
+}
+
+.highlightCard .cardTitle {
+    color: white;
+}
+
+.highlightCard .cardText {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Simple List */
+.simpleList {
+    list-style: none;
+    padding: 0;
+    margin: var(--spacing-md) 0;
+}
+
+.simpleList li {
+    padding: var(--spacing-sm) 0;
+    font-size: 1rem;
+    color: var(--dark);
+}
+
+/* Benefit List */
+.benefitList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.benefitItem {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+}
+
+.benefitIcon {
+    font-size: 2rem;
+    min-width: 40px;
+}
+
+.benefitItem strong {
+    display: block;
+    color: white;
+    margin-bottom: 2px;
+}
+
+.benefitItem p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Learning Objectives */
+.learningObjectives {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.objectiveItem {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background: var(--gray-light);
+    border-radius: var(--radius-md);
+}
+
+.objectiveNumber {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.objectiveItem p {
+    margin: 0;
+    color: var(--dark);
+    font-size: 0.95rem;
+}
+
+/* Question Card */
+.questionCard {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+}
+
+.questionCard h3 {
+    color: var(--dark);
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.questionCard > p {
+    color: var(--gray);
+    margin-bottom: var(--spacing-md);
+}
+
+.experienceOptions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.experienceBtn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    width: 100%;
+    padding: var(--spacing-md);
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.experienceBtn:active {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.experienceBtn.selected {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.expIcon {
+    font-size: 1.5rem;
+}
+
+.experienceBtn span:last-child {
+    color: var(--dark);
+    font-size: 0.95rem;
+}
+
+/* Navigation Buttons */
+.navButtons {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border);
+}
+
+.btnNav {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.3s;
+    min-height: 50px;
+    flex: 1;
+    max-width: 180px;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.btnNext {
+    background: var(--primary);
+    color: white;
+    border: none;
+    margin-left: auto;
+}
+
+.btnNext:active {
+    background: var(--primary-dark);
+    transform: scale(0.98);
+}
+
+@media (min-width: 768px) {
+    .heroLogo {
+        max-height: 150px;
+    }
+    
+    .heroTitle {
+        font-size: 2rem;
+    }
+    
+    .navButtons {
+        justify-content: center;
+        gap: var(--spacing-lg);
+    }
+    
+    .btnNav {
+        max-width: 200px;
+    }
+}
