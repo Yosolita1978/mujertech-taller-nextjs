@@ -1,17 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Header from './components/Header/Header';
 import ProgressBar from './components/ProgressBar/ProgressBar';
 import ModuleNavBar from './components/ModuleNavBar/ModuleNavBar';
 import Glossary from './components/Glossary/Glossary';
 import Notification from './components/Notification/Notification';
 import Timer from './components/Timer/Timer';
+import ResumeModal from './components/ResumeModal/ResumeModal';
 import PresessionCheck from './components/modules/PresessionCheck/PresessionCheck';
 import Presession from './components/modules/Presession/Presession';
 import Welcome from './components/modules/Welcome/Welcome';
 import Module1 from './components/modules/Module1/Module1';
+import Module2 from './components/modules/Module2/Module2';
 import { useNotification } from './lib/useNotification';
+import { useProgress } from './lib/useProgress';
 
 const TEST_MODULES = [
     { id: 'presessionCheck', label: 'Verificación' },
@@ -34,8 +37,28 @@ export default function Home() {
     const [currentModule, setCurrentModule] = useState('presessionCheck');
     const [isGlossaryOpen, setIsGlossaryOpen] = useState(false);
     const { notification, showNotification, hideNotification } = useNotification();
+    const { 
+        savedModule, 
+        savedModuleName, 
+        showResumeModal, 
+        closeResumeModal, 
+        saveProgress, 
+        clearProgress 
+    } = useProgress();
 
     const isNavVisible = currentModule !== 'presessionCheck' && currentModule !== 'presession';
+
+    // Track if this is the first render
+    const isFirstRender = useRef(true);
+
+    // Save progress whenever module changes (skip first render)
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+        saveProgress(currentModule);
+    }, [currentModule, saveProgress]);
 
     const handleModuleChange = (moduleId) => {
         setCurrentModule(moduleId);
@@ -63,6 +86,19 @@ export default function Home() {
         }
     };
 
+    const handleResume = () => {
+        closeResumeModal();
+        if (savedModule) {
+            setCurrentModule(savedModule);
+        }
+    };
+
+    const handleStartFresh = () => {
+        closeResumeModal();
+        clearProgress();
+        setCurrentModule('presessionCheck');
+    };
+
     const renderModule = () => {
         switch (currentModule) {
             case 'presessionCheck':
@@ -88,6 +124,14 @@ export default function Home() {
                     <Module1 
                         onNext={() => handleModuleChange('module2')}
                         onPrev={() => handleModuleChange('welcome')}
+                        showNotification={showNotification}
+                    />
+                );
+            case 'module2':
+                return (
+                    <Module2 
+                        onNext={() => handleModuleChange('module4')}
+                        onPrev={() => handleModuleChange('module1')}
                         showNotification={showNotification}
                     />
                 );
@@ -181,6 +225,14 @@ export default function Home() {
             />
 
             <Timer />
+
+            {showResumeModal && (
+                <ResumeModal 
+                    moduleName={savedModuleName}
+                    onResume={handleResume}
+                    onStartFresh={handleStartFresh}
+                />
+            )}
         </>
     );
 }
