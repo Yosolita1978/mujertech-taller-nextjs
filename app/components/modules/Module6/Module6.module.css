@@ -1,0 +1,610 @@
+.moduleContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* Module Header */
+.moduleHeader {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.moduleHeader h1 {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.moduleSubtitle {
+    color: var(--gray);
+    font-size: 1rem;
+}
+
+/* Celebration Section */
+.celebrationSection {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: var(--gradient);
+    border-radius: var(--radius-lg);
+    color: white;
+}
+
+.celebrationIcon {
+    font-size: 5rem;
+    margin-bottom: var(--spacing-md);
+    animation: bounce 1s ease infinite;
+}
+
+.celebrationSection h2 {
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.celebrationSection p {
+    font-size: 1rem;
+    opacity: 0.95;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Cards */
+.card {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.cardTitle {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 1.2rem;
+    color: var(--dark);
+    margin-bottom: var(--spacing-md);
+}
+
+.cardIcon {
+    font-size: 1.5rem;
+}
+
+.cardText {
+    color: var(--gray);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Summary Card */
+.summaryCard {
+    border-left: 4px solid var(--success);
+}
+
+.learnedItems {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.learnedItem {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    background: var(--success-light);
+    border-radius: var(--radius-sm);
+}
+
+.learnedCheck {
+    font-size: 1.2rem;
+    min-width: 24px;
+}
+
+.learnedItem p {
+    margin: 0;
+    color: var(--dark);
+    font-size: 0.95rem;
+}
+
+/* Warning Card */
+.warningCard {
+    border-left: 4px solid var(--warning);
+    background: var(--warning-light);
+}
+
+.rulesCompact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.ruleCompactItem {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: white;
+    border-radius: var(--radius-md);
+}
+
+.ruleCompactNumber {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    background: var(--warning);
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.ruleCompactItem strong {
+    display: block;
+    color: var(--dark);
+    margin-bottom: var(--spacing-xs);
+}
+
+.ruleCompactItem p {
+    margin: 0;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* Teaser Grid */
+.teaserGrid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.teaserCard {
+    background: var(--gray-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.teaserCardContent {
+    padding: var(--spacing-md);
+}
+
+.teaserCardHeader {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.teaserIcon {
+    font-size: 1.5rem;
+}
+
+.teaserCardHeader h3 {
+    font-size: 1rem;
+    color: var(--dark);
+    margin: 0;
+    flex: 1;
+}
+
+.teaserBadge {
+    background: var(--secondary);
+    color: white;
+    padding: 2px var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.teaserCardContent > p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.teaserPreview {
+    background: white;
+    padding: var(--spacing-md);
+    border-top: 1px solid var(--border);
+}
+
+.teaserPreviewLabel {
+    font-size: 0.75rem;
+    color: var(--gray);
+    margin: 0 0 var(--spacing-xs) 0;
+}
+
+.teaserPreviewText {
+    font-size: 0.85rem;
+    color: var(--primary);
+    font-style: italic;
+    margin: 0;
+}
+
+/* Email Capture */
+.emailCapture {
+    background: white;
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    border: 2px solid var(--primary);
+}
+
+.emailCaptureIcon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.emailCapture h2 {
+    color: var(--dark);
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.emailCapture > p {
+    color: var(--gray);
+    margin-bottom: var(--spacing-lg);
+}
+
+.emailForm {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.emailInput {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: 16px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+
+.emailInput:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.emailInput::placeholder {
+    color: var(--gray);
+}
+
+.btnEmailSubmit {
+    width: 100%;
+    padding: var(--spacing-md);
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.btnEmailSubmit:active {
+    background: var(--primary-dark);
+}
+
+.noSpamPromise {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    text-align: left;
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-bottom: var(--spacing-md);
+}
+
+.noSpamIcon {
+    font-size: 1.2rem;
+    min-width: 24px;
+}
+
+.btnSkipEmail {
+    background: none;
+    border: none;
+    color: var(--gray);
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: underline;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.btnSkipEmail:active {
+    color: var(--dark);
+}
+
+/* Email Success */
+.emailSuccess {
+    background: var(--success-light);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.emailSuccessIcon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.emailSuccess h3 {
+    color: #065F46;
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.emailSuccess p {
+    color: #065F46;
+    margin: 0;
+}
+
+/* Certificate Section */
+.certificateSection {
+    background: white;
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    border: 2px solid var(--secondary);
+}
+
+.certificateSection h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    color: var(--dark);
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.certificateSection > p {
+    color: var(--gray);
+    margin-bottom: var(--spacing-md);
+}
+
+.certificateInput {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: 16px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.certificateInput:focus {
+    outline: none;
+    border-color: var(--secondary);
+}
+
+.certificateInput::placeholder {
+    color: var(--gray);
+}
+
+.btnCertificate {
+    width: 100%;
+    padding: var(--spacing-md);
+    background: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.btnCertificate:active {
+    background: #e55566;
+}
+
+/* Task Card */
+.taskCard {
+    border-left: 4px solid var(--primary);
+}
+
+.taskList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.taskItem {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--gray-light);
+    border-radius: var(--radius-md);
+}
+
+.taskNumber {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.taskItem p {
+    margin: 0;
+    color: var(--dark);
+    font-size: 0.95rem;
+}
+
+/* CTA Card */
+.ctaCard {
+    border: 2px solid var(--primary);
+    text-align: center;
+}
+
+.feedbackBenefit {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    text-align: left;
+    background: var(--warning-light);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin: var(--spacing-md) 0;
+}
+
+.benefitIcon {
+    font-size: 1.5rem;
+    min-width: 32px;
+}
+
+.feedbackBenefit p {
+    margin: 0;
+    color: #92400E;
+    font-size: 0.95rem;
+}
+
+.btnCta {
+    display: block;
+    width: 100%;
+    padding: var(--spacing-md);
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.btnCta:active {
+    background: var(--primary-dark);
+}
+
+/* Navigation Buttons */
+.navButtons {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border);
+}
+
+.btnNav {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.3s;
+    min-height: 50px;
+    flex: 1;
+    max-width: 180px;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.btnPrev {
+    background: white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btnPrev:active {
+    background: var(--primary-light);
+}
+
+.btnNext {
+    background: var(--primary);
+    color: white;
+    border: none;
+}
+
+.btnNext:active {
+    background: var(--primary-dark);
+    transform: scale(0.98);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 768px) {
+    .moduleHeader h1 {
+        font-size: 2.2rem;
+    }
+
+    .celebrationSection h2 {
+        font-size: 2rem;
+    }
+
+    .teaserGrid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .navButtons {
+        justify-content: center;
+        gap: var(--spacing-lg);
+    }
+
+    .btnNav {
+        max-width: 200px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .btnEmailSubmit:hover {
+        background: var(--primary-dark);
+    }
+
+    .btnSkipEmail:hover {
+        color: var(--dark);
+    }
+
+    .btnCertificate:hover {
+        background: #e55566;
+    }
+
+    .btnCta:hover {
+        background: var(--primary-dark);
+    }
+}

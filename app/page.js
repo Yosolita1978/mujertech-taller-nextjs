@@ -13,6 +13,8 @@ import Presession from './components/modules/Presession/Presession';
 import Welcome from './components/modules/Welcome/Welcome';
 import Module1 from './components/modules/Module1/Module1';
 import Module2 from './components/modules/Module2/Module2';
+import Module4 from './components/modules/Module4/Module4';
+import Module6 from './components/modules/Module6/Module6';
 import { useNotification } from './lib/useNotification';
 import { useProgress } from './lib/useProgress';
 
@@ -132,6 +134,22 @@ export default function Home() {
                     <Module2 
                         onNext={() => handleModuleChange('module4')}
                         onPrev={() => handleModuleChange('module1')}
+                        showNotification={showNotification}
+                    />
+                );
+            case 'module4':
+                return (
+                    <Module4 
+                        onNext={() => handleModuleChange('module6')}
+                        onPrev={() => handleModuleChange('module2')}
+                        showNotification={showNotification}
+                    />
+                );
+            case 'module6':
+                return (
+                    <Module6 
+                        onPrev={() => handleModuleChange('module4')}
+                        onGoToStart={() => handleModuleChange('welcome')}
                         showNotification={showNotification}
                     />
                 );
