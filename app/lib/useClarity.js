@@ -1,54 +1,59 @@
 'use client';
 
-import { useEffect, useCallback } from 'react';
-import { clarity } from 'clarity-js';
+import { useEffect, useCallback, useRef } from 'react';
 
-const CLARITY_ID = 'un48lbrzbh'; // Replace with your ID
-
-let clarityInitialized = false;
+const CLARITY_ID = 'your_actual_id_here'; // Your Clarity ID
 
 export function useClarity(currentModule) {
-    // Initialize Clarity on mount
+    const clarityLoaded = useRef(false);
+
+    // Initialize Clarity on mount (client-side only)
     useEffect(() => {
         if (typeof window === 'undefined') return;
-        if (clarityInitialized) return;
+        if (clarityLoaded.current) return;
 
-        clarity.start({
-            projectId: CLARITY_ID,
-            upload: 'https://m.clarity.ms/collect',
-            track: true,
-            content: true,
+        // Dynamically import clarity-js only on client
+        import('clarity-js').then(({ clarity }) => {
+            clarity.start({
+                projectId: CLARITY_ID,
+                upload: 'https://m.clarity.ms/collect',
+                track: true,
+                content: true,
+            });
+            clarityLoaded.current = true;
+            window.clarityInstance = clarity;
         });
-
-        clarityInitialized = true;
     }, []);
 
     // Track module changes
     useEffect(() => {
-        if (!clarityInitialized || !currentModule) return;
+        if (typeof window === 'undefined') return;
+        if (!window.clarityInstance || !currentModule) return;
 
-        clarity.set('module', currentModule);
-        clarity.event(`module_${currentModule}`);
+        window.clarityInstance.set('module', currentModule);
+        window.clarityInstance.event(`module_${currentModule}`);
     }, [currentModule]);
 
     // Custom event tracker
     const trackEvent = useCallback((eventName, eventData) => {
-        if (!clarityInitialized) return;
+        if (typeof window === 'undefined') return;
+        if (!window.clarityInstance) return;
 
-        clarity.event(eventName);
+        window.clarityInstance.event(eventName);
 
         if (eventData) {
             Object.entries(eventData).forEach(([key, value]) => {
-                clarity.set(key, String(value));
+                window.clarityInstance.set(key, String(value));
             });
         }
     }, []);
 
     // Set custom tag
     const setTag = useCallback((key, value) => {
-        if (!clarityInitialized) return;
+        if (typeof window === 'undefined') return;
+        if (!window.clarityInstance) return;
 
-        clarity.set(key, String(value));
+        window.clarityInstance.set(key, String(value));
     }, []);
 
     return { trackEvent, setTag };
