@@ -41,19 +41,28 @@ const MODULE_OUTCOMES = [
 
 const MODULE_COMPLETION = 'Ahora sabes cómo hablarle a la IA para obtener buenos resultados.';
 
-export default function Module2({ onNext, onPrev, showNotification, hidePrev }) {
+export default function Module2({ onNext, onPrev, showNotification, hidePrev, trackEvent }) {
     const [business, setBusiness] = useState('');
     const [selectedNeed, setSelectedNeed] = useState(null);
     const [selectedTone, setSelectedTone] = useState(null);
     const [generatedPrompt, setGeneratedPrompt] = useState('');
     const [showGenerated, setShowGenerated] = useState(false);
 
-    const copyToClipboard = async (text) => {
+    const copyToClipboard = async (text, source) => {
+        if (trackEvent) {
+            trackEvent('copy_clicked', { module: 'module2', source: source });
+        }
         try {
             await navigator.clipboard.writeText(text);
             showNotification('¡Copiado! 📋', 'success');
+            if (trackEvent) {
+                trackEvent('copy_success', { module: 'module2', source: source });
+            }
         } catch (err) {
             showNotification('No se pudo copiar. Selecciona el texto manualmente.', 'error');
+            if (trackEvent) {
+                trackEvent('copy_failed', { module: 'module2', source: source });
+            }
         }
     };
 
@@ -80,12 +89,34 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
         setGeneratedPrompt(prompt);
         setShowGenerated(true);
         showNotification('¡Tu mensaje está listo! 🎉', 'success');
+
+        if (trackEvent) {
+            trackEvent('prompt_generated', {
+                module: 'module2',
+                need: selectedNeed,
+                tone: selectedTone
+            });
+        }
     };
 
     const handleWhatsAppShare = (question) => {
+        if (trackEvent) {
+            trackEvent('whatsapp_share', { module: 'module2' });
+        }
         const message = encodeURIComponent(`💬 Pregunta del taller MujerTech:\n\n${question}\n\n¿Qué opinan ustedes?`);
         window.open(`https://wa.me/?text=${message}`, '_blank');
         showNotification('¡Gracias por compartir! 💚', 'success');
+    };
+
+    const handleNext = () => {
+        if (trackEvent) {
+            trackEvent('module2_completed', {
+                promptGenerated: showGenerated ? 'yes' : 'no',
+                need: selectedNeed || 'none',
+                tone: selectedTone || 'none'
+            });
+        }
+        onNext();
     };
 
     return (
@@ -216,7 +247,7 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
                         <div className={styles.promptBox}>{MARIA_PROMPT}</div>
                         <button 
                             className={styles.btnCopy}
-                            onClick={() => copyToClipboard(MARIA_PROMPT)}
+                            onClick={() => copyToClipboard(MARIA_PROMPT, 'maria_example')}
                             type="button"
                         >
                             📋 COPIAR ESTE MENSAJE
@@ -341,7 +372,7 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
                             <div className={styles.generatedText}>{generatedPrompt}</div>
                             <button 
                                 className={styles.btnCopy}
-                                onClick={() => copyToClipboard(generatedPrompt)}
+                                onClick={() => copyToClipboard(generatedPrompt, 'user_prompt')}
                                 type="button"
                             >
                                 📋 COPIAR MI MENSAJE
@@ -462,7 +493,7 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
                 )}
                 <button 
                     className={`${styles.btnNav} ${styles.btnNext}`}
-                    onClick={onNext}
+                    onClick={handleNext}
                     type="button"
                 >
                     SIGUIENTE →

@@ -15,7 +15,7 @@ const MODULE_OUTCOMES = [
 
 const MODULE_COMPLETION = 'Ahora entiendes qué es la IA y cómo puede ayudarte en tu negocio.';
 
-export default function Module1({ onNext, onPrev, showNotification, hidePrev }) {
+export default function Module1({ onNext, onPrev, showNotification, hidePrev, trackEvent }) {
     const [quizAnswers, setQuizAnswers] = useState({});
 
     const handleQuizAnswer = (questionNum, answer) => {
@@ -26,14 +26,38 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev }) 
             ...prev,
             [questionNum]: { answer, isCorrect }
         }));
+
+        if (trackEvent) {
+            trackEvent('quiz_answered', {
+                module: 'module1',
+                question: questionNum,
+                answer: answer,
+                correct: isCorrect ? 'yes' : 'no'
+            });
+        }
     };
 
     const handleWhatsAppShare = (question) => {
+        if (trackEvent) {
+            trackEvent('whatsapp_share', { module: 'module1' });
+        }
         const message = encodeURIComponent(`💬 Pregunta del taller MujerTech:\n\n${question}\n\n¿Qué opinan ustedes?`);
         window.open(`https://wa.me/?text=${message}`, '_blank');
         if (showNotification) {
             showNotification('¡Gracias por compartir! 💚', 'success');
         }
+    };
+
+    const handleNext = () => {
+        if (trackEvent) {
+            const answeredCount = Object.keys(quizAnswers).length;
+            const correctCount = Object.values(quizAnswers).filter(a => a.isCorrect).length;
+            trackEvent('module1_completed', {
+                quizAnswered: answeredCount,
+                quizCorrect: correctCount
+            });
+        }
+        onNext();
     };
 
     return (
@@ -279,7 +303,7 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev }) 
                 )}
                 <button 
                     className={`${styles.btnNav} ${styles.btnNext}`}
-                    onClick={onNext}
+                    onClick={handleNext}
                     type="button"
                 >
                     SIGUIENTE →

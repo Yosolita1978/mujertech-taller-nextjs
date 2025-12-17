@@ -35,19 +35,28 @@ const MODULE_OUTCOMES = [
 
 const MODULE_COMPLETION = 'Ahora puedes crear descripciones para generar imágenes profesionales con IA.';
 
-export default function Module4({ onNext, onPrev, showNotification, hidePrev }) {
+export default function Module4({ onNext, onPrev, showNotification, hidePrev, trackEvent }) {
     const [product, setProduct] = useState('');
     const [selectedBackground, setSelectedBackground] = useState(null);
     const [selectedColors, setSelectedColors] = useState(null);
     const [generatedPrompt, setGeneratedPrompt] = useState('');
     const [showGenerated, setShowGenerated] = useState(false);
 
-    const copyToClipboard = async (text) => {
+    const copyToClipboard = async (text, source) => {
+        if (trackEvent) {
+            trackEvent('copy_clicked', { module: 'module4', source: source });
+        }
         try {
             await navigator.clipboard.writeText(text);
             showNotification('¡Copiado! 📋', 'success');
+            if (trackEvent) {
+                trackEvent('copy_success', { module: 'module4', source: source });
+            }
         } catch (err) {
             showNotification('No se pudo copiar. Selecciona el texto manualmente.', 'error');
+            if (trackEvent) {
+                trackEvent('copy_failed', { module: 'module4', source: source });
+            }
         }
     };
 
@@ -70,12 +79,34 @@ export default function Module4({ onNext, onPrev, showNotification, hidePrev }) 
         setGeneratedPrompt(prompt);
         setShowGenerated(true);
         showNotification('¡Tu descripción está lista! 🎨', 'success');
+
+        if (trackEvent) {
+            trackEvent('image_prompt_generated', {
+                module: 'module4',
+                background: selectedBackground,
+                colors: selectedColors
+            });
+        }
     };
 
     const handleWhatsAppShare = (question) => {
+        if (trackEvent) {
+            trackEvent('whatsapp_share', { module: 'module4' });
+        }
         const message = encodeURIComponent(`💬 Pregunta del taller MujerTech:\n\n${question}\n\n¿Qué opinan ustedes?`);
         window.open(`https://wa.me/?text=${message}`, '_blank');
         showNotification('¡Gracias por compartir! 💚', 'success');
+    };
+
+    const handleNext = () => {
+        if (trackEvent) {
+            trackEvent('module4_completed', {
+                imagePromptGenerated: showGenerated ? 'yes' : 'no',
+                background: selectedBackground || 'none',
+                colors: selectedColors || 'none'
+            });
+        }
+        onNext();
     };
 
     return (
@@ -167,7 +198,7 @@ export default function Module4({ onNext, onPrev, showNotification, hidePrev }) 
                         <div className={styles.promptBox}>{MARIA_IMAGE_PROMPT}</div>
                         <button 
                             className={styles.btnCopy}
-                            onClick={() => copyToClipboard(MARIA_IMAGE_PROMPT)}
+                            onClick={() => copyToClipboard(MARIA_IMAGE_PROMPT, 'maria_image_example')}
                             type="button"
                         >
                             📋 COPIAR
@@ -265,7 +296,7 @@ export default function Module4({ onNext, onPrev, showNotification, hidePrev }) 
                             <div className={styles.generatedText}>{generatedPrompt}</div>
                             <button 
                                 className={styles.btnCopy}
-                                onClick={() => copyToClipboard(generatedPrompt)}
+                                onClick={() => copyToClipboard(generatedPrompt, 'user_image_prompt')}
                                 type="button"
                             >
                                 📋 COPIAR
@@ -320,7 +351,7 @@ export default function Module4({ onNext, onPrev, showNotification, hidePrev }) 
                 )}
                 <button 
                     className={`${styles.btnNav} ${styles.btnNext}`}
-                    onClick={onNext}
+                    onClick={handleNext}
                     type="button"
                 >
                     SIGUIENTE →

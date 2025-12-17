@@ -17,6 +17,7 @@ import Module4 from './components/modules/Module4/Module4';
 import Module6 from './components/modules/Module6/Module6';
 import { useNotification } from './lib/useNotification';
 import { useProgress } from './lib/useProgress';
+import { useClarity } from './lib/useClarity';
 
 const EXPERIENCE_MESSAGES = {
     nunca: '¡Perfecto! Este taller está hecho para ti. Vamos paso a paso.',
@@ -29,7 +30,7 @@ function getStartingModule(experience, businessType) {
     if (!experience || experience === 'nunca' || experience === 'poco') {
         return 'module1';
     }
-
+    
     if (experience === 'algo' || experience === 'mucho') {
         if (businessType === 'producto') {
             return 'module4';
@@ -38,7 +39,7 @@ function getStartingModule(experience, businessType) {
             return 'module2';
         }
     }
-
+    
     return 'module1';
 }
 
@@ -47,16 +48,17 @@ export default function Home() {
     const [isGlossaryOpen, setIsGlossaryOpen] = useState(false);
     const [userProfile, setUserProfile] = useState({ experience: null, businessType: null });
     const [entryModule, setEntryModule] = useState(null);
-
+    
     const { notification, showNotification, hideNotification } = useNotification();
-    const {
-        savedModule,
-        savedModuleName,
-        showResumeModal,
-        closeResumeModal,
-        saveProgress,
+    const { 
+        savedModule, 
+        savedModuleName, 
+        showResumeModal, 
+        closeResumeModal, 
+        saveProgress, 
         clearProgress
     } = useProgress();
+    const { trackEvent, setTag } = useClarity(currentModule);
 
     const isNavVisible = currentModule !== 'presessionCheck' && currentModule !== 'presession';
 
@@ -76,32 +78,41 @@ export default function Home() {
     };
 
     const handleStartPresession = () => {
+        trackEvent('presession_started');
         setCurrentModule('presession');
     };
 
     const handleSkipPresession = () => {
+        trackEvent('presession_skipped');
         setCurrentModule('welcome');
         showNotification('¡Perfecto! Vamos directo al taller', 'success');
     };
 
     const handlePresessionComplete = () => {
+        trackEvent('presession_completed');
         setCurrentModule('welcome');
         showNotification('¡Muy bien! Ya estás lista para el taller 🎉', 'success');
     };
 
     const handleWelcomeNext = ({ experience, businessType }) => {
         setUserProfile({ experience, businessType });
-
+        
+        // Track user profile in Clarity
+        setTag('experience', experience || 'not_selected');
+        setTag('businessType', businessType || 'not_selected');
+        trackEvent('welcome_completed', { experience, businessType });
+        
         if (experience && EXPERIENCE_MESSAGES[experience]) {
             showNotification(EXPERIENCE_MESSAGES[experience], 'success');
         }
-
+        
         const startingModule = getStartingModule(experience, businessType);
         setEntryModule(startingModule);
         handleModuleChange(startingModule);
     };
 
     const handleResume = () => {
+        trackEvent('session_resumed', { module: savedModule });
         closeResumeModal();
         if (savedModule) {
             setEntryModule(savedModule);
@@ -110,16 +121,23 @@ export default function Home() {
     };
 
     const handleStartFresh = () => {
+        trackEvent('session_restarted');
         closeResumeModal();
         clearProgress();
         setCurrentModule('presessionCheck');
     };
 
     const handleJumpToModule = (moduleId) => {
+        trackEvent('module_jumped', { targetModule: moduleId });
         closeResumeModal();
         setEntryModule(moduleId);
         setCurrentModule(moduleId);
         showNotification('¡Vamos allá! 🚀', 'success');
+    };
+
+    const handleGlossaryOpen = () => {
+        trackEvent('glossary_opened');
+        setIsGlossaryOpen(true);
     };
 
     const shouldHidePrev = (moduleId) => {
@@ -136,7 +154,7 @@ export default function Home() {
         switch (currentModule) {
             case 'presessionCheck':
                 return (
-                    <PresessionCheck
+                    <PresessionCheck 
                         onStartPresession={handleStartPresession}
                         onSkipPresession={handleSkipPresession}
                     />
@@ -151,43 +169,48 @@ export default function Home() {
                 );
             case 'module1':
                 return (
-                    <Module1
+                    <Module1 
                         onNext={() => handleModuleChange('module2')}
                         onPrev={() => handleModuleChange('welcome')}
                         showNotification={showNotification}
                         hidePrev={shouldHidePrev('module1')}
+                        trackEvent={trackEvent}
                     />
                 );
             case 'module2':
                 return (
-                    <Module2
+                    <Module2 
                         onNext={() => handleModuleChange('module4')}
                         onPrev={() => handleModuleChange('module1')}
                         showNotification={showNotification}
                         hidePrev={shouldHidePrev('module2')}
+                        trackEvent={trackEvent}
                     />
                 );
             case 'module4':
                 return (
-                    <Module4
+                    <Module4 
                         onNext={() => handleModuleChange('module6')}
                         onPrev={() => handleModuleChange('module2')}
                         showNotification={showNotification}
                         hidePrev={shouldHidePrev('module4')}
+                        trackEvent={trackEvent}
                     />
                 );
             case 'module6':
                 return (
-                    <Module6
+                    <Module6 
                         onPrev={() => handleModuleChange('module4')}
                         onGoToStart={() => handleModuleChange('welcome')}
                         showNotification={showNotification}
                         userProfile={userProfile}
+                        trackEvent={trackEvent}
+                        setTag={setTag}
                     />
                 );
             default:
                 return (
-                    <div style={{
+                    <div style={{ 
                         background: 'white',
                         padding: 'var(--spacing-xl)',
                         borderRadius: 'var(--radius-lg)',
@@ -210,10 +233,10 @@ export default function Home() {
 
     return (
         <>
-            <Header onGlossaryOpen={() => setIsGlossaryOpen(true)} />
+            <Header onGlossaryOpen={handleGlossaryOpen} />
             <ProgressBar currentModule={currentModule} />
-
-            <main style={{
+            
+            <main style={{ 
                 marginTop: '120px',
                 padding: '12px',
                 paddingBottom: '80px',
@@ -224,18 +247,18 @@ export default function Home() {
                 {renderModule()}
             </main>
 
-            <ModuleNavBar
+            <ModuleNavBar 
                 currentModule={currentModule}
                 onModuleChange={handleModuleChange}
                 isVisible={isNavVisible}
             />
 
-            <Glossary
+            <Glossary 
                 isOpen={isGlossaryOpen}
                 onClose={() => setIsGlossaryOpen(false)}
             />
 
-            <Notification
+            <Notification 
                 message={notification.message}
                 type={notification.type}
                 isVisible={notification.isVisible}
@@ -245,7 +268,7 @@ export default function Home() {
             <Timer key={currentModule} />
 
             {showResumeModal && (
-                <ResumeModal
+                <ResumeModal 
                     moduleName={savedModuleName}
                     onResume={handleResume}
                     onStartFresh={handleStartFresh}

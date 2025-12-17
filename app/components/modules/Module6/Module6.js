@@ -68,7 +68,7 @@ const TASKS = [
     'Comparte tu experiencia en el grupo de WhatsApp'
 ];
 
-export default function Module6({ onPrev, onGoToStart, showNotification, userProfile }) {
+export default function Module6({ onPrev, onGoToStart, showNotification, userProfile, trackEvent, setTag }) {
     const [email, setEmail] = useState('');
     const [emailSubmitted, setEmailSubmitted] = useState(false);
     const [emailSkipped, setEmailSkipped] = useState(false);
@@ -84,6 +84,20 @@ export default function Module6({ onPrev, onGoToStart, showNotification, userPro
         saveAfterRating(value);
         setShowComparison(true);
         showNotification('¡Gracias por tu respuesta! 🎉', 'success');
+
+        if (trackEvent) {
+            trackEvent('confidence_after_rated', {
+                before: beforeRating,
+                after: value,
+                change: value - (beforeRating || 0)
+            });
+        }
+        if (setTag) {
+            setTag('confidenceAfter', String(value));
+            if (beforeRating) {
+                setTag('confidenceChange', String(value - beforeRating));
+            }
+        }
     };
 
     const handleEmailSubmit = async () => {
@@ -99,6 +113,10 @@ export default function Module6({ onPrev, onGoToStart, showNotification, userPro
         }
 
         setIsSubmitting(true);
+
+        if (trackEvent) {
+            trackEvent('email_submit_started');
+        }
 
         try {
             const response = await fetch('/api/subscribe', {
@@ -121,9 +139,20 @@ export default function Module6({ onPrev, onGoToStart, showNotification, userPro
             setEmailSubmitted(true);
             showNotification('¡Gracias! Te avisaremos pronto 💌', 'success');
 
+            if (trackEvent) {
+                trackEvent('email_submit_success');
+            }
+            if (setTag) {
+                setTag('emailSubscribed', 'yes');
+            }
+
         } catch (error) {
             console.error('Subscribe error:', error);
             showNotification('Hubo un error. Intenta de nuevo.', 'error');
+
+            if (trackEvent) {
+                trackEvent('email_submit_failed');
+            }
         } finally {
             setIsSubmitting(false);
         }
@@ -131,12 +160,23 @@ export default function Module6({ onPrev, onGoToStart, showNotification, userPro
 
     const handleSkipEmail = () => {
         setEmailSkipped(true);
+
+        if (trackEvent) {
+            trackEvent('email_skipped');
+        }
+        if (setTag) {
+            setTag('emailSubscribed', 'skipped');
+        }
     };
 
     const handleDownloadCertificate = () => {
         if (!certificateName.trim()) {
             showNotification('Por favor escribe tu nombre', 'error');
             return;
+        }
+
+        if (trackEvent) {
+            trackEvent('certificate_download_started');
         }
 
         showNotification('Generando tu certificado... ⏳', 'info');
@@ -234,6 +274,27 @@ export default function Module6({ onPrev, onGoToStart, showNotification, userPro
         link.click();
 
         showNotification('¡Certificado descargado! 🎉', 'success');
+
+        if (trackEvent) {
+            trackEvent('certificate_downloaded');
+        }
+        if (setTag) {
+            setTag('certificateDownloaded', 'yes');
+        }
+    };
+
+    const handleFeedbackClick = () => {
+        if (trackEvent) {
+            trackEvent('feedback_form_opened');
+        }
+        window.open('https://forms.gle/cRbQkicHhvQ8sGQJ9', '_blank');
+    };
+
+    const handleGoToStart = () => {
+        if (trackEvent) {
+            trackEvent('workshop_restarted');
+        }
+        onGoToStart();
     };
 
     return (
@@ -439,7 +500,10 @@ export default function Module6({ onPrev, onGoToStart, showNotification, userPro
                     <p><strong>¿Qué ganas tú?</strong> Las personas que nos den feedback serán las <strong>primeras invitadas</strong> a nuestro próximo curso completo de IA.</p>
                 </div>
                 
-                <div className={styles.btnCta} onClick={() => window.open('https://forms.gle/cRbQkicHhvQ8sGQJ9', '_blank')}>
+                <div 
+                    className={styles.btnCta} 
+                    onClick={handleFeedbackClick}
+                >
                     📝 DARNOS TUS OPINIONES
                 </div>
             </div>
@@ -455,7 +519,7 @@ export default function Module6({ onPrev, onGoToStart, showNotification, userPro
                 </button>
                 <button
                     className={`${styles.btnNav} ${styles.btnNext}`}
-                    onClick={onGoToStart}
+                    onClick={handleGoToStart}
                     type="button"
                 >
                     VOLVER AL INICIO
