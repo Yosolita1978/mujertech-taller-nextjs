@@ -7,11 +7,11 @@
     display: none;
     justify-content: space-around;
     align-items: center;
-    padding: var(--spacing-sm) 0;
-    padding-bottom: calc(var(--spacing-sm) + env(safe-area-inset-bottom));
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    padding: var(--spacing-xs) 0;
+    padding-bottom: calc(var(--spacing-xs) + env(safe-area-inset-bottom));
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
     z-index: 1000;
-    height: 64px;
+    min-height: 56px;
 }
 
 .navBar.visible {
@@ -27,36 +27,34 @@
     background: none;
     border: none;
     padding: var(--spacing-xs);
-    min-width: 60px;
+    min-width: 48px;
+    min-height: 48px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: background 0.15s;
     -webkit-user-select: none;
     user-select: none;
+    border-radius: var(--radius-sm);
 }
 
 .navItem:active {
-    transform: scale(0.95);
+    background: var(--gray-light);
 }
 
 .navItemIcon {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     line-height: 1;
 }
 
 .navItemLabel {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 600;
     color: var(--gray);
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
 }
 
 .navItem.current .navItemLabel {
     color: var(--primary);
-}
-
-.navItem.current .navItemIcon {
-    transform: scale(1.1);
 }
 
 .navItem.completed .navItemLabel {
@@ -72,27 +70,41 @@
     opacity: 0.5;
 }
 
-@media (min-width: 768px) {
-    .navBar {
-        height: 72px;
-    }
-    
+@media (max-width: 360px) {
     .navItem {
-        min-width: 80px;
+        min-width: 44px;
+        padding: 4px;
     }
     
     .navItemIcon {
-        font-size: 1.75rem;
+        font-size: 1.2rem;
     }
     
     .navItemLabel {
-        font-size: 0.75rem;
+        font-size: 0.55rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .navBar {
+        min-height: 64px;
+    }
+    
+    .navItem {
+        min-width: 70px;
+    }
+    
+    .navItemIcon {
+        font-size: 1.6rem;
+    }
+    
+    .navItemLabel {
+        font-size: 0.7rem;
     }
 }
 
 @media (min-width: 1024px) {
     .navItem:hover {
         background: var(--gray-light);
-        border-radius: var(--radius-md);
     }
 }

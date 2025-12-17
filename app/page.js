@@ -29,7 +29,7 @@ function getStartingModule(experience, businessType) {
     if (!experience || experience === 'nunca' || experience === 'poco') {
         return 'module1';
     }
-    
+
     if (experience === 'algo' || experience === 'mucho') {
         if (businessType === 'producto') {
             return 'module4';
@@ -38,7 +38,7 @@ function getStartingModule(experience, businessType) {
             return 'module2';
         }
     }
-    
+
     return 'module1';
 }
 
@@ -47,14 +47,14 @@ export default function Home() {
     const [isGlossaryOpen, setIsGlossaryOpen] = useState(false);
     const [userProfile, setUserProfile] = useState({ experience: null, businessType: null });
     const [entryModule, setEntryModule] = useState(null);
-    
+
     const { notification, showNotification, hideNotification } = useNotification();
-    const { 
-        savedModule, 
-        savedModuleName, 
-        showResumeModal, 
-        closeResumeModal, 
-        saveProgress, 
+    const {
+        savedModule,
+        savedModuleName,
+        showResumeModal,
+        closeResumeModal,
+        saveProgress,
         clearProgress
     } = useProgress();
 
@@ -91,11 +91,11 @@ export default function Home() {
 
     const handleWelcomeNext = ({ experience, businessType }) => {
         setUserProfile({ experience, businessType });
-        
+
         if (experience && EXPERIENCE_MESSAGES[experience]) {
             showNotification(EXPERIENCE_MESSAGES[experience], 'success');
         }
-        
+
         const startingModule = getStartingModule(experience, businessType);
         setEntryModule(startingModule);
         handleModuleChange(startingModule);
@@ -136,7 +136,7 @@ export default function Home() {
         switch (currentModule) {
             case 'presessionCheck':
                 return (
-                    <PresessionCheck 
+                    <PresessionCheck
                         onStartPresession={handleStartPresession}
                         onSkipPresession={handleSkipPresession}
                     />
@@ -151,7 +151,7 @@ export default function Home() {
                 );
             case 'module1':
                 return (
-                    <Module1 
+                    <Module1
                         onNext={() => handleModuleChange('module2')}
                         onPrev={() => handleModuleChange('welcome')}
                         showNotification={showNotification}
@@ -160,7 +160,7 @@ export default function Home() {
                 );
             case 'module2':
                 return (
-                    <Module2 
+                    <Module2
                         onNext={() => handleModuleChange('module4')}
                         onPrev={() => handleModuleChange('module1')}
                         showNotification={showNotification}
@@ -169,7 +169,7 @@ export default function Home() {
                 );
             case 'module4':
                 return (
-                    <Module4 
+                    <Module4
                         onNext={() => handleModuleChange('module6')}
                         onPrev={() => handleModuleChange('module2')}
                         showNotification={showNotification}
@@ -178,7 +178,7 @@ export default function Home() {
                 );
             case 'module6':
                 return (
-                    <Module6 
+                    <Module6
                         onPrev={() => handleModuleChange('module4')}
                         onGoToStart={() => handleModuleChange('welcome')}
                         showNotification={showNotification}
@@ -187,7 +187,7 @@ export default function Home() {
                 );
             default:
                 return (
-                    <div style={{ 
+                    <div style={{
                         background: 'white',
                         padding: 'var(--spacing-xl)',
                         borderRadius: 'var(--radius-lg)',
@@ -212,11 +212,11 @@ export default function Home() {
         <>
             <Header onGlossaryOpen={() => setIsGlossaryOpen(true)} />
             <ProgressBar currentModule={currentModule} />
-            
-            <main style={{ 
-                marginTop: '130px',
-                padding: 'var(--spacing-md)',
-                paddingBottom: '100px',
+
+            <main style={{
+                marginTop: '120px',
+                padding: '12px',
+                paddingBottom: '80px',
                 maxWidth: '800px',
                 marginLeft: 'auto',
                 marginRight: 'auto'
@@ -224,18 +224,18 @@ export default function Home() {
                 {renderModule()}
             </main>
 
-            <ModuleNavBar 
+            <ModuleNavBar
                 currentModule={currentModule}
                 onModuleChange={handleModuleChange}
                 isVisible={isNavVisible}
             />
 
-            <Glossary 
+            <Glossary
                 isOpen={isGlossaryOpen}
                 onClose={() => setIsGlossaryOpen(false)}
             />
 
-            <Notification 
+            <Notification
                 message={notification.message}
                 type={notification.type}
                 isVisible={notification.isVisible}
@@ -245,7 +245,7 @@ export default function Home() {
             <Timer key={currentModule} />
 
             {showResumeModal && (
-                <ResumeModal 
+                <ResumeModal
                     moduleName={savedModuleName}
                     onResume={handleResume}
                     onStartFresh={handleStartFresh}

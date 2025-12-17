@@ -9,28 +9,31 @@
 .scale {
     display: flex;
     justify-content: space-between;
-    gap: var(--spacing-xs);
+    gap: 4px;
 }
 
 .option {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    justify-content: center;
+    gap: 2px;
     padding: var(--spacing-sm);
     background: var(--gray-light);
-    border: 3px solid transparent;
+    border: 2px solid transparent;
     border-radius: var(--radius-md);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: border-color 0.15s, background 0.15s;
     flex: 1;
-    min-width: 50px;
+    min-width: 44px;
+    min-height: 60px;
     -webkit-user-select: none;
     user-select: none;
 }
 
 .option:active {
-    transform: scale(0.95);
+    background: var(--primary-light);
+    border-color: var(--primary);
 }
 
 .option:disabled {
@@ -44,12 +47,12 @@
 }
 
 .emoji {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     line-height: 1;
 }
 
 .value {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     color: var(--gray);
 }
@@ -62,7 +65,7 @@
 .labels {
     display: flex;
     justify-content: space-between;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--gray);
 }
 
@@ -71,9 +74,9 @@
     background: var(--success-light);
     border: 2px solid var(--success);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
     text-align: center;
-    animation: fadeIn 0.4s ease;
+    animation: fadeIn 0.3s ease;
 }
 
 .comparisonHeader {
@@ -85,21 +88,22 @@
 }
 
 .comparisonIcon {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .comparisonHeader h3 {
     margin: 0;
     color: #065F46;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .comparisonBody {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
     margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
 }
 
 .comparisonItem {
@@ -109,29 +113,29 @@
 }
 
 .comparisonLabel {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: #065F46;
 }
 
 .comparisonEmoji {
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .comparisonValue {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--gray);
 }
 
 .comparisonArrow {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: var(--success);
     font-weight: bold;
 }
 
 .comparisonMessage {
     margin: 0;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
 }
 
@@ -146,26 +150,45 @@
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+    }
+}
+
+@media (max-width: 360px) {
+    .option {
+        min-width: 40px;
+        min-height: 54px;
+        padding: var(--spacing-xs);
+    }
+    
+    .emoji {
+        font-size: 1.3rem;
+    }
+    
+    .value {
+        font-size: 0.65rem;
+    }
+    
+    .labels {
+        font-size: 0.7rem;
     }
 }
 
 @media (min-width: 768px) {
     .option {
-        min-width: 60px;
+        min-width: 56px;
+        min-height: 70px;
         padding: var(--spacing-md);
     }
     
     .emoji {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
     
     .value {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 }
 
