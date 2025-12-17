@@ -83,9 +83,9 @@ export default function RootLayout({ children }) {
             <head>
                 <link rel="manifest" href="/manifest.json" />
                 <StructuredData />
+                <GoogleAnalytics />
             </head>
             <body suppressHydrationWarning>
-                <GoogleAnalytics />
                 {children}
                 <Analytics />
             </body>
