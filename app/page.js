@@ -182,6 +182,7 @@ export default function Home() {
                         onPrev={() => handleModuleChange('module4')}
                         onGoToStart={() => handleModuleChange('welcome')}
                         showNotification={showNotification}
+                        userProfile={userProfile}
                     />
                 );
             default:
@@ -241,7 +242,7 @@ export default function Home() {
                 onHide={hideNotification}
             />
 
-            <Timer />
+            <Timer key={currentModule} />
 
             {showResumeModal && (
                 <ResumeModal 

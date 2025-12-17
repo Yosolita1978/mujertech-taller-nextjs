@@ -2,7 +2,6 @@ import { useState } from 'react';
 import styles from './Module6.module.css';
 import ConfidenceRating, { ConfidenceComparison } from '../../ConfidenceRating/ConfidenceRating';
 import { useConfidence } from '../../../lib/useConfidence';
-import SuccessCriteria from '../../SuccessCriteria/SuccessCriteria';
 
 const LEARNED_ITEMS = [
     'Qué es la Inteligencia Artificial',
@@ -69,10 +68,11 @@ const TASKS = [
     'Comparte tu experiencia en el grupo de WhatsApp'
 ];
 
-export default function Module6({ onPrev, onGoToStart, showNotification }) {
+export default function Module6({ onPrev, onGoToStart, showNotification, userProfile }) {
     const [email, setEmail] = useState('');
     const [emailSubmitted, setEmailSubmitted] = useState(false);
     const [emailSkipped, setEmailSkipped] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [certificateName, setCertificateName] = useState('');
     const [afterConfidence, setAfterConfidence] = useState(null);
     const [showComparison, setShowComparison] = useState(false);
@@ -86,7 +86,7 @@ export default function Module6({ onPrev, onGoToStart, showNotification }) {
         showNotification('¡Gracias por tu respuesta! 🎉', 'success');
     };
 
-    const handleEmailSubmit = () => {
+    const handleEmailSubmit = async () => {
         if (!email.trim()) {
             showNotification('Por favor escribe tu correo', 'error');
             return;
@@ -98,8 +98,35 @@ export default function Module6({ onPrev, onGoToStart, showNotification }) {
             return;
         }
 
-        setEmailSubmitted(true);
-        showNotification('¡Gracias! Te avisaremos pronto 💌', 'success');
+        setIsSubmitting(true);
+
+        try {
+            const response = await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email.trim(),
+                    businessType: userProfile?.businessType || '',
+                    aiExperience: userProfile?.experience || '',
+                    completedModules: 'module6',
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to subscribe');
+            }
+
+            setEmailSubmitted(true);
+            showNotification('¡Gracias! Te avisaremos pronto 💌', 'success');
+
+        } catch (error) {
+            console.error('Subscribe error:', error);
+            showNotification('Hubo un error. Intenta de nuevo.', 'error');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleSkipEmail = () => {
@@ -323,13 +350,15 @@ export default function Module6({ onPrev, onGoToStart, showNotification }) {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             autoComplete="email"
+                            disabled={isSubmitting}
                         />
                         <button
                             className={styles.btnEmailSubmit}
                             onClick={handleEmailSubmit}
                             type="button"
+                            disabled={isSubmitting}
                         >
-                            QUIERO APRENDER MÁS
+                            {isSubmitting ? 'ENVIANDO...' : 'QUIERO APRENDER MÁS'}
                         </button>
                     </div>
 
@@ -342,6 +371,7 @@ export default function Module6({ onPrev, onGoToStart, showNotification }) {
                         className={styles.btnSkipEmail}
                         onClick={handleSkipEmail}
                         type="button"
+                        disabled={isSubmitting}
                     >
                         Ahora no, gracias
                     </button>
