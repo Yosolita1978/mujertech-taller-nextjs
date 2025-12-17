@@ -1,4 +1,5 @@
 import './globals.css';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata = {
     title: 'MujerTech - Taller Introductorio de IA',
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
         <html lang="es">
             <body suppressHydrationWarning>
                 {children}
+                <Analytics />
             </body>
         </html>
     );
