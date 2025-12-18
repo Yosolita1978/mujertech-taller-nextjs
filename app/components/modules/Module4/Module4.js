@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import styles from './Module4.module.css';
 import SuccessCriteria from '../../SuccessCriteria/SuccessCriteria';
+import Image from 'next/image';
 
 export default function Module4({ onNext, onPrev, showNotification, hidePrev, trackEvent }) {
     const t = useTranslations('module4');
@@ -198,6 +199,15 @@ export default function Module4({ onNext, onPrev, showNotification, hidePrev, tr
                 <div className={styles.caseStep}>
                     <h3><span className={styles.caseStepNumber}>3</span>{t('maria.step3.title')}</h3>
                     <p>{t('maria.step3.description')}</p>
+                    <div className={styles.imageResult}>
+                        <Image 
+                            src="/images/jabones-maria.png" 
+                            alt="María's AI-generated soap image"
+                            className={styles.generatedImage}
+                            width={500}
+                            height={500}
+                        />
+                    </div>
                 </div>
 
                 <div className={styles.caseResult}>

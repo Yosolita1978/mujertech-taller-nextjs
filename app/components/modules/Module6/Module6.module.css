@@ -4,28 +4,8 @@
     gap: var(--spacing-lg);
 }
 
-/* Module Header */
-.moduleHeader {
-    text-align: center;
-    padding: var(--spacing-lg);
-    background: white;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-}
-
-.moduleHeader h1 {
-    font-size: 1.8rem;
-    color: var(--primary);
-    margin-bottom: var(--spacing-sm);
-}
-
-.moduleSubtitle {
-    color: var(--gray);
-    font-size: 1rem;
-}
-
-/* Celebration Section */
-.celebrationSection {
+/* Hero Section */
+.heroSection {
     text-align: center;
     padding: var(--spacing-xl);
     background: var(--gradient);
@@ -33,20 +13,27 @@
     color: white;
 }
 
-.celebrationIcon {
-    font-size: 5rem;
+.heroEmoji {
+    font-size: 4rem;
     margin-bottom: var(--spacing-md);
     animation: bounce 1s ease infinite;
 }
 
-.celebrationSection h2 {
+.heroSection h1 {
     font-size: 1.8rem;
     margin-bottom: var(--spacing-sm);
 }
 
-.celebrationSection p {
-    font-size: 1rem;
+.heroSubtitle {
+    font-size: 1.1rem;
     opacity: 0.95;
+    margin-bottom: var(--spacing-sm);
+}
+
+.heroText {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin: 0;
 }
 
 @keyframes bounce {
@@ -58,7 +45,7 @@
     }
 }
 
-/* Cards */
+/* Cards Base */
 .card {
     background: white;
     padding: var(--spacing-lg);
@@ -79,13 +66,18 @@
     font-size: 1.5rem;
 }
 
-.cardText {
+.cardSubtitle {
     color: var(--gray);
-    margin-bottom: var(--spacing-sm);
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-md);
 }
 
 /* Summary Card */
 .summaryCard {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
     border-left: 4px solid var(--success);
 }
 
@@ -115,179 +107,103 @@
     font-size: 0.95rem;
 }
 
-/* Warning Card */
-.warningCard {
-    border-left: 4px solid var(--warning);
-    background: var(--warning-light);
+/* Confidence Card */
+.confidenceCard {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 2px solid var(--primary);
 }
 
-.rulesCompact {
+.confidenceCard .cardTitle {
+    justify-content: center;
+    text-align: center;
+}
+
+.confidenceCard .cardSubtitle {
+    text-align: center;
+}
+
+.noBeforeRating {
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-top: var(--spacing-md);
+}
+
+/* Next Steps */
+.nextStepsList {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
 }
 
-.ruleCompactItem {
+.nextStep {
     display: flex;
     align-items: flex-start;
     gap: var(--spacing-md);
     padding: var(--spacing-md);
-    background: white;
+    background: var(--gray-light);
     border-radius: var(--radius-md);
 }
 
-.ruleCompactNumber {
+.stepNumber {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
-    background: var(--warning);
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    background: var(--primary);
     color: white;
     border-radius: 50%;
     font-weight: 700;
     font-size: 0.9rem;
 }
 
-.ruleCompactItem strong {
-    display: block;
-    color: var(--dark);
-    margin-bottom: var(--spacing-xs);
-}
-
-.ruleCompactItem p {
-    margin: 0;
-    color: var(--gray);
-    font-size: 0.9rem;
-}
-
-/* Teaser Grid */
-.teaserGrid {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-md);
-}
-
-.teaserCard {
-    background: var(--gray-light);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-}
-
-.teaserCardContent {
-    padding: var(--spacing-md);
-}
-
-.teaserCardHeader {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-sm);
-}
-
-.teaserIcon {
-    font-size: 1.5rem;
-}
-
-.teaserCardHeader h3 {
+.nextStep h3 {
     font-size: 1rem;
     color: var(--dark);
-    margin: 0;
-    flex: 1;
-}
-
-.teaserBadge {
-    background: var(--secondary);
-    color: white;
-    padding: 2px var(--spacing-sm);
-    border-radius: var(--radius-sm);
-    font-size: 0.7rem;
-    font-weight: 600;
-}
-
-.teaserCardContent > p {
-    color: var(--gray);
-    font-size: 0.9rem;
-    margin: 0;
-}
-
-.teaserPreview {
-    background: white;
-    padding: var(--spacing-md);
-    border-top: 1px solid var(--border);
-}
-
-.teaserPreviewLabel {
-    font-size: 0.75rem;
-    color: var(--gray);
     margin: 0 0 var(--spacing-xs) 0;
 }
 
-.teaserPreviewText {
-    font-size: 0.85rem;
-    color: var(--primary);
-    font-style: italic;
+.nextStep p {
+    font-size: 0.9rem;
+    color: var(--gray);
     margin: 0;
 }
 
-/* Email Capture */
-.emailCapture {
+/* Community Card */
+.communityCard {
     background: white;
     padding: var(--spacing-xl);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
     text-align: center;
-    border: 2px solid var(--primary);
+    border: 2px solid #25D366;
 }
 
-.emailCaptureIcon {
-    font-size: 3rem;
-    margin-bottom: var(--spacing-md);
-}
-
-.emailCapture h2 {
+.communityCard h2 {
+    font-size: 1.2rem;
     color: var(--dark);
-    font-size: 1.3rem;
     margin-bottom: var(--spacing-sm);
 }
 
-.emailCapture > p {
+.communityCard p {
     color: var(--gray);
+    font-size: 0.95rem;
     margin-bottom: var(--spacing-lg);
 }
 
-.emailForm {
-    display: flex;
-    flex-direction: column;
+.btnCommunity {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-md);
-}
-
-.emailInput {
-    width: 100%;
-    padding: var(--spacing-md);
-    font-size: 16px;
-    border: 2px solid var(--border);
-    border-radius: var(--radius-md);
-    text-align: center;
-}
-
-.emailInput:focus {
-    outline: none;
-    border-color: var(--primary);
-}
-
-.emailInput::placeholder {
-    color: var(--gray);
-}
-
-.btnEmailSubmit {
-    width: 100%;
-    padding: var(--spacing-md);
-    background: var(--primary);
+    padding: var(--spacing-md) var(--spacing-xl);
+    background: #25D366;
     color: white;
     border: none;
     border-radius: var(--radius-md);
@@ -299,63 +215,8 @@
     user-select: none;
 }
 
-.btnEmailSubmit:active {
-    background: var(--primary-dark);
-}
-
-.noSpamPromise {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--spacing-sm);
-    text-align: left;
-    font-size: 0.85rem;
-    color: var(--gray);
-    margin-bottom: var(--spacing-md);
-}
-
-.noSpamIcon {
-    font-size: 1.2rem;
-    min-width: 24px;
-}
-
-.btnSkipEmail {
-    background: none;
-    border: none;
-    color: var(--gray);
-    font-size: 0.9rem;
-    cursor: pointer;
-    text-decoration: underline;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-.btnSkipEmail:active {
-    color: var(--dark);
-}
-
-/* Email Success */
-.emailSuccess {
-    background: var(--success-light);
-    padding: var(--spacing-xl);
-    border-radius: var(--radius-lg);
-    text-align: center;
-    animation: fadeIn 0.3s ease;
-}
-
-.emailSuccessIcon {
-    font-size: 3rem;
-    margin-bottom: var(--spacing-md);
-}
-
-.emailSuccess h3 {
-    color: #065F46;
-    font-size: 1.2rem;
-    margin-bottom: var(--spacing-sm);
-}
-
-.emailSuccess p {
-    color: #065F46;
-    margin: 0;
+.btnCommunity:active {
+    background: #1da851;
 }
 
 /* Certificate Section */
@@ -373,38 +234,27 @@
     align-items: center;
     justify-content: center;
     gap: var(--spacing-sm);
-    color: var(--dark);
     font-size: 1.3rem;
+    color: var(--dark);
     margin-bottom: var(--spacing-sm);
 }
 
-.certificateSection > p {
+.certificateIcon {
+    font-size: 1.5rem;
+}
+
+.certificateSection p {
     color: var(--gray);
-    margin-bottom: var(--spacing-md);
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-lg);
 }
 
-.certificateInput {
-    width: 100%;
-    padding: var(--spacing-md);
-    font-size: 16px;
-    border: 2px solid var(--border);
-    border-radius: var(--radius-md);
-    text-align: center;
-    margin-bottom: var(--spacing-md);
-}
-
-.certificateInput:focus {
-    outline: none;
-    border-color: var(--secondary);
-}
-
-.certificateInput::placeholder {
-    color: var(--gray);
-}
-
-.btnCertificate {
-    width: 100%;
-    padding: var(--spacing-md);
+.btnShare {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-xl);
     background: var(--secondary);
     color: white;
     border: none;
@@ -417,98 +267,35 @@
     user-select: none;
 }
 
-.btnCertificate:active {
+.btnShare:active {
     background: #e55566;
 }
 
-/* Task Card */
-.taskCard {
-    border-left: 4px solid var(--primary);
-}
-
-.taskList {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-}
-
-.taskItem {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--spacing-md);
-    padding: var(--spacing-md);
-    background: var(--gray-light);
-    border-radius: var(--radius-md);
-}
-
-.taskNumber {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
-    background: var(--primary);
-    color: white;
-    border-radius: 50%;
-    font-weight: 700;
-    font-size: 0.9rem;
-}
-
-.taskItem p {
-    margin: 0;
-    color: var(--dark);
-    font-size: 0.95rem;
-}
-
-/* CTA Card */
-.ctaCard {
+/* Final Message */
+.finalMessage {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: var(--primary-light);
+    border-radius: var(--radius-lg);
     border: 2px solid var(--primary);
-    text-align: center;
 }
 
-.feedbackBenefit {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--spacing-sm);
-    text-align: left;
-    background: var(--warning-light);
-    padding: var(--spacing-md);
-    border-radius: var(--radius-md);
-    margin: var(--spacing-md) 0;
+.finalMessage h2 {
+    font-size: 1.3rem;
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
 }
 
-.benefitIcon {
-    font-size: 1.5rem;
-    min-width: 32px;
-}
-
-.feedbackBenefit p {
-    margin: 0;
-    color: #92400E;
-    font-size: 0.95rem;
-}
-
-.btnCta {
-    display: block;
-    width: 100%;
-    padding: var(--spacing-md);
-    background: var(--primary);
-    color: white;
-    border: none;
-    border-radius: var(--radius-md);
+.finalMessage p {
+    color: var(--dark);
     font-size: 1rem;
-    font-weight: 700;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
-    transition: background 0.2s;
-    -webkit-user-select: none;
-    user-select: none;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
 }
 
-.btnCta:active {
-    background: var(--primary-dark);
+.finalEmoji {
+    font-size: 3rem;
+    display: block;
 }
 
 /* Navigation Buttons */
@@ -527,7 +314,7 @@
     font-weight: 600;
     border-radius: var(--radius-md);
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.2s;
     min-height: 50px;
     flex: 1;
     max-width: 180px;
@@ -545,82 +332,51 @@
     background: var(--primary-light);
 }
 
-.btnNext {
+.btnRestart {
     background: var(--primary);
     color: white;
     border: none;
 }
 
-.btnNext:active {
+.btnRestart:active {
     background: var(--primary-dark);
     transform: scale(0.98);
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
+/* Responsive */
 @media (min-width: 768px) {
-    .moduleHeader h1 {
+    .heroSection h1 {
         font-size: 2.2rem;
     }
-
-    .celebrationSection h2 {
-        font-size: 2rem;
+    
+    .heroEmoji {
+        font-size: 5rem;
     }
-
-    .teaserGrid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-    }
-
+    
     .navButtons {
         justify-content: center;
         gap: var(--spacing-lg);
     }
-
+    
     .btnNav {
         max-width: 200px;
     }
 }
 
 @media (min-width: 1024px) {
-    .btnEmailSubmit:hover {
-        background: var(--primary-dark);
+    .btnCommunity:hover {
+        background: #1da851;
     }
-
-    .btnSkipEmail:hover {
-        color: var(--dark);
-    }
-
-    .btnCertificate:hover {
+    
+    .btnShare:hover {
         background: #e55566;
     }
-
-    .btnCta:hover {
+    
+    .btnPrev:hover {
+        background: var(--primary-light);
+    }
+    
+    .btnRestart:hover {
         background: var(--primary-dark);
     }
-
-}
-
-/* Confidence Card */
-.confidenceCard {
-    background: white;
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    border: 2px solid var(--primary);
-}
-
-.confidenceCard .cardTitle {
-    justify-content: center;
-    text-align: center;
-    margin-bottom: var(--spacing-lg);
 }

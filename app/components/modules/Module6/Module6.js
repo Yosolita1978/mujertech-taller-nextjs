@@ -1,12 +1,39 @@
 'use client';
 
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import styles from './Module6.module.css';
-import ConfidenceRating from '../../ConfidenceRating/ConfidenceRating';
+import ConfidenceRating, { ConfidenceComparison } from '../../ConfidenceRating/ConfidenceRating';
+import { useConfidence } from '../../../lib/useConfidence';
 
-export default function Module6({ onRestart, initialConfidence, showNotification, trackEvent }) {
+export default function Module6({ onPrev, onGoToStart, showNotification, userProfile, trackEvent, setTag }) {
+    const [showComparison, setShowComparison] = useState(false);
+    
     const t = useTranslations('module6');
+    const tCommon = useTranslations('common');
     const tNotifications = useTranslations('notifications');
+    
+    const { beforeRating, afterRating, saveAfterRating } = useConfidence();
+
+    const handleConfidenceSelect = (value) => {
+        saveAfterRating(value);
+        setShowComparison(true);
+        
+        if (trackEvent) {
+            trackEvent('confidence_after_rated', { 
+                before: beforeRating, 
+                after: value,
+                change: value - (beforeRating || 0)
+            });
+        }
+        
+        if (setTag) {
+            setTag('confidenceAfter', String(value));
+            if (beforeRating) {
+                setTag('confidenceChange', String(value - beforeRating));
+            }
+        }
+    };
 
     const handleCommunityClick = () => {
         if (trackEvent) {
@@ -19,7 +46,7 @@ export default function Module6({ onRestart, initialConfidence, showNotification
         if (trackEvent) {
             trackEvent('certificate_share', { module: 'module6' });
         }
-        const message = encodeURIComponent(`🎉 ¡Completé el Taller de IA para Emprendedoras de MujerTech!\n\nAprendí a usar ChatGPT y Canva para mi negocio. 💪\n\n¿Quieres aprender tú también?`);
+        const message = encodeURIComponent(`🎉 ¡Completé el Taller de IA para Emprendedoras de MujerTech!\n\nAprendí a usar ChatGPT y Canva para mi negocio. 💪\n\n¿Quieres aprender tú también? https://intro.mujertech.org`);
         window.open(`https://wa.me/?text=${message}`, '_blank');
         showNotification(tNotifications('shareSuccess'), 'success');
     };
@@ -28,7 +55,14 @@ export default function Module6({ onRestart, initialConfidence, showNotification
         if (trackEvent) {
             trackEvent('workshop_restart', {});
         }
-        onRestart();
+        onGoToStart();
+    };
+
+    const handlePrev = () => {
+        if (trackEvent) {
+            trackEvent('module6_back', {});
+        }
+        onPrev();
     };
 
     return (
@@ -42,30 +76,58 @@ export default function Module6({ onRestart, initialConfidence, showNotification
             </header>
 
             {/* Summary Card */}
-            <div className={styles.card}>
+            <div className={styles.summaryCard}>
                 <h2 className={styles.cardTitle}>
                     <span className={styles.cardIcon}>📚</span>
                     {t('summary.title')}
                 </h2>
-                <ul className={styles.summaryList}>
-                    <li><span className={styles.checkIcon}>✅</span>{t('summary.item1')}</li>
-                    <li><span className={styles.checkIcon}>✅</span>{t('summary.item2')}</li>
-                    <li><span className={styles.checkIcon}>✅</span>{t('summary.item3')}</li>
-                    <li><span className={styles.checkIcon}>✅</span>{t('summary.item4')}</li>
-                </ul>
+                <div className={styles.learnedItems}>
+                    <div className={styles.learnedItem}>
+                        <span className={styles.learnedCheck}>✅</span>
+                        <p>{t('summary.item1')}</p>
+                    </div>
+                    <div className={styles.learnedItem}>
+                        <span className={styles.learnedCheck}>✅</span>
+                        <p>{t('summary.item2')}</p>
+                    </div>
+                    <div className={styles.learnedItem}>
+                        <span className={styles.learnedCheck}>✅</span>
+                        <p>{t('summary.item3')}</p>
+                    </div>
+                    <div className={styles.learnedItem}>
+                        <span className={styles.learnedCheck}>✅</span>
+                        <p>{t('summary.item4')}</p>
+                    </div>
+                </div>
             </div>
 
-            {/* Confidence Comparison */}
-            <div className={styles.card}>
+            {/* Confidence Section */}
+            <div className={styles.confidenceCard}>
                 <h2 className={styles.cardTitle}>
                     <span className={styles.cardIcon}>📊</span>
                     {t('confidence.title')}
                 </h2>
                 <p className={styles.cardSubtitle}>{t('confidence.subtitle')}</p>
-                <ConfidenceRating 
-                    mode="comparison"
-                    initialRating={initialConfidence}
-                />
+                
+                {!showComparison && !afterRating ? (
+                    <ConfidenceRating 
+                        selectedValue={afterRating}
+                        onSelect={handleConfidenceSelect}
+                    />
+                ) : (
+                    beforeRating && (afterRating || showComparison) && (
+                        <ConfidenceComparison 
+                            beforeValue={beforeRating}
+                            afterValue={afterRating}
+                        />
+                    )
+                )}
+                
+                {!beforeRating && (
+                    <p className={styles.noBeforeRating}>
+                        (No registramos tu nivel inicial de confianza)
+                    </p>
+                )}
             </div>
 
             {/* Next Steps */}
@@ -113,19 +175,19 @@ export default function Module6({ onRestart, initialConfidence, showNotification
             </div>
 
             {/* Certificate Section */}
-            <div className={styles.certificateCard}>
-                <div className={styles.certificateIcon}>🏆</div>
-                <h2>{t('certificate.title')}</h2>
+            <div className={styles.certificateSection}>
+                <h2>
+                    <span className={styles.certificateIcon}>🏆</span>
+                    {t('certificate.title')}
+                </h2>
                 <p>{t('certificate.text')}</p>
-                <div className={styles.certificateButtons}>
-                    <button 
-                        className={styles.btnShare}
-                        onClick={handleShareWhatsApp}
-                        type="button"
-                    >
-                        📱 {t('certificate.shareButton')}
-                    </button>
-                </div>
+                <button 
+                    className={styles.btnShare}
+                    onClick={handleShareWhatsApp}
+                    type="button"
+                >
+                    📱 {t('certificate.shareButton')}
+                </button>
             </div>
 
             {/* Final Message */}
@@ -135,14 +197,23 @@ export default function Module6({ onRestart, initialConfidence, showNotification
                 <span className={styles.finalEmoji}>{t('finalMessage.emoji')}</span>
             </div>
 
-            {/* Restart Button */}
-            <button 
-                className={styles.btnRestart}
-                onClick={handleRestart}
-                type="button"
-            >
-                ← {t('restartButton')}
-            </button>
+            {/* Navigation */}
+            <div className={styles.navButtons}>
+                <button 
+                    className={`${styles.btnNav} ${styles.btnPrev}`}
+                    onClick={handlePrev}
+                    type="button"
+                >
+                    ← {tCommon('previous')}
+                </button>
+                <button 
+                    className={`${styles.btnNav} ${styles.btnRestart}`}
+                    onClick={handleRestart}
+                    type="button"
+                >
+                    {t('restartButton')}
+                </button>
+            </div>
         </div>
     );
 }
