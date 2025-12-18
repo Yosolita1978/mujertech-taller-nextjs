@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@vercel/analytics": "^1.6.1",
-    "clarity-js": "^0.8.46",
     "next": "16.0.10",
     "next-intl": "^4.6.1",
     "react": "19.2.1",

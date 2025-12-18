@@ -3,6 +3,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Analytics } from '@vercel/analytics/next';
 import GoogleAnalytics from '../components/GoogleAnalytics/GoogleAnalytics';
+import MicrosoftClarity from '../components/MicrosoftClarity/MicrosoftClarity';
 import StructuredData from '../components/StructuredData/StructuredData';
 import { locales } from '../../i18n/config';
 
@@ -101,6 +102,7 @@ export default async function LocaleLayout({ children, params }) {
                 <link rel="manifest" href="/manifest.json" />
                 <StructuredData />
                 <GoogleAnalytics />
+                <MicrosoftClarity />
             </head>
             <body suppressHydrationWarning>
                 <NextIntlClientProvider messages={messages}>
