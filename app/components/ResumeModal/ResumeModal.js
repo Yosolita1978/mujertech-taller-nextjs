@@ -1,16 +1,20 @@
+'use client';
+
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import styles from './ResumeModal.module.css';
 
 const JUMP_OPTIONS = [
-    { id: 'welcome', icon: '🏠', label: 'Bienvenida' },
-    { id: 'module1', icon: '🤖', label: 'Qué es la IA' },
-    { id: 'module2', icon: '💬', label: 'Prompts y Herramientas' },
-    { id: 'module4', icon: '🎨', label: 'Crear imágenes' },
-    { id: 'module6', icon: '🎉', label: 'Felicitaciones' }
+    { id: 'welcome', icon: '🏠' },
+    { id: 'module1', icon: '🤖' },
+    { id: 'module2', icon: '💬' },
+    { id: 'module4', icon: '🎨' },
+    { id: 'module6', icon: '🎉' }
 ];
 
 export default function ResumeModal({ moduleName, onResume, onStartFresh, onJumpToModule }) {
     const [showModuleSelector, setShowModuleSelector] = useState(false);
+    const t = useTranslations('resumeModal');
 
     const handleJumpClick = () => {
         setShowModuleSelector(true);
@@ -30,39 +34,39 @@ export default function ResumeModal({ moduleName, onResume, onStartFresh, onJump
                 {!showModuleSelector ? (
                     <>
                         <div className={styles.icon}>📚</div>
-                        <h2>¡Hola de nuevo!</h2>
-                        <p>La última vez llegaste a:</p>
+                        <h2>{t('title')}</h2>
+                        <p>{t('lastTimeAt')}</p>
                         <p className={styles.moduleName}>{moduleName}</p>
-                        <p>¿Qué te gustaría hacer?</p>
+                        <p>{t('whatToDo')}</p>
                         <div className={styles.buttons}>
                             <button 
                                 className={styles.btnResume}
                                 onClick={onResume}
                                 type="button"
                             >
-                                SÍ, CONTINUAR DONDE LO DEJÉ
+                                {t('btnResume')}
                             </button>
                             <button 
                                 className={styles.btnJump}
                                 onClick={handleJumpClick}
                                 type="button"
                             >
-                                IR A OTRO MÓDULO
+                                {t('btnJump')}
                             </button>
                             <button 
                                 className={styles.btnStartFresh}
                                 onClick={onStartFresh}
                                 type="button"
                             >
-                                EMPEZAR DESDE CERO
+                                {t('btnStartFresh')}
                             </button>
                         </div>
                     </>
                 ) : (
                     <>
                         <div className={styles.icon}>🗺️</div>
-                        <h2>¿A dónde quieres ir?</h2>
-                        <p>Elige el módulo:</p>
+                        <h2>{t('jumpTitle')}</h2>
+                        <p>{t('jumpSubtitle')}</p>
                         <div className={styles.moduleSelector}>
                             {JUMP_OPTIONS.map((option) => (
                                 <button
@@ -72,7 +76,7 @@ export default function ResumeModal({ moduleName, onResume, onStartFresh, onJump
                                     type="button"
                                 >
                                     <span className={styles.moduleOptionIcon}>{option.icon}</span>
-                                    <span className={styles.moduleOptionLabel}>{option.label}</span>
+                                    <span className={styles.moduleOptionLabel}>{t(`modules.${option.id}`)}</span>
                                 </button>
                             ))}
                         </div>
@@ -81,7 +85,7 @@ export default function ResumeModal({ moduleName, onResume, onStartFresh, onJump
                             onClick={handleBackToOptions}
                             type="button"
                         >
-                            ← VOLVER
+                            {t('btnBack')}
                         </button>
                     </>
                 )}

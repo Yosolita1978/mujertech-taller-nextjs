@@ -1,534 +1,148 @@
-import { useState } from 'react';
+'use client';
+
+import { useTranslations } from 'next-intl';
 import styles from './Module6.module.css';
-import ConfidenceRating, { ConfidenceComparison } from '../../ConfidenceRating/ConfidenceRating';
-import { useConfidence } from '../../../lib/useConfidence';
-import CommunityCard from '../../CommunityCard/CommunityCard';
+import ConfidenceRating from '../../ConfidenceRating/ConfidenceRating';
 
-const LEARNED_ITEMS = [
-    'Qué es la Inteligencia Artificial',
-    'Cómo hablarle a la IA para que te ayude',
-    'Qué herramientas puedes usar (ChatGPT y Canva)',
-    'Cómo crear imágenes para tu negocio',
-    'Cómo usar la IA de forma segura'
-];
+export default function Module6({ onRestart, initialConfidence, showNotification, trackEvent }) {
+    const t = useTranslations('module6');
+    const tNotifications = useTranslations('notifications');
 
-const GOLDEN_RULES = [
-    {
-        icon: '🔒',
-        title: 'Protege la información privada',
-        description: 'Nunca le des a la IA datos personales de tus clientes'
-    },
-    {
-        icon: '👀',
-        title: 'Siempre revisa antes de publicar',
-        description: 'La IA puede equivocarse. Lee todo antes de usar.'
-    },
-    {
-        icon: '💬',
-        title: 'Sé honesta con tus clientes',
-        description: 'Si una imagen es de IA, no digas que es foto real.'
-    }
-];
-
-const TEASER_CARDS = [
-    {
-        icon: '📊',
-        title: 'Analiza tus datos con IA',
-        description: 'Aprende a usar IA para entender qué productos se venden más, en qué horarios, y por qué.',
-        example: '"Tus jabones de lavanda se venden 3x más los viernes. ¿Quieres promocionarlos ese día?"'
-    },
-    {
-        icon: '💰',
-        title: 'Revisa la salud de tu negocio',
-        description: '¿Estás ganando o perdiendo? La IA te ayuda a ver tu negocio con claridad.',
-        example: '"Este mes gastaste más en materiales. Considera subir precios o reducir costos."'
-    },
-    {
-        icon: '🎯',
-        title: 'Marketing automático',
-        description: 'Crea campañas para Instagram y WhatsApp que se adaptan a cada cliente.',
-        example: '"Hola María, vimos que te gustaron nuestros jabones. ¡Tenemos uno nuevo de menta!"'
-    },
-    {
-        icon: '🤖',
-        title: 'Tu asistente virtual 24/7',
-        description: 'Configura un chatbot que responde preguntas de clientes mientras duermes.',
-        example: '"¡Hola! Sí tenemos jabones de lavanda. Cuestan $15.000 y hacemos envíos a toda Colombia."'
-    },
-    {
-        icon: '📈',
-        title: 'Predice tu próximo mes',
-        description: 'Usa IA para saber cuánto vas a vender y planear mejor tu inventario.',
-        example: '"Basado en tu historial, el próximo mes venderás ~45 jabones. Prepara materiales para 50."'
-    }
-];
-
-const TASKS = [
-    'Abre ChatGPT y pide una idea para tu negocio',
-    'Abre Canva y crea una imagen simple',
-    'Comparte tu experiencia en el grupo de WhatsApp'
-];
-
-export default function Module6({ onPrev, onGoToStart, showNotification, userProfile, trackEvent, setTag }) {
-    const [email, setEmail] = useState('');
-    const [emailSubmitted, setEmailSubmitted] = useState(false);
-    const [emailSkipped, setEmailSkipped] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [certificateName, setCertificateName] = useState('');
-    const [afterConfidence, setAfterConfidence] = useState(null);
-    const [showComparison, setShowComparison] = useState(false);
-    
-    const { beforeRating, saveAfterRating } = useConfidence();
-
-    const handleAfterConfidenceSelect = (value) => {
-        setAfterConfidence(value);
-        saveAfterRating(value);
-        setShowComparison(true);
-        showNotification('¡Gracias por tu respuesta! 🎉', 'success');
-
+    const handleCommunityClick = () => {
         if (trackEvent) {
-            trackEvent('confidence_after_rated', {
-                before: beforeRating,
-                after: value,
-                change: value - (beforeRating || 0)
-            });
+            trackEvent('community_click', { module: 'module6' });
         }
-        if (setTag) {
-            setTag('confidenceAfter', String(value));
-            if (beforeRating) {
-                setTag('confidenceChange', String(value - beforeRating));
-            }
-        }
+        window.open('https://chat.whatsapp.com/BeKIk6RzQ68JFnHOL1ah12', '_blank');
     };
 
-    const handleEmailSubmit = async () => {
-        if (!email.trim()) {
-            showNotification('Por favor escribe tu correo', 'error');
-            return;
-        }
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            showNotification('Por favor escribe un correo válido', 'error');
-            return;
-        }
-
-        setIsSubmitting(true);
-
+    const handleShareWhatsApp = () => {
         if (trackEvent) {
-            trackEvent('email_submit_started');
+            trackEvent('certificate_share', { module: 'module6' });
         }
-
-        try {
-            const response = await fetch('/api/subscribe', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: email.trim(),
-                    businessType: userProfile?.businessType || '',
-                    aiExperience: userProfile?.experience || '',
-                    completedModules: 'module6',
-                }),
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to subscribe');
-            }
-
-            setEmailSubmitted(true);
-            showNotification('¡Gracias! Te avisaremos pronto 💌', 'success');
-
-            if (trackEvent) {
-                trackEvent('email_submit_success');
-            }
-            if (setTag) {
-                setTag('emailSubscribed', 'yes');
-            }
-
-        } catch (error) {
-            console.error('Subscribe error:', error);
-            showNotification('Hubo un error. Intenta de nuevo.', 'error');
-
-            if (trackEvent) {
-                trackEvent('email_submit_failed');
-            }
-        } finally {
-            setIsSubmitting(false);
-        }
+        const message = encodeURIComponent(`🎉 ¡Completé el Taller de IA para Emprendedoras de MujerTech!\n\nAprendí a usar ChatGPT y Canva para mi negocio. 💪\n\n¿Quieres aprender tú también?`);
+        window.open(`https://wa.me/?text=${message}`, '_blank');
+        showNotification(tNotifications('shareSuccess'), 'success');
     };
 
-    const handleSkipEmail = () => {
-        setEmailSkipped(true);
-
+    const handleRestart = () => {
         if (trackEvent) {
-            trackEvent('email_skipped');
+            trackEvent('workshop_restart', {});
         }
-        if (setTag) {
-            setTag('emailSubscribed', 'skipped');
-        }
-    };
-
-    const handleDownloadCertificate = () => {
-        if (!certificateName.trim()) {
-            showNotification('Por favor escribe tu nombre', 'error');
-            return;
-        }
-
-        if (trackEvent) {
-            trackEvent('certificate_download_started');
-        }
-
-        showNotification('Generando tu certificado... ⏳', 'info');
-
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-
-        canvas.width = 1200;
-        canvas.height = 850;
-
-        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-        gradient.addColorStop(0, '#fffcf9');
-        gradient.addColorStop(1, '#f0f9fa');
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.strokeStyle = '#2c8e9c';
-        ctx.lineWidth = 12;
-        ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
-
-        ctx.strokeStyle = '#ff6978';
-        ctx.lineWidth = 3;
-        ctx.strokeRect(40, 40, canvas.width - 80, canvas.height - 80);
-
-        ctx.font = '80px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText('🏆', canvas.width / 2, 130);
-
-        ctx.font = 'bold 48px Georgia';
-        ctx.fillStyle = '#2c8e9c';
-        ctx.fillText('CERTIFICADO', canvas.width / 2, 200);
-
-        ctx.font = 'bold 36px Georgia';
-        ctx.fillStyle = '#232443';
-        ctx.fillText('MujerTech', canvas.width / 2, 250);
-
-        ctx.font = '18px Arial';
-        ctx.fillStyle = '#6B7280';
-        ctx.fillText('Women Business & AI', canvas.width / 2, 280);
-
-        ctx.strokeStyle = '#E5E7EB';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(200, 310);
-        ctx.lineTo(canvas.width - 200, 310);
-        ctx.stroke();
-
-        ctx.font = '20px Arial';
-        ctx.fillStyle = '#6B7280';
-        ctx.fillText('Se certifica que', canvas.width / 2, 360);
-
-        ctx.font = 'bold 42px Georgia';
-        ctx.fillStyle = '#232443';
-        ctx.fillText(certificateName.trim().toUpperCase(), canvas.width / 2, 420);
-
-        ctx.font = '20px Arial';
-        ctx.fillStyle = '#6B7280';
-        ctx.fillText('ha completado exitosamente el', canvas.width / 2, 470);
-
-        ctx.font = 'bold 28px Georgia';
-        ctx.fillStyle = '#ff6978';
-        ctx.fillText('TALLER INTRODUCTORIO DE IA', canvas.width / 2, 520);
-        ctx.fillText('PARA EMPRENDEDORAS', canvas.width / 2, 555);
-
-        ctx.strokeStyle = '#E5E7EB';
-        ctx.beginPath();
-        ctx.moveTo(200, 590);
-        ctx.lineTo(canvas.width - 200, 590);
-        ctx.stroke();
-
-        ctx.fillStyle = 'rgba(44, 142, 156, 0.1)';
-        ctx.fillRect(150, 610, canvas.width - 300, 80);
-
-        ctx.font = '16px Arial';
-        ctx.fillStyle = '#232443';
-        const skills = '✓ Fundamentos de IA   ✓ Creación de prompts   ✓ Herramientas de IA   ✓ Generación de imágenes   ✓ Uso ético';
-        ctx.fillText(skills, canvas.width / 2, 655);
-
-        const date = new Date().toLocaleDateString('es-CO', {
-            day: '2-digit',
-            month: 'long',
-            year: 'numeric'
-        });
-        ctx.font = '18px Arial';
-        ctx.fillStyle = '#232443';
-        ctx.fillText(`Fecha: ${date}`, canvas.width / 2, 730);
-
-        ctx.font = '18px Arial';
-        ctx.fillStyle = '#2c8e9c';
-        ctx.fillText('www.mujertech.org', canvas.width / 2, 760);
-
-        const link = document.createElement('a');
-        link.download = `Certificado_MujerTech_${certificateName.trim().replace(/\s+/g, '_')}.png`;
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-
-        showNotification('¡Certificado descargado! 🎉', 'success');
-
-        if (trackEvent) {
-            trackEvent('certificate_downloaded');
-        }
-        if (setTag) {
-            setTag('certificateDownloaded', 'yes');
-        }
-    };
-
-    const handleFeedbackClick = () => {
-        if (trackEvent) {
-            trackEvent('feedback_form_opened');
-        }
-        window.open('https://forms.gle/cRbQkicHhvQ8sGQJ9', '_blank');
-    };
-
-    const handleGoToStart = () => {
-        if (trackEvent) {
-            trackEvent('workshop_restarted');
-        }
-        onGoToStart();
+        onRestart();
     };
 
     return (
         <div className={styles.moduleContent}>
-            {/* Module Header */}
-            <header className={styles.moduleHeader}>
-                <h1>¡Felicitaciones!</h1>
-                <p className={styles.moduleSubtitle}>Completaste el taller</p>
+            {/* Hero Section */}
+            <header className={styles.heroSection}>
+                <div className={styles.heroEmoji}>🎉</div>
+                <h1>{t('title')}</h1>
+                <p className={styles.heroSubtitle}>{t('subtitle')}</p>
+                <p className={styles.heroText}>{t('heroText')}</p>
             </header>
 
-            {/* Celebration Section */}
-            <div className={styles.celebrationSection}>
-                <div className={styles.celebrationIcon}>🎉</div>
-                <h2>¡Lo lograste!</h2>
-                <p>Has completado el Taller Introductorio de IA de MujerTech</p>
-            </div>
-
-            {/* Community Card */}
-            <CommunityCard />
-
-            {/* After Confidence Rating */}
-            <div className={styles.confidenceCard}>
-                <h2 className={styles.cardTitle}>
-                    <span className={styles.cardIcon}>📊</span>
-                    ¿Y ahora? ¿Qué tan segura te sientes usando IA?
-                </h2>
-                {!showComparison ? (
-                    <ConfidenceRating 
-                        selectedValue={afterConfidence}
-                        onSelect={handleAfterConfidenceSelect}
-                    />
-                ) : (
-                    beforeRating && afterConfidence && (
-                        <ConfidenceComparison 
-                            beforeValue={beforeRating}
-                            afterValue={afterConfidence}
-                        />
-                    )
-                )}
-            </div>
-
             {/* Summary Card */}
-            <div className={`${styles.card} ${styles.summaryCard}`}>
+            <div className={styles.card}>
                 <h2 className={styles.cardTitle}>
                     <span className={styles.cardIcon}>📚</span>
-                    Hoy aprendiste
+                    {t('summary.title')}
                 </h2>
-                <div className={styles.learnedItems}>
-                    {LEARNED_ITEMS.map((item, index) => (
-                        <div key={index} className={styles.learnedItem}>
-                            <span className={styles.learnedCheck}>✅</span>
-                            <p>{item}</p>
-                        </div>
-                    ))}
-                </div>
+                <ul className={styles.summaryList}>
+                    <li><span className={styles.checkIcon}>✅</span>{t('summary.item1')}</li>
+                    <li><span className={styles.checkIcon}>✅</span>{t('summary.item2')}</li>
+                    <li><span className={styles.checkIcon}>✅</span>{t('summary.item3')}</li>
+                    <li><span className={styles.checkIcon}>✅</span>{t('summary.item4')}</li>
+                </ul>
             </div>
 
-            {/* Golden Rules Card */}
-            <div className={`${styles.card} ${styles.warningCard}`}>
+            {/* Confidence Comparison */}
+            <div className={styles.card}>
                 <h2 className={styles.cardTitle}>
-                    <span className={styles.cardIcon}>🔒</span>
-                    Recuerda las 3 reglas de oro
+                    <span className={styles.cardIcon}>📊</span>
+                    {t('confidence.title')}
                 </h2>
-                <div className={styles.rulesCompact}>
-                    {GOLDEN_RULES.map((rule, index) => (
-                        <div key={index} className={styles.ruleCompactItem}>
-                            <span className={styles.ruleCompactNumber}>{index + 1}</span>
-                            <div>
-                                <strong>{rule.icon} {rule.title}</strong>
-                                <p>{rule.description}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                <p className={styles.cardSubtitle}>{t('confidence.subtitle')}</p>
+                <ConfidenceRating 
+                    mode="comparison"
+                    initialRating={initialConfidence}
+                />
             </div>
 
-            {/* Teaser Cards */}
+            {/* Next Steps */}
             <div className={styles.card}>
                 <h2 className={styles.cardTitle}>
                     <span className={styles.cardIcon}>🚀</span>
-                    ¿Qué más puedes aprender?
+                    {t('nextSteps.title')}
                 </h2>
-                <p className={styles.cardText}>Esto es solo el comienzo. Mira todo lo que la IA puede hacer por tu negocio:</p>
-
-                <div className={styles.teaserGrid}>
-                    {TEASER_CARDS.map((card, index) => (
-                        <div key={index} className={styles.teaserCard}>
-                            <div className={styles.teaserCardContent}>
-                                <div className={styles.teaserCardHeader}>
-                                    <span className={styles.teaserIcon}>{card.icon}</span>
-                                    <h3>{card.title}</h3>
-                                    <span className={styles.teaserBadge}>Próximamente</span>
-                                </div>
-                                <p>{card.description}</p>
-                            </div>
-                            <div className={styles.teaserPreview}>
-                                <p className={styles.teaserPreviewLabel}>Ejemplo:</p>
-                                <p className={styles.teaserPreviewText}>{card.example}</p>
-                            </div>
+                <div className={styles.nextStepsList}>
+                    <div className={styles.nextStep}>
+                        <span className={styles.stepNumber}>1</span>
+                        <div>
+                            <h3>{t('nextSteps.step1.title')}</h3>
+                            <p>{t('nextSteps.step1.text')}</p>
                         </div>
-                    ))}
+                    </div>
+                    <div className={styles.nextStep}>
+                        <span className={styles.stepNumber}>2</span>
+                        <div>
+                            <h3>{t('nextSteps.step2.title')}</h3>
+                            <p>{t('nextSteps.step2.text')}</p>
+                        </div>
+                    </div>
+                    <div className={styles.nextStep}>
+                        <span className={styles.stepNumber}>3</span>
+                        <div>
+                            <h3>{t('nextSteps.step3.title')}</h3>
+                            <p>{t('nextSteps.step3.text')}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {/* Email Capture */}
-            {!emailSubmitted && !emailSkipped && (
-                <div className={styles.emailCapture}>
-                    <div className={styles.emailCaptureIcon}>🚀</div>
-                    <h2>¿Quieres aprender todo esto?</h2>
-                    <p>Déjanos tu correo y te avisamos cuando abramos el próximo curso.</p>
-
-                    <div className={styles.emailForm}>
-                        <input
-                            type="email"
-                            className={styles.emailInput}
-                            placeholder="Tu correo electrónico"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            autoComplete="email"
-                            disabled={isSubmitting}
-                        />
-                        <button
-                            className={styles.btnEmailSubmit}
-                            onClick={handleEmailSubmit}
-                            type="button"
-                            disabled={isSubmitting}
-                        >
-                            {isSubmitting ? 'ENVIANDO...' : 'QUIERO APRENDER MÁS'}
-                        </button>
-                    </div>
-
-                    <div className={styles.noSpamPromise}>
-                        <span className={styles.noSpamIcon}>🙅‍♀️</span>
-                        <span>Odiamos el spam tanto como tú. Solo te escribiremos cuando tengamos algo valioso.</span>
-                    </div>
-
-                    <button
-                        className={styles.btnSkipEmail}
-                        onClick={handleSkipEmail}
-                        type="button"
-                        disabled={isSubmitting}
-                    >
-                        Ahora no, gracias
-                    </button>
-                </div>
-            )}
-
-            {/* Email Success */}
-            {emailSubmitted && (
-                <div className={styles.emailSuccess}>
-                    <div className={styles.emailSuccessIcon}>💌</div>
-                    <h3>¡Listo! Te avisaremos pronto.</h3>
-                    <p>Revisa tu correo en los próximos días.</p>
-                </div>
-            )}
+            {/* Community Card */}
+            <div className={styles.communityCard}>
+                <h2>{t('community.title')}</h2>
+                <p>{t('community.text')}</p>
+                <button 
+                    className={styles.btnCommunity}
+                    onClick={handleCommunityClick}
+                    type="button"
+                >
+                    💬 {t('community.button')}
+                </button>
+            </div>
 
             {/* Certificate Section */}
-            <div className={styles.certificateSection}>
-                <h2>
-                    <span className={styles.cardIcon}>📜</span>
-                    Obtén tu certificado
-                </h2>
-                <p>Escribe tu nombre para generar tu certificado:</p>
-                <input
-                    type="text"
-                    className={styles.certificateInput}
-                    placeholder="Tu nombre completo"
-                    value={certificateName}
-                    onChange={(e) => setCertificateName(e.target.value)}
-                />
-                <button
-                    className={styles.btnCertificate}
-                    onClick={handleDownloadCertificate}
-                    type="button"
-                >
-                    📥 DESCARGAR MI CERTIFICADO
-                </button>
-            </div>
-
-            {/* Task Card */}
-            <div className={`${styles.card} ${styles.taskCard}`}>
-                <h2 className={styles.cardTitle}>
-                    <span className={styles.cardIcon}>🎯</span>
-                    Tu tarea para mañana
-                </h2>
-                <div className={styles.taskList}>
-                    {TASKS.map((task, index) => (
-                        <div key={index} className={styles.taskItem}>
-                            <span className={styles.taskNumber}>{index + 1}</span>
-                            <p>{task}</p>
-                        </div>
-                    ))}
+            <div className={styles.certificateCard}>
+                <div className={styles.certificateIcon}>🏆</div>
+                <h2>{t('certificate.title')}</h2>
+                <p>{t('certificate.text')}</p>
+                <div className={styles.certificateButtons}>
+                    <button 
+                        className={styles.btnShare}
+                        onClick={handleShareWhatsApp}
+                        type="button"
+                    >
+                        📱 {t('certificate.shareButton')}
+                    </button>
                 </div>
             </div>
 
-            {/* Feedback CTA */}
-            <div className={`${styles.card} ${styles.ctaCard}`}>
-                <h2 className={styles.cardTitle}>
-                    <span className={styles.cardIcon}>💬</span>
-                    ¡Tu opinión es muy importante!
-                </h2>
-                <p className={styles.cardText}>Ayúdanos a mejorar este taller con tu feedback.</p>
-                <p className={styles.cardText}>Solo te tomará <strong>2 minutos</strong> y nos ayuda mucho.</p>
-                <div className={styles.feedbackBenefit}>
-                    <span className={styles.benefitIcon}>🎁</span>
-                    <p><strong>¿Qué ganas tú?</strong> Las personas que nos den feedback serán las <strong>primeras invitadas</strong> a nuestro próximo curso completo de IA.</p>
-                </div>
-                
-                <div 
-                    className={styles.btnCta} 
-                    onClick={handleFeedbackClick}
-                >
-                    📝 DARNOS TUS OPINIONES
-                </div>
+            {/* Final Message */}
+            <div className={styles.finalMessage}>
+                <h2>{t('finalMessage.title')}</h2>
+                <p>{t('finalMessage.text')}</p>
+                <span className={styles.finalEmoji}>{t('finalMessage.emoji')}</span>
             </div>
 
-            {/* Navigation */}
-            <div className={styles.navButtons}>
-                <button
-                    className={`${styles.btnNav} ${styles.btnPrev}`}
-                    onClick={onPrev}
-                    type="button"
-                >
-                    ← ANTERIOR
-                </button>
-                <button
-                    className={`${styles.btnNav} ${styles.btnNext}`}
-                    onClick={handleGoToStart}
-                    type="button"
-                >
-                    VOLVER AL INICIO
-                </button>
-            </div>
+            {/* Restart Button */}
+            <button 
+                className={styles.btnRestart}
+                onClick={handleRestart}
+                type="button"
+            >
+                ← {t('restartButton')}
+            </button>
         </div>
     );
 }

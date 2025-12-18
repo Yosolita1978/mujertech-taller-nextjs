@@ -1,4 +1,7 @@
+'use client';
+
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import styles from './Presession.module.css';
 
 export default function Presession({ onComplete }) {
@@ -6,6 +9,8 @@ export default function Presession({ onComplete }) {
     const [buttonClicked, setButtonClicked] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [inputCompleted, setInputCompleted] = useState(false);
+    
+    const t = useTranslations('presession');
 
     const handleNextStep = (step) => {
         setCurrentStep(step);
@@ -28,16 +33,16 @@ export default function Presession({ onComplete }) {
                 return (
                     <div className={styles.container}>
                         <div className={styles.stepIcon}>📱</div>
-                        <h1 className={styles.title}>Vamos a practicar juntas</h1>
-                        <p className={styles.text}>Este taller está hecho para tu celular.</p>
-                        <p className={styles.text}>Te voy a enseñar cómo usarlo paso a paso.</p>
-                        <p className={`${styles.text} ${styles.encouragement}`}>¡No te preocupes, es muy fácil!</p>
+                        <h1 className={styles.title}>{t('step1.title')}</h1>
+                        <p className={styles.text}>{t('step1.text1')}</p>
+                        <p className={styles.text}>{t('step1.text2')}</p>
+                        <p className={`${styles.text} ${styles.encouragement}`}>{t('step1.encouragement')}</p>
                         <button 
                             className={styles.btnLarge}
                             onClick={() => handleNextStep(2)}
                             type="button"
                         >
-                            EMPEZAR →
+                            {t('step1.button')}
                         </button>
                     </div>
                 );
@@ -45,30 +50,30 @@ export default function Presession({ onComplete }) {
             case 2:
                 return (
                     <div className={styles.container}>
-                        <h2 className={styles.subtitle}>¿Qué es un BOTÓN?</h2>
-                        <p className={styles.text}>Un botón es un cuadro que hace algo cuando lo tocas.</p>
+                        <h2 className={styles.subtitle}>{t('step2.title')}</h2>
+                        <p className={styles.text}>{t('step2.text')}</p>
                         <div className={styles.practiceArea}>
-                            <p className={styles.instruction}>👇 Toca el botón verde:</p>
+                            <p className={styles.instruction}>{t('step2.instruction')}</p>
                             <button 
                                 className={`${styles.practiceBtn} ${buttonClicked ? styles.success : ''}`}
                                 onClick={handleButtonPractice}
                                 type="button"
                             >
-                                {buttonClicked ? '¡LISTO! ✓' : 'TÓCAME'}
+                                {buttonClicked ? t('step2.buttonSuccess') : t('step2.buttonText')}
                             </button>
                         </div>
                         {buttonClicked && (
                             <div className={styles.feedbackArea}>
                                 <div className={styles.successMessage}>
                                     <span className={styles.successIcon}>🎉</span>
-                                    <p>¡Muy bien! Ya sabes usar botones.</p>
+                                    <p>{t('step2.feedback')}</p>
                                 </div>
                                 <button 
                                     className={styles.btnLarge}
                                     onClick={() => handleNextStep(3)}
                                     type="button"
                                 >
-                                    SIGUIENTE →
+                                    {t('step2.next')}
                                 </button>
                             </div>
                         )}
@@ -78,14 +83,14 @@ export default function Presession({ onComplete }) {
             case 3:
                 return (
                     <div className={styles.container}>
-                        <h2 className={styles.subtitle}>¿Cómo ESCRIBO en el celular?</h2>
-                        <p className={styles.text}>Cuando ves un cuadro con líneas, puedes escribir dentro.</p>
+                        <h2 className={styles.subtitle}>{t('step3.title')}</h2>
+                        <p className={styles.text}>{t('step3.text')}</p>
                         <div className={styles.practiceArea}>
-                            <p className={styles.instruction}>👇 Toca el cuadro y escribe tu nombre:</p>
+                            <p className={styles.instruction}>{t('step3.instruction')}</p>
                             <input
                                 type="text"
                                 className={styles.practiceInput}
-                                placeholder="Escribe aquí..."
+                                placeholder={t('step3.placeholder')}
                                 value={inputValue}
                                 onChange={handleInputChange}
                             />
@@ -94,14 +99,14 @@ export default function Presession({ onComplete }) {
                             <div className={styles.feedbackArea}>
                                 <div className={styles.successMessage}>
                                     <span className={styles.successIcon}>✨</span>
-                                    <p>¡Excelente! Ya sabes escribir en el celular.</p>
+                                    <p>{t('step3.feedback')}</p>
                                 </div>
                                 <button 
                                     className={styles.btnLarge}
                                     onClick={() => handleNextStep(4)}
                                     type="button"
                                 >
-                                    SIGUIENTE →
+                                    {t('step3.next')}
                                 </button>
                             </div>
                         )}
@@ -111,36 +116,36 @@ export default function Presession({ onComplete }) {
             case 4:
                 return (
                     <div className={styles.container}>
-                        <h2 className={styles.subtitle}>¿Cómo COPIO texto?</h2>
-                        <p className={styles.text}>A veces necesitas copiar algo para usarlo en otro lugar.</p>
+                        <h2 className={styles.subtitle}>{t('step4.title')}</h2>
+                        <p className={styles.text}>{t('step4.text')}</p>
                         <div className={styles.copyInstructions}>
                             <div className={styles.copyStep}>
                                 <span className={styles.stepNumber}>1</span>
-                                <p>Toca y mantén el dedo sobre el texto</p>
+                                <p>{t('step4.copyStep1')}</p>
                             </div>
                             <div className={styles.copyStep}>
                                 <span className={styles.stepNumber}>2</span>
-                                <p>Aparece un menú, toca &quot;Copiar&quot;</p>
+                                <p>{t('step4.copyStep2')}</p>
                             </div>
                             <div className={styles.copyStep}>
                                 <span className={styles.stepNumber}>3</span>
-                                <p>Ve donde quieres pegarlo</p>
+                                <p>{t('step4.copyStep3')}</p>
                             </div>
                             <div className={styles.copyStep}>
                                 <span className={styles.stepNumber}>4</span>
-                                <p>Toca y mantén, luego &quot;Pegar&quot;</p>
+                                <p>{t('step4.copyStep4')}</p>
                             </div>
                         </div>
                         <div className={styles.tipBox}>
                             <span className={styles.tipIcon}>💡</span>
-                            <p>No te preocupes si no lo dominas ahora. En el taller hay botones que copian por ti.</p>
+                            <p>{t('step4.tip')}</p>
                         </div>
                         <button 
                             className={styles.btnLarge}
                             onClick={() => handleNextStep(5)}
                             type="button"
                         >
-                            ENTENDIDO →
+                            {t('step4.button')}
                         </button>
                     </div>
                 );
@@ -148,25 +153,25 @@ export default function Presession({ onComplete }) {
             case 5:
                 return (
                     <div className={styles.container}>
-                        <h2 className={styles.subtitle}>¿Cómo NAVEGO este taller?</h2>
+                        <h2 className={styles.subtitle}>{t('step5.title')}</h2>
                         <div className={styles.navExplanation}>
                             <div className={styles.navItemExplain}>
                                 <div className={styles.navIconBox}>📖</div>
-                                <p>El botón <strong>Ayuda</strong> te explica palabras difíciles</p>
+                                <p><strong>{t('step5.helpBtn')}</strong></p>
                             </div>
                             <div className={styles.navItemExplain}>
                                 <div className={styles.navIconBox}>→</div>
-                                <p>Los botones <strong>Siguiente</strong> te llevan adelante</p>
+                                <p><strong>{t('step5.nextBtn')}</strong></p>
                             </div>
                             <div className={styles.navItemExplain}>
                                 <div className={styles.navIconBox}>←</div>
-                                <p>Los botones <strong>Anterior</strong> te llevan atrás</p>
+                                <p><strong>{t('step5.prevBtn')}</strong></p>
                             </div>
                             <div className={styles.navItemExplain}>
                                 <div className={styles.navIconBox}>
                                     <div className={styles.progressBarMini}></div>
                                 </div>
-                                <p>La <strong>barra arriba</strong> muestra tu progreso</p>
+                                <p><strong>{t('step5.progressBar')}</strong></p>
                             </div>
                         </div>
                         <button 
@@ -174,7 +179,7 @@ export default function Presession({ onComplete }) {
                             onClick={() => handleNextStep(6)}
                             type="button"
                         >
-                            SIGUIENTE →
+                            {t('step5.next')}
                         </button>
                     </div>
                 );
@@ -183,14 +188,14 @@ export default function Presession({ onComplete }) {
                 return (
                     <div className={styles.container}>
                         <div className={styles.stepIcon}>🎉</div>
-                        <h1 className={styles.title}>¡Ya estás lista!</h1>
-                        <p className={styles.text}>Ahora sabes todo lo necesario para usar este taller.</p>
+                        <h1 className={styles.title}>{t('step6.title')}</h1>
+                        <p className={styles.text}>{t('step6.text')}</p>
                         <div className={styles.learnedList}>
-                            <p>Aprendiste a:</p>
+                            <p>{t('step6.learnedTitle')}</p>
                             <ul>
-                                <li>✅ Usar botones</li>
-                                <li>✅ Escribir en campos de texto</li>
-                                <li>✅ Navegar el taller</li>
+                                <li>{t('step6.learned1')}</li>
+                                <li>{t('step6.learned2')}</li>
+                                <li>{t('step6.learned3')}</li>
                             </ul>
                         </div>
                         <button 
@@ -198,7 +203,7 @@ export default function Presession({ onComplete }) {
                             onClick={onComplete}
                             type="button"
                         >
-                            EMPEZAR EL TALLER →
+                            {t('step6.button')}
                         </button>
                     </div>
                 );

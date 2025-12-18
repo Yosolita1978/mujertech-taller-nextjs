@@ -1,26 +1,31 @@
+'use client';
+
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import styles from './Welcome.module.css';
 import ConfidenceRating from '../../ConfidenceRating/ConfidenceRating';
 import { useConfidence } from '../../../lib/useConfidence';
 import CommunityCard from '../../CommunityCard/CommunityCard';
-
-const EXPERIENCE_OPTIONS = [
-    { id: 'nunca', icon: '🆕', label: 'Nunca la he usado' },
-    { id: 'poco', icon: '🤔', label: 'Sé qué es pero no la uso' },
-    { id: 'algo', icon: '👍', label: 'La uso a veces' },
-    { id: 'mucho', icon: '⭐', label: 'La uso seguido' }
-];
-
-const BUSINESS_TYPE_OPTIONS = [
-    { id: 'producto', icon: '📦', label: 'Vendo productos (comida, ropa, artesanías...)' },
-    { id: 'servicio', icon: '💼', label: 'Ofrezco servicios (limpieza, belleza, asesoría...)' }
-];
 
 export default function Welcome({ onNext }) {
     const [selectedExperience, setSelectedExperience] = useState(null);
     const [selectedBusinessType, setSelectedBusinessType] = useState(null);
     const [selectedConfidence, setSelectedConfidence] = useState(null);
     const { saveBeforeRating } = useConfidence();
+    
+    const t = useTranslations('welcome');
+
+    const EXPERIENCE_OPTIONS = [
+        { id: 'nunca', icon: '🆕', label: t('experience.never') },
+        { id: 'poco', icon: '🤔', label: t('experience.little') },
+        { id: 'algo', icon: '👍', label: t('experience.some') },
+        { id: 'mucho', icon: '⭐', label: t('experience.lots') }
+    ];
+
+    const BUSINESS_TYPE_OPTIONS = [
+        { id: 'producto', icon: '📦', label: t('businessType.product') },
+        { id: 'servicio', icon: '💼', label: t('businessType.service') }
+    ];
 
     const handleExperienceSelect = (experience) => {
         setSelectedExperience(experience);
@@ -51,54 +56,54 @@ export default function Welcome({ onNext }) {
                     alt="MujerTech" 
                     className={styles.heroLogo}
                 />
-                <h1 className={styles.heroTitle}>¡Bienvenida al Taller de IA!</h1>
-                <p className={styles.heroSubtitle}>Aprende a usar Inteligencia Artificial para tu negocio</p>
-                <span className={styles.timeBadge}>⏱️ Duración: 45 minutos</span>
+                <h1 className={styles.heroTitle}>{t('heroTitle')}</h1>
+                <p className={styles.heroSubtitle}>{t('heroSubtitle')}</p>
+                <span className={styles.timeBadge}>{t('duration')}</span>
             </section>
 
             {/* Context Card */}
             <div className={styles.card}>
                 <h2 className={styles.cardTitle}>
                     <span className={styles.cardIcon}>🌍</span>
-                    ¿En qué momento estamos?
+                    {t('context.title')}
                 </h2>
-                <p className={styles.cardText}>Estamos viviendo un cambio muy grande en el mundo.</p>
-                <p className={styles.cardText}>Ahora existen programas de computadora que pueden:</p>
+                <p className={styles.cardText}>{t('context.text1')}</p>
+                <p className={styles.cardText}>{t('context.text2')}</p>
                 <ul className={styles.simpleList}>
-                    <li>✍️ Escribir textos</li>
-                    <li>🎨 Crear imágenes</li>
-                    <li>💡 Darte ideas para tu negocio</li>
+                    <li>{t('context.item1')}</li>
+                    <li>{t('context.item2')}</li>
+                    <li>{t('context.item3')}</li>
                 </ul>
-                <p className={styles.cardText}>Estos programas se llaman <strong>Inteligencia Artificial</strong> o <strong>IA</strong>.</p>
+                <p className={styles.cardText} dangerouslySetInnerHTML={{ __html: t.raw('context.text3') }} />
             </div>
 
             {/* Benefits Card */}
             <div className={`${styles.card} ${styles.highlightCard}`}>
                 <h2 className={styles.cardTitle}>
                     <span className={styles.cardIcon}>💪</span>
-                    ¿Por qué esto importa para TU negocio?
+                    {t('benefits.title')}
                 </h2>
-                <p className={styles.cardText}>Con la IA puedes:</p>
+                <p className={styles.cardText}>{t('benefits.subtitle')}</p>
                 <div className={styles.benefitList}>
                     <div className={styles.benefitItem}>
                         <span className={styles.benefitIcon}>⏰</span>
                         <div>
-                            <strong>Ahorrar tiempo</strong>
-                            <p>Lo que antes tomaba horas, ahora toma minutos</p>
+                            <strong>{t('benefits.time.title')}</strong>
+                            <p>{t('benefits.time.description')}</p>
                         </div>
                     </div>
                     <div className={styles.benefitItem}>
                         <span className={styles.benefitIcon}>💰</span>
                         <div>
-                            <strong>Hacer más con menos</strong>
-                            <p>Crea contenido tú misma cuando lo necesites</p>
+                            <strong>{t('benefits.more.title')}</strong>
+                            <p>{t('benefits.more.description')}</p>
                         </div>
                     </div>
                     <div className={styles.benefitItem}>
                         <span className={styles.benefitIcon}>📱</span>
                         <div>
-                            <strong>Vender más</strong>
-                            <p>Crea contenido atractivo para tus redes</p>
+                            <strong>{t('benefits.sell.title')}</strong>
+                            <p>{t('benefits.sell.description')}</p>
                         </div>
                     </div>
                 </div>
@@ -108,24 +113,24 @@ export default function Welcome({ onNext }) {
             <div className={styles.card}>
                 <h2 className={styles.cardTitle}>
                     <span className={styles.cardIcon}>🎯</span>
-                    Hoy vas a aprender
+                    {t('objectives.title')}
                 </h2>
                 <div className={styles.learningObjectives}>
                     <div className={styles.objectiveItem}>
                         <span className={styles.objectiveNumber}>1</span>
-                        <p>Qué es la IA (explicado fácil)</p>
+                        <p>{t('objectives.item1')}</p>
                     </div>
                     <div className={styles.objectiveItem}>
                         <span className={styles.objectiveNumber}>2</span>
-                        <p>Cómo hablarle a la IA para que te ayude</p>
+                        <p>{t('objectives.item2')}</p>
                     </div>
                     <div className={styles.objectiveItem}>
                         <span className={styles.objectiveNumber}>3</span>
-                        <p>Cómo crear imágenes bonitas para tu negocio</p>
+                        <p>{t('objectives.item3')}</p>
                     </div>
                     <div className={styles.objectiveItem}>
                         <span className={styles.objectiveNumber}>4</span>
-                        <p>Cómo usar la IA de forma segura</p>
+                        <p>{t('objectives.item4')}</p>
                     </div>
                 </div>
             </div>
@@ -135,8 +140,8 @@ export default function Welcome({ onNext }) {
 
             {/* Experience Question */}
             <div className={styles.questionCard}>
-                <h3>Antes de empezar, cuéntanos:</h3>
-                <p>¿Cuánto sabes de IA?</p>
+                <h3>{t('experience.title')}</h3>
+                <p>{t('experience.question')}</p>
                 <div className={styles.experienceOptions}>
                     {EXPERIENCE_OPTIONS.map((option) => (
                         <button
@@ -154,8 +159,8 @@ export default function Welcome({ onNext }) {
 
             {/* Business Type Question */}
             <div className={styles.questionCard}>
-                <h3>¿Qué tipo de negocio tienes?</h3>
-                <p>Esto nos ayuda a personalizar tu experiencia</p>
+                <h3>{t('businessType.title')}</h3>
+                <p>{t('businessType.subtitle')}</p>
                 <div className={styles.businessTypeOptions}>
                     {BUSINESS_TYPE_OPTIONS.map((option) => (
                         <button
@@ -173,8 +178,8 @@ export default function Welcome({ onNext }) {
 
             {/* Confidence Rating Question */}
             <div className={styles.questionCard}>
-                <h3>📊 ¿Qué tan segura te sientes usando herramientas de IA?</h3>
-                <p>Sé honesta, no hay respuesta correcta</p>
+                <h3>{t('confidence.title')}</h3>
+                <p>{t('confidence.subtitle')}</p>
                 <ConfidenceRating 
                     selectedValue={selectedConfidence}
                     onSelect={handleConfidenceSelect}
@@ -188,7 +193,7 @@ export default function Welcome({ onNext }) {
                     onClick={handleNext}
                     type="button"
                 >
-                    EMPEZAR EL TALLER →
+                    {t('startButton')}
                 </button>
             </div>
         </div>

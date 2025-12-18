@@ -1,18 +1,13 @@
-import styles from './ProgressBar.module.css';
+'use client';
 
-const MODULE_NAMES = {
-    presessionCheck: 'Inicio',
-    presession: 'Práctica básica',
-    welcome: 'Bienvenida',
-    module1: 'Qué es la IA',
-    module2: 'Prompts y Herramientas',
-    module4: 'Crear imágenes',
-    module6: '¡Felicitaciones!'
-};
+import { useTranslations } from 'next-intl';
+import styles from './ProgressBar.module.css';
 
 const DISPLAY_MODULES = ['welcome', 'module1', 'module2', 'module4', 'module6'];
 
 export default function ProgressBar({ currentModule }) {
+    const t = useTranslations('progress');
+    
     const currentIndex = DISPLAY_MODULES.indexOf(currentModule);
     const isPreSession = currentModule === 'presessionCheck' || currentModule === 'presession';
     
@@ -20,10 +15,10 @@ export default function ProgressBar({ currentModule }) {
     const progress = isPreSession ? 0 : ((currentIndex + 1) / totalModules) * 100;
     
     const blockText = isPreSession 
-        ? 'Preparación' 
-        : `Bloque ${currentIndex + 1} de ${totalModules}`;
+        ? t('preparation')
+        : t('blockOf', { current: currentIndex + 1, total: totalModules });
     
-    const sectionName = MODULE_NAMES[currentModule] || '';
+    const sectionName = t(`modules.${currentModule}`);
 
     return (
         <div className={styles.progressIndicator}>

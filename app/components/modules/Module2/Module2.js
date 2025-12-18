@@ -1,45 +1,9 @@
+'use client';
+
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import styles from './Module2.module.css';
 import SuccessCriteria from '../../SuccessCriteria/SuccessCriteria';
-
-const NEED_OPTIONS = [
-    { id: 'social', icon: '📱', label: 'Ideas para redes sociales' },
-    { id: 'mensaje', icon: '📧', label: 'Un mensaje para clientes' },
-    { id: 'nombre', icon: '🏷️', label: 'Nombres para un producto' }
-];
-
-const TONE_OPTIONS = [
-    { id: 'amigable', icon: '😊', label: 'Amigable' },
-    { id: 'profesional', icon: '👔', label: 'Profesional' },
-    { id: 'divertido', icon: '🎉', label: 'Divertido' }
-];
-
-const NEED_TEXTS = {
-    social: '3 ideas de publicaciones para mis redes sociales',
-    mensaje: 'un mensaje para enviar a mis clientes',
-    nombre: '5 nombres creativos para un nuevo producto'
-};
-
-const TONE_TEXTS = {
-    amigable: 'amigable y cercano, como si le hablara a una amiga',
-    profesional: 'profesional y confiable',
-    divertido: 'divertido y alegre'
-};
-
-const MARIA_PROMPT = `Soy María, tengo un negocio de jabones artesanales naturales en Bogotá.
-
-Necesito 3 textos cortos para publicar en mi estado de WhatsApp.
-
-Que sean cortos, con emojis, y que inviten a preguntar por WhatsApp.
-
-Usa un tono amigable y cercano, como si le hablara a una amiga.`;
-
-const MODULE_OUTCOMES = [
-    'Escribir un mensaje claro a la IA para que te ayude',
-    'Conocer las herramientas gratuitas que puedes usar hoy'
-];
-
-const MODULE_COMPLETION = 'Ahora sabes cómo hablarle a la IA para obtener buenos resultados.';
 
 export default function Module2({ onNext, onPrev, showNotification, hidePrev, trackEvent }) {
     const [business, setBusiness] = useState('');
@@ -48,18 +12,51 @@ export default function Module2({ onNext, onPrev, showNotification, hidePrev, tr
     const [generatedPrompt, setGeneratedPrompt] = useState('');
     const [showGenerated, setShowGenerated] = useState(false);
 
+    const t = useTranslations('module2');
+    const tCommon = useTranslations('common');
+    const tNotifications = useTranslations('notifications');
+
+    const NEED_OPTIONS = [
+        { id: 'social', icon: '📱', label: t('yourTurn.needs.social') },
+        { id: 'mensaje', icon: '📧', label: t('yourTurn.needs.message') },
+        { id: 'nombre', icon: '🏷️', label: t('yourTurn.needs.names') }
+    ];
+
+    const TONE_OPTIONS = [
+        { id: 'amigable', icon: '😊', label: t('yourTurn.tones.friendly') },
+        { id: 'profesional', icon: '👔', label: t('yourTurn.tones.professional') },
+        { id: 'divertido', icon: '🎉', label: t('yourTurn.tones.fun') }
+    ];
+
+    const NEED_TEXTS = {
+        social: '3 ideas de publicaciones para mis redes sociales',
+        mensaje: 'un mensaje para enviar a mis clientes',
+        nombre: '5 nombres creativos para un nuevo producto'
+    };
+
+    const TONE_TEXTS = {
+        amigable: 'amigable y cercano, como si le hablara a una amiga',
+        profesional: 'profesional y confiable',
+        divertido: 'divertido y alegre'
+    };
+
+    const MODULE_OUTCOMES = [
+        t('outcomes.item1'),
+        t('outcomes.item2')
+    ];
+
     const copyToClipboard = async (text, source) => {
         if (trackEvent) {
             trackEvent('copy_clicked', { module: 'module2', source: source });
         }
         try {
             await navigator.clipboard.writeText(text);
-            showNotification('¡Copiado! 📋', 'success');
+            showNotification(tNotifications('copied'), 'success');
             if (trackEvent) {
                 trackEvent('copy_success', { module: 'module2', source: source });
             }
         } catch (err) {
-            showNotification('No se pudo copiar. Selecciona el texto manualmente.', 'error');
+            showNotification(tNotifications('copyFailed'), 'error');
             if (trackEvent) {
                 trackEvent('copy_failed', { module: 'module2', source: source });
             }
@@ -68,15 +65,15 @@ export default function Module2({ onNext, onPrev, showNotification, hidePrev, tr
 
     const handleGeneratePrompt = () => {
         if (!business.trim()) {
-            showNotification('Por favor escribe qué vendes o haces', 'error');
+            showNotification(tNotifications('fillBusiness'), 'error');
             return;
         }
         if (!selectedNeed) {
-            showNotification('Por favor elige qué necesitas', 'error');
+            showNotification(tNotifications('fillNeed'), 'error');
             return;
         }
         if (!selectedTone) {
-            showNotification('Por favor elige un tono', 'error');
+            showNotification(tNotifications('fillTone'), 'error');
             return;
         }
 
@@ -88,7 +85,7 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
 
         setGeneratedPrompt(prompt);
         setShowGenerated(true);
-        showNotification('¡Tu mensaje está listo! 🎉', 'success');
+        showNotification(tNotifications('promptReady'), 'success');
 
         if (trackEvent) {
             trackEvent('prompt_generated', {
@@ -99,13 +96,13 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
         }
     };
 
-    const handleWhatsAppShare = (question) => {
+    const handleWhatsAppShare = () => {
         if (trackEvent) {
             trackEvent('whatsapp_share', { module: 'module2' });
         }
-        const message = encodeURIComponent(`💬 Pregunta del taller MujerTech:\n\n${question}\n\n¿Qué opinan ustedes?`);
+        const message = encodeURIComponent(`💬 Pregunta del taller MujerTech:\n\n${t('ethics.shareText')}\n\n¿Qué opinan ustedes?`);
         window.open(`https://wa.me/?text=${message}`, '_blank');
-        showNotification('¡Gracias por compartir! 💚', 'success');
+        showNotification(tNotifications('shareSuccess'), 'success');
     };
 
     const handleNext = () => {
@@ -123,9 +120,9 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
         <div className={styles.moduleContent}>
             {/* Module Header */}
             <header className={styles.moduleHeader}>
-                <h1>Cómo hablarle a la IA</h1>
-                <p className={styles.moduleSubtitle}>Aprende a pedir lo que necesitas</p>
-                <span className={styles.timeBadge}>⏱️ 15 minutos</span>
+                <h1>{t('title')}</h1>
+                <p className={styles.moduleSubtitle}>{t('subtitle')}</p>
+                <span className={styles.timeBadge}>{t('duration')}</span>
             </header>
 
             {/* Success Criteria - Intro */}
@@ -137,12 +134,12 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
             {/* What is a Prompt */}
             <div className={`${styles.card} ${styles.explanationCard}`}>
                 <div className={styles.bigIcon}>💬</div>
-                <h2 className={styles.cardTitle}>¿Qué es un &quot;prompt&quot;?</h2>
-                <p className={styles.cardText}>Un <strong>prompt</strong> es el mensaje que le escribes a la IA.</p>
-                <p className={styles.cardText}>Es como cuando le pides algo a alguien por WhatsApp.</p>
+                <h2 className={styles.cardTitle}>{t('whatIsPrompt.title')}</h2>
+                <p className={styles.cardText} dangerouslySetInnerHTML={{ __html: t.raw('whatIsPrompt.text1') }} />
+                <p className={styles.cardText}>{t('whatIsPrompt.text2')}</p>
                 <div className={styles.exampleBox}>
-                    <p className={styles.exampleLabel}>Ejemplo de prompt:</p>
-                    <p className={styles.exampleText}>&quot;Dame 3 ideas para publicar en Instagram sobre mi negocio de jabones&quot;</p>
+                    <p className={styles.exampleLabel}>{t('whatIsPrompt.exampleLabel')}</p>
+                    <p className={styles.exampleText}>{t('whatIsPrompt.exampleText')}</p>
                 </div>
             </div>
 
@@ -150,19 +147,19 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
             <div className={styles.card}>
                 <h2 className={styles.cardTitle}>
                     <span className={styles.cardIcon}>🔑</span>
-                    La regla de oro
+                    {t('goldenRule.title')}
                 </h2>
                 <div className={styles.goldenRule}>
-                    <p className={styles.ruleText}>Entre más claro le pidas las cosas a la IA, mejor te va a ayudar.</p>
+                    <p className={styles.ruleText}>{t('goldenRule.text')}</p>
                 </div>
                 <div className={styles.comparisonBox}>
                     <div className={`${styles.comparisonItem} ${styles.bad}`}>
                         <span className={styles.comparisonIcon}>❌</span>
-                        <p><strong>Malo:</strong> &quot;Dame ideas&quot;</p>
+                        <p><strong>{t('goldenRule.bad')}</strong> {t('goldenRule.badExample')}</p>
                     </div>
                     <div className={`${styles.comparisonItem} ${styles.good}`}>
                         <span className={styles.comparisonIcon}>✅</span>
-                        <p><strong>Bueno:</strong> &quot;Dame 3 ideas de posts para Instagram sobre jabones naturales, con un tono amigable&quot;</p>
+                        <p><strong>{t('goldenRule.good')}</strong> {t('goldenRule.goodExample')}</p>
                     </div>
                 </div>
             </div>
@@ -171,41 +168,41 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
             <div className={`${styles.card} ${styles.methodCard}`}>
                 <h2 className={styles.cardTitle}>
                     <span className={styles.cardIcon}>📝</span>
-                    El método de los 4 pasos
+                    {t('method.title')}
                 </h2>
-                <p className={styles.cardText}>Para escribir un buen mensaje a la IA, sigue estos pasos:</p>
+                <p className={styles.cardText}>{t('method.intro')}</p>
                 <div className={styles.methodSteps}>
                     <div className={styles.methodStep}>
                         <div className={styles.stepHeader}>
                             <span className={styles.stepNumber}>1</span>
-                            <span className={styles.stepTitle}>¿Quién eres?</span>
+                            <span className={styles.stepTitle}>{t('method.step1.title')}</span>
                         </div>
-                        <p>Cuéntale sobre ti y tu negocio</p>
-                        <div className={styles.stepExample}>&quot;Tengo un negocio de jabones naturales&quot;</div>
+                        <p>{t('method.step1.description')}</p>
+                        <div className={styles.stepExample}>{t('method.step1.example')}</div>
                     </div>
                     <div className={styles.methodStep}>
                         <div className={styles.stepHeader}>
                             <span className={styles.stepNumber}>2</span>
-                            <span className={styles.stepTitle}>¿Qué necesitas?</span>
+                            <span className={styles.stepTitle}>{t('method.step2.title')}</span>
                         </div>
-                        <p>Dile exactamente qué quieres</p>
-                        <div className={styles.stepExample}>&quot;Necesito 3 textos para WhatsApp&quot;</div>
+                        <p>{t('method.step2.description')}</p>
+                        <div className={styles.stepExample}>{t('method.step2.example')}</div>
                     </div>
                     <div className={styles.methodStep}>
                         <div className={styles.stepHeader}>
                             <span className={styles.stepNumber}>3</span>
-                            <span className={styles.stepTitle}>¿Cómo lo quieres?</span>
+                            <span className={styles.stepTitle}>{t('method.step3.title')}</span>
                         </div>
-                        <p>Describe cómo debe verse el resultado</p>
-                        <div className={styles.stepExample}>&quot;Cortos, con emojis&quot;</div>
+                        <p>{t('method.step3.description')}</p>
+                        <div className={styles.stepExample}>{t('method.step3.example')}</div>
                     </div>
                     <div className={styles.methodStep}>
                         <div className={styles.stepHeader}>
                             <span className={styles.stepNumber}>4</span>
-                            <span className={styles.stepTitle}>¿Qué tono?</span>
+                            <span className={styles.stepTitle}>{t('method.step4.title')}</span>
                         </div>
-                        <p>¿Formal, amigable, divertido?</p>
-                        <div className={styles.stepExample}>&quot;Tono amigable y cercano&quot;</div>
+                        <p>{t('method.step4.description')}</p>
+                        <div className={styles.stepExample}>{t('method.step4.example')}</div>
                     </div>
                 </div>
             </div>
@@ -215,62 +212,62 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
                 <div className={styles.caseHeader}>
                     <span className={styles.caseIcon}>👩</span>
                     <div>
-                        <h2>Ejemplo Completo: María y sus Jabones</h2>
-                        <p>Veamos cómo María usa la IA para su negocio</p>
+                        <h2>{t('maria.title')}</h2>
+                        <p>{t('maria.subtitle')}</p>
                     </div>
                 </div>
 
                 <div className={styles.caseStep}>
-                    <h3><span className={styles.caseStepNumber}>1</span>Conoce a María</h3>
+                    <h3><span className={styles.caseStepNumber}>1</span>{t('maria.step1.title')}</h3>
                     <div className={styles.mariaIntro}>
-                        <p>María vende <strong>jabones artesanales</strong> en Bogotá.</p>
-                        <p>Su negocio se llama <strong>&quot;Jabones de la Abuela&quot;</strong>.</p>
-                        <p>Vende por WhatsApp y en ferias locales.</p>
-                        <p className={styles.mariaProblem}>😰 <strong>Su problema:</strong> No sabe qué publicar en su estado de WhatsApp.</p>
+                        <p dangerouslySetInnerHTML={{ __html: t.raw('maria.step1.text1') }} />
+                        <p dangerouslySetInnerHTML={{ __html: t.raw('maria.step1.text2') }} />
+                        <p>{t('maria.step1.text3')}</p>
+                        <p className={styles.mariaProblem} dangerouslySetInnerHTML={{ __html: t.raw('maria.step1.problem') }} />
                     </div>
                 </div>
 
                 <div className={styles.caseStep}>
-                    <h3><span className={styles.caseStepNumber}>2</span>María piensa qué necesita</h3>
+                    <h3><span className={styles.caseStepNumber}>2</span>{t('maria.step2.title')}</h3>
                     <div className={styles.mariaThinking}>
-                        <div className={styles.thinkingItem}><span className={styles.check}>✅</span><p><strong>¿Qué vende?</strong> → Jabones naturales</p></div>
-                        <div className={styles.thinkingItem}><span className={styles.check}>✅</span><p><strong>¿Qué necesita?</strong> → Textos para WhatsApp</p></div>
-                        <div className={styles.thinkingItem}><span className={styles.check}>✅</span><p><strong>¿Cómo lo quiere?</strong> → Cortos con emojis</p></div>
-                        <div className={styles.thinkingItem}><span className={styles.check}>✅</span><p><strong>¿Qué tono?</strong> → Amigable</p></div>
+                        <div className={styles.thinkingItem}><span className={styles.check}>✅</span><p dangerouslySetInnerHTML={{ __html: t.raw('maria.step2.what') }} /></div>
+                        <div className={styles.thinkingItem}><span className={styles.check}>✅</span><p dangerouslySetInnerHTML={{ __html: t.raw('maria.step2.need') }} /></div>
+                        <div className={styles.thinkingItem}><span className={styles.check}>✅</span><p dangerouslySetInnerHTML={{ __html: t.raw('maria.step2.how') }} /></div>
+                        <div className={styles.thinkingItem}><span className={styles.check}>✅</span><p dangerouslySetInnerHTML={{ __html: t.raw('maria.step2.tone') }} /></div>
                     </div>
                 </div>
 
                 <div className={styles.caseStep}>
-                    <h3><span className={styles.caseStepNumber}>3</span>María escribe su mensaje a la IA</h3>
+                    <h3><span className={styles.caseStepNumber}>3</span>{t('maria.step3.title')}</h3>
                     <div className={styles.promptDisplay}>
-                        <p className={styles.promptLabel}>El mensaje completo:</p>
-                        <div className={styles.promptBox}>{MARIA_PROMPT}</div>
+                        <p className={styles.promptLabel}>{t('maria.step3.label')}</p>
+                        <div className={styles.promptBox}>{t('maria.prompt')}</div>
                         <button 
                             className={styles.btnCopy}
-                            onClick={() => copyToClipboard(MARIA_PROMPT, 'maria_example')}
+                            onClick={() => copyToClipboard(t('maria.prompt'), 'maria_example')}
                             type="button"
                         >
-                            📋 COPIAR ESTE MENSAJE
+                            {t('maria.step3.copyButton')}
                         </button>
                     </div>
                 </div>
 
                 <div className={styles.caseStep}>
-                    <h3><span className={styles.caseStepNumber}>4</span>La IA le responde</h3>
+                    <h3><span className={styles.caseStepNumber}>4</span>{t('maria.step4.title')}</h3>
                     <div className={styles.aiResponse}>
-                        <p className={styles.responseLabel}>🤖 La IA le dio estas opciones:</p>
+                        <p className={styles.responseLabel}>{t('maria.step4.label')}</p>
                         <div className={styles.responseOptions}>
                             <div className={styles.responseOption}>
-                                <p>🧼✨ <strong>Opción 1:</strong></p>
-                                <p>&quot;¿Ya probaste nuestros jabones de avena? Tu piel te lo va a agradecer 🥰 ¡Escríbeme!&quot;</p>
+                                <p dangerouslySetInnerHTML={{ __html: t.raw('maria.step4.option1Label') }} />
+                                <p>{t('maria.step4.option1Text')}</p>
                             </div>
                             <div className={styles.responseOption}>
-                                <p>🌿🧴 <strong>Opción 2:</strong></p>
-                                <p>&quot;Ingredientes naturales + mucho amor = jabones que cuidan tu piel 💚 ¿Te cuento más?&quot;</p>
+                                <p dangerouslySetInnerHTML={{ __html: t.raw('maria.step4.option2Label') }} />
+                                <p>{t('maria.step4.option2Text')}</p>
                             </div>
                             <div className={styles.responseOption}>
-                                <p>🎁 <strong>Opción 3:</strong></p>
-                                <p>&quot;Regalito perfecto para alguien especial: jabón artesanal hecho con cariño 💝 ¡Pregúntame!&quot;</p>
+                                <p dangerouslySetInnerHTML={{ __html: t.raw('maria.step4.option3Label') }} />
+                                <p>{t('maria.step4.option3Text')}</p>
                             </div>
                         </div>
                     </div>
@@ -278,22 +275,22 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
 
                 <div className={styles.caseResult}>
                     <div className={styles.resultIcon}>🎉</div>
-                    <h3>¡María ya tiene contenido para publicar!</h3>
+                    <h3>{t('maria.result.title')}</h3>
                     <div className={styles.resultStats}>
                         <div className={styles.stat}>
-                            <span className={styles.statValue}>⏱️ 5 min</span>
-                            <span className={styles.statLabel}>Tiempo total</span>
+                            <span className={styles.statValue}>{t('maria.result.time')}</span>
+                            <span className={styles.statLabel}>{t('maria.result.timeLabel')}</span>
                         </div>
                         <div className={styles.stat}>
-                            <span className={styles.statValue}>🙋‍♀️ Sola</span>
-                            <span className={styles.statLabel}>Lo hizo ella misma</span>
+                            <span className={styles.statValue}>{t('maria.result.alone')}</span>
+                            <span className={styles.statLabel}>{t('maria.result.aloneLabel')}</span>
                         </div>
                         <div className={styles.stat}>
-                            <span className={styles.statValue}>📝 3</span>
-                            <span className={styles.statLabel}>Opciones</span>
+                            <span className={styles.statValue}>{t('maria.result.options')}</span>
+                            <span className={styles.statLabel}>{t('maria.result.optionsLabel')}</span>
                         </div>
                     </div>
-                    <p className={styles.resultNote}>Antes, María no sabía qué escribir. ¡Ahora tiene varias opciones para elegir!</p>
+                    <p className={styles.resultNote}>{t('maria.result.note')}</p>
                 </div>
             </div>
 
@@ -301,20 +298,20 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
             <div className={styles.yourTurnCard}>
                 <h2 className={styles.cardTitle}>
                     <span className={styles.cardIcon}>🎯</span>
-                    ¡Ahora es tu turno!
+                    {t('yourTurn.title')}
                 </h2>
-                <p className={styles.cardText}>Vamos a crear tu primer mensaje para la IA:</p>
+                <p className={styles.cardText}>{t('yourTurn.intro')}</p>
 
                 <div className={styles.promptBuilder}>
                     <div className={styles.builderStep}>
                         <label className={styles.builderLabel}>
                             <span className={styles.builderNumber}>1</span>
-                            ¿Qué vendes o haces?
+                            {t('yourTurn.step1Label')}
                         </label>
                         <input
                             type="text"
                             className={styles.builderInput}
-                            placeholder="Ejemplo: galletas caseras, ropa, servicios de limpieza..."
+                            placeholder={t('yourTurn.step1Placeholder')}
                             value={business}
                             onChange={(e) => setBusiness(e.target.value)}
                         />
@@ -323,7 +320,7 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
                     <div className={styles.builderStep}>
                         <label className={styles.builderLabel}>
                             <span className={styles.builderNumber}>2</span>
-                            ¿Qué necesitas? (elige una)
+                            {t('yourTurn.step2Label')}
                         </label>
                         <div className={styles.builderOptions}>
                             {NEED_OPTIONS.map((option) => (
@@ -342,7 +339,7 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
                     <div className={styles.builderStep}>
                         <label className={styles.builderLabel}>
                             <span className={styles.builderNumber}>3</span>
-                            ¿Qué tono quieres? (elige uno)
+                            {t('yourTurn.step3Label')}
                         </label>
                         <div className={styles.builderOptions}>
                             {TONE_OPTIONS.map((option) => (
@@ -363,22 +360,22 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
                         onClick={handleGeneratePrompt}
                         type="button"
                     >
-                        ✨ CREAR MI MENSAJE
+                        {t('yourTurn.generateButton')}
                     </button>
 
                     {showGenerated && (
                         <div className={styles.generatedPrompt}>
-                            <p className={styles.generatedLabel}>Tu mensaje para la IA:</p>
+                            <p className={styles.generatedLabel}>{t('yourTurn.resultLabel')}</p>
                             <div className={styles.generatedText}>{generatedPrompt}</div>
                             <button 
                                 className={styles.btnCopy}
                                 onClick={() => copyToClipboard(generatedPrompt, 'user_prompt')}
                                 type="button"
                             >
-                                📋 COPIAR MI MENSAJE
+                                {t('yourTurn.copyButton')}
                             </button>
                             <div className={styles.nextStepHint}>
-                                <p>💡 <strong>Siguiente paso:</strong> Copia este mensaje y pégalo en ChatGPT o Claude para ver qué te responde la IA.</p>
+                                <p dangerouslySetInnerHTML={{ __html: t.raw('yourTurn.nextStepHint') }} />
                             </div>
                         </div>
                     )}
@@ -388,8 +385,8 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
             {/* Tools Section Divider */}
             <div className={styles.sectionDivider}>
                 <span className={styles.dividerIcon}>🛠️</span>
-                <h2>Herramientas que puedes usar HOY</h2>
-                <p>Conoce las apps de IA más fáciles</p>
+                <h2>{t('tools.dividerTitle')}</h2>
+                <p>{t('tools.dividerSubtitle')}</p>
             </div>
 
             {/* ChatGPT Tool Card */}
@@ -397,23 +394,23 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
                 <div className={styles.toolHeader}>
                     <span className={styles.toolIcon}>💬</span>
                     <div>
-                        <h2>ChatGPT</h2>
-                        <span className={styles.toolPrice}>GRATIS</span>
+                        <h2>{t('tools.chatgpt.title')}</h2>
+                        <span className={styles.toolPrice}>{t('tools.chatgpt.price')}</span>
                     </div>
                 </div>
-                <p><strong>¿Qué es?</strong> Una IA que conversa contigo y te ayuda a escribir.</p>
-                <p><strong>¿Para qué sirve?</strong></p>
+                <p dangerouslySetInnerHTML={{ __html: t.raw('tools.chatgpt.what') }} />
+                <p dangerouslySetInnerHTML={{ __html: t.raw('tools.chatgpt.forWhat') }} />
                 <ul className={styles.toolUses}>
-                    <li>✍️ Escribir textos para redes sociales</li>
-                    <li>💡 Darte ideas para tu negocio</li>
-                    <li>📧 Redactar mensajes y correos</li>
-                    <li>❓ Responder preguntas</li>
+                    <li>{t('tools.chatgpt.use1')}</li>
+                    <li>{t('tools.chatgpt.use2')}</li>
+                    <li>{t('tools.chatgpt.use3')}</li>
+                    <li>{t('tools.chatgpt.use4')}</li>
                 </ul>
-                <p><strong>¿Cómo usarlo?</strong></p>
+                <p dangerouslySetInnerHTML={{ __html: t.raw('tools.chatgpt.howTo') }} />
                 <ol className={styles.toolSteps}>
-                    <li>Entra a <strong><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">chatgpt.com</a></strong> en tu celular</li>
-                    <li>Crea una cuenta gratis (con tu correo)</li>
-                    <li>Escribe tu mensaje y envíalo</li>
+                    <li>Entra a <strong><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">chatgpt.com</a></strong></li>
+                    <li>{t('tools.chatgpt.step2')}</li>
+                    <li>{t('tools.chatgpt.step3')}</li>
                 </ol>
             </div>
 
@@ -422,23 +419,23 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
                 <div className={styles.toolHeader}>
                     <span className={styles.toolIcon}>🎨</span>
                     <div>
-                        <h2>Canva</h2>
-                        <span className={styles.toolPrice}>GRATIS (con opciones de pago)</span>
+                        <h2>{t('tools.canva.title')}</h2>
+                        <span className={styles.toolPrice}>{t('tools.canva.price')}</span>
                     </div>
                 </div>
-                <p><strong>¿Qué es?</strong> Una app para crear diseños e imágenes bonitas.</p>
-                <p><strong>¿Para qué sirve?</strong></p>
+                <p dangerouslySetInnerHTML={{ __html: t.raw('tools.canva.what') }} />
+                <p dangerouslySetInnerHTML={{ __html: t.raw('tools.canva.forWhat') }} />
                 <ul className={styles.toolUses}>
-                    <li>🖼️ Crear imágenes para redes sociales</li>
-                    <li>📋 Hacer menús y catálogos</li>
-                    <li>🎨 Diseñar logos simples</li>
-                    <li>✨ Generar imágenes con IA</li>
+                    <li>{t('tools.canva.use1')}</li>
+                    <li>{t('tools.canva.use2')}</li>
+                    <li>{t('tools.canva.use3')}</li>
+                    <li>{t('tools.canva.use4')}</li>
                 </ul>
-                <p><strong>¿Cómo usarlo?</strong></p>
+                <p dangerouslySetInnerHTML={{ __html: t.raw('tools.canva.howTo') }} />
                 <ol className={styles.toolSteps}>
-                    <li>Entra a <strong><a href="https://www.canva.com/" target="_blank" rel="noopener noreferrer">canva.com</a></strong> o descarga la app de tu tienda</li>
-                    <li>Crea una cuenta gratis</li>
-                    <li>Elige una plantilla y personalízala</li>
+                    <li>Entra a <strong><a href="https://www.canva.com/" target="_blank" rel="noopener noreferrer">canva.com</a></strong></li>
+                    <li>{t('tools.canva.step2')}</li>
+                    <li>{t('tools.canva.step3')}</li>
                 </ol>
             </div>
 
@@ -446,8 +443,8 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
             <div className={styles.tipCard}>
                 <span className={styles.tipIcon}>💡</span>
                 <div>
-                    <h3>Tip importante</h3>
-                    <p>Empieza con <strong>ChatGPT</strong> para textos y <strong>Canva</strong> para imágenes. Son gratis y fáciles de usar. ¡No necesitas más por ahora!</p>
+                    <h3>{t('tools.tip.title')}</h3>
+                    <p dangerouslySetInnerHTML={{ __html: t.raw('tools.tip.text') }} />
                 </div>
             </div>
 
@@ -455,29 +452,29 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
             <div className={styles.ethicsCard}>
                 <div className={styles.ethicsCardHeader}>
                     <span className={styles.ethicsIcon}>🤔</span>
-                    <h3>Momento de reflexión</h3>
+                    <h3>{t('ethics.title')}</h3>
                 </div>
                 <div className={styles.ethicsReflection}>
-                    <p>Cuando le das información a la IA, esos datos pueden ser usados para entrenar nuevos modelos. Por eso es importante no compartir información sensible de tu negocio o clientes.</p>
+                    <p>{t('ethics.text')}</p>
                 </div>
                 <div className={styles.ethicsQuestion}>
                     <span className={styles.ethicsQuestionIcon}>💬</span>
-                    <p>¿Qué información de tu negocio NO le darías a la IA?</p>
+                    <p>{t('ethics.question')}</p>
                 </div>
                 <button 
                     className={styles.btnWhatsapp}
-                    onClick={() => handleWhatsAppShare('¿Qué información de tu negocio NO le darías a la IA? 🔒')}
+                    onClick={handleWhatsAppShare}
                     type="button"
                 >
                     <span className={styles.whatsappIcon}>📱</span>
-                    COMPARTIR EN EL GRUPO
+                    {t('ethics.shareButton')}
                 </button>
             </div>
 
             {/* Success Criteria - Completion */}
             <SuccessCriteria 
                 mode="completion"
-                completionText={MODULE_COMPLETION}
+                completionText={t('completion')}
             />
 
             {/* Navigation */}
@@ -488,7 +485,7 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
                         onClick={onPrev}
                         type="button"
                     >
-                        ← ANTERIOR
+                        ← {tCommon('previous')}
                     </button>
                 )}
                 <button 
@@ -496,7 +493,7 @@ Usa un tono ${TONE_TEXTS[selectedTone]}.`;
                     onClick={handleNext}
                     type="button"
                 >
-                    SIGUIENTE →
+                    {tCommon('next')} →
                 </button>
             </div>
         </div>

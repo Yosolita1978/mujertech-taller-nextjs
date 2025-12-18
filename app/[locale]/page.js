@@ -1,30 +1,24 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import Header from './components/Header/Header';
-import ProgressBar from './components/ProgressBar/ProgressBar';
-import ModuleNavBar from './components/ModuleNavBar/ModuleNavBar';
-import Glossary from './components/Glossary/Glossary';
-import Notification from './components/Notification/Notification';
-import Timer from './components/Timer/Timer';
-import ResumeModal from './components/ResumeModal/ResumeModal';
-import PresessionCheck from './components/modules/PresessionCheck/PresessionCheck';
-import Presession from './components/modules/Presession/Presession';
-import Welcome from './components/modules/Welcome/Welcome';
-import Module1 from './components/modules/Module1/Module1';
-import Module2 from './components/modules/Module2/Module2';
-import Module4 from './components/modules/Module4/Module4';
-import Module6 from './components/modules/Module6/Module6';
-import { useNotification } from './lib/useNotification';
-import { useProgress } from './lib/useProgress';
-import { useClarity } from './lib/useClarity';
-
-const EXPERIENCE_MESSAGES = {
-    nunca: '¡Perfecto! Este taller está hecho para ti. Vamos paso a paso.',
-    poco: 'Muy bien, hoy vas a pasar de la teoría a la práctica.',
-    algo: 'Genial, vas a aprender trucos para mejorar tus resultados.',
-    mucho: '¡Excelente! Descubrirás nuevas formas de usar la IA.'
-};
+import { useTranslations } from 'next-intl';
+import Header from '../components/Header/Header';
+import ProgressBar from '../components/ProgressBar/ProgressBar';
+import ModuleNavBar from '../components/ModuleNavBar/ModuleNavBar';
+import Glossary from '../components/Glossary/Glossary';
+import Notification from '../components/Notification/Notification';
+import Timer from '../components/Timer/Timer';
+import ResumeModal from '../components/ResumeModal/ResumeModal';
+import PresessionCheck from '../components/modules/PresessionCheck/PresessionCheck';
+import Presession from '../components/modules/Presession/Presession';
+import Welcome from '../components/modules/Welcome/Welcome';
+import Module1 from '../components/modules/Module1/Module1';
+import Module2 from '../components/modules/Module2/Module2';
+import Module4 from '../components/modules/Module4/Module4';
+import Module6 from '../components/modules/Module6/Module6';
+import { useNotification } from '../lib/useNotification';
+import { useProgress } from '../lib/useProgress';
+import { useClarity } from '../lib/useClarity';
 
 function getStartingModule(experience, businessType) {
     if (!experience || experience === 'nunca' || experience === 'poco') {
@@ -59,6 +53,7 @@ export default function Home() {
         clearProgress
     } = useProgress();
     const { trackEvent, setTag } = useClarity(currentModule);
+    const t = useTranslations('notifications');
 
     const isNavVisible = currentModule !== 'presessionCheck' && currentModule !== 'presession';
 
@@ -85,25 +80,24 @@ export default function Home() {
     const handleSkipPresession = () => {
         trackEvent('presession_skipped');
         setCurrentModule('welcome');
-        showNotification('¡Perfecto! Vamos directo al taller', 'success');
+        showNotification(t('skipPresession'), 'success');
     };
 
     const handlePresessionComplete = () => {
         trackEvent('presession_completed');
         setCurrentModule('welcome');
-        showNotification('¡Muy bien! Ya estás lista para el taller 🎉', 'success');
+        showNotification(t('presessionComplete'), 'success');
     };
 
     const handleWelcomeNext = ({ experience, businessType }) => {
         setUserProfile({ experience, businessType });
         
-        // Track user profile in Clarity
         setTag('experience', experience || 'not_selected');
         setTag('businessType', businessType || 'not_selected');
         trackEvent('welcome_completed', { experience, businessType });
         
-        if (experience && EXPERIENCE_MESSAGES[experience]) {
-            showNotification(EXPERIENCE_MESSAGES[experience], 'success');
+        if (experience) {
+            showNotification(t(`experience.${experience}`), 'success');
         }
         
         const startingModule = getStartingModule(experience, businessType);
@@ -132,7 +126,7 @@ export default function Home() {
         closeResumeModal();
         setEntryModule(moduleId);
         setCurrentModule(moduleId);
-        showNotification('¡Vamos allá! 🚀', 'success');
+        showNotification(t('jumpModule'), 'success');
     };
 
     const handleGlossaryOpen = () => {

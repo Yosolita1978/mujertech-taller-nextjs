@@ -1,14 +1,19 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
 import styles from './PresessionCheck.module.css';
 
 export default function PresessionCheck({ onStartPresession, onSkipPresession }) {
+    const t = useTranslations('presessionCheck');
+
     return (
         <section className={styles.container}>
             <div className={styles.welcomeIcon}>👋</div>
-            <h1 className={styles.title}>¡Hola!</h1>
-            <p className={styles.welcomeText}>Antes de empezar, queremos saber:</p>
+            <h1 className={styles.title}>{t('greeting')}</h1>
+            <p className={styles.welcomeText}>{t('question')}</p>
             
             <div className={styles.questionBox}>
-                <h2>¿Es tu primera vez cursando un taller en el celular?</h2>
+                <h2>{t('mainQuestion')}</h2>
             </div>
             
             <div className={styles.choiceButtons}>
@@ -17,14 +22,14 @@ export default function PresessionCheck({ onStartPresession, onSkipPresession })
                     onClick={onStartPresession}
                     type="button"
                 >
-                    SÍ, AYÚDAME A PRACTICAR
+                    {t('yesHelp')}
                 </button>
                 <button 
                     className={`${styles.btnLarge} ${styles.btnSecondary}`}
                     onClick={onSkipPresession}
                     type="button"
                 >
-                    YA SÉ CÓMO, IR AL TALLER
+                    {t('noSkip')}
                 </button>
             </div>
         </section>

@@ -1,22 +1,26 @@
+'use client';
+
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import styles from './Module1.module.css';
 import SuccessCriteria from '../../SuccessCriteria/SuccessCriteria';
 
-const MYTH_ANSWERS = {
-    1: { correct: 'mentira', explanation: 'La IA no piensa de verdad. Solo imita patrones que aprendió.' },
-    2: { correct: 'verdad', explanation: 'Sí puede ayudarte a escribir, es una de sus mejores funciones.' },
-    3: { correct: 'mentira', explanation: 'La IA puede equivocarse. Siempre debes revisar lo que te da.' }
-};
-
-const MODULE_OUTCOMES = [
-    'Explicar qué es la IA en tus propias palabras',
-    'Saber qué puede y qué NO puede hacer la IA'
-];
-
-const MODULE_COMPLETION = 'Ahora entiendes qué es la IA y cómo puede ayudarte en tu negocio.';
-
 export default function Module1({ onNext, onPrev, showNotification, hidePrev, trackEvent }) {
     const [quizAnswers, setQuizAnswers] = useState({});
+    const t = useTranslations('module1');
+    const tCommon = useTranslations('common');
+    const tNotifications = useTranslations('notifications');
+
+    const MYTH_ANSWERS = {
+        1: { correct: 'mentira', explanation: t('quiz.explanation1') },
+        2: { correct: 'verdad', explanation: t('quiz.explanation2') },
+        3: { correct: 'mentira', explanation: t('quiz.explanation3') }
+    };
+
+    const MODULE_OUTCOMES = [
+        t('outcomes.item1'),
+        t('outcomes.item2')
+    ];
 
     const handleQuizAnswer = (questionNum, answer) => {
         if (quizAnswers[questionNum]) return;
@@ -37,14 +41,14 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
         }
     };
 
-    const handleWhatsAppShare = (question) => {
+    const handleWhatsAppShare = () => {
         if (trackEvent) {
             trackEvent('whatsapp_share', { module: 'module1' });
         }
-        const message = encodeURIComponent(`💬 Pregunta del taller MujerTech:\n\n${question}\n\n¿Qué opinan ustedes?`);
+        const message = encodeURIComponent(`💬 Pregunta del taller MujerTech:\n\n${t('ethics.shareText')}\n\n¿Qué opinan ustedes?`);
         window.open(`https://wa.me/?text=${message}`, '_blank');
         if (showNotification) {
-            showNotification('¡Gracias por compartir! 💚', 'success');
+            showNotification(tNotifications('shareSuccess'), 'success');
         }
     };
 
@@ -64,9 +68,9 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
         <div className={styles.moduleContent}>
             {/* Module Header */}
             <header className={styles.moduleHeader}>
-                <h1>¿Qué es la Inteligencia Artificial?</h1>
-                <p className={styles.moduleSubtitle}>Explicado de forma simple</p>
-                <span className={styles.timeBadge}>⏱️ 10 minutos</span>
+                <h1>{t('title')}</h1>
+                <p className={styles.moduleSubtitle}>{t('subtitle')}</p>
+                <span className={styles.timeBadge}>{t('duration')}</span>
             </header>
 
             {/* Success Criteria - Intro */}
@@ -78,38 +82,38 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
             {/* Explanation Card */}
             <div className={`${styles.card} ${styles.explanationCard}`}>
                 <div className={styles.bigIcon}>🤖</div>
-                <h2 className={styles.cardTitle}>La IA es como una asistente muy inteligente</h2>
-                <p className={styles.cardText}>Imagina que tienes una asistente que:</p>
+                <h2 className={styles.cardTitle}>{t('explanation.title')}</h2>
+                <p className={styles.cardText}>{t('explanation.text')}</p>
                 <ul className={styles.simpleList}>
-                    <li>📚 Leyó millones de libros</li>
-                    <li>🖼️ Vio millones de imágenes</li>
-                    <li>💬 Aprendió a escribir muy bien</li>
+                    <li>{t('explanation.item1')}</li>
+                    <li>{t('explanation.item2')}</li>
+                    <li>{t('explanation.item3')}</li>
                 </ul>
-                <p className={styles.cardText}>Esa es la IA. <strong>Le puedes pedir ayuda y te responde.</strong></p>
+                <p className={styles.cardText} dangerouslySetInnerHTML={{ __html: t.raw('explanation.conclusion') }} />
             </div>
 
             {/* What AI CAN do */}
             <div className={styles.card}>
                 <h2 className={styles.cardTitle}>
                     <span className={styles.cardIcon}>✅</span>
-                    Lo que SÍ puede hacer la IA
+                    {t('canDo.title')}
                 </h2>
                 <div className={styles.canDoList}>
                     <div className={styles.canDoItem}>
                         <span className={styles.canIcon}>💬</span>
-                        <p>Escribir textos para tus redes sociales</p>
+                        <p>{t('canDo.item1')}</p>
                     </div>
                     <div className={styles.canDoItem}>
                         <span className={styles.canIcon}>💡</span>
-                        <p>Darte ideas para tu negocio</p>
+                        <p>{t('canDo.item2')}</p>
                     </div>
                     <div className={styles.canDoItem}>
                         <span className={styles.canIcon}>🎨</span>
-                        <p>Crear imágenes bonitas</p>
+                        <p>{t('canDo.item3')}</p>
                     </div>
                     <div className={styles.canDoItem}>
                         <span className={styles.canIcon}>📝</span>
-                        <p>Ayudarte a escribir mensajes</p>
+                        <p>{t('canDo.item4')}</p>
                     </div>
                 </div>
             </div>
@@ -118,20 +122,20 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
             <div className={`${styles.card} ${styles.warningCard}`}>
                 <h2 className={styles.cardTitle}>
                     <span className={styles.cardIcon}>⚠️</span>
-                    Lo que NO puede hacer la IA
+                    {t('cannotDo.title')}
                 </h2>
                 <div className={styles.cannotDoList}>
                     <div className={styles.cannotItem}>
                         <span className={styles.cannotIcon}>🧠</span>
-                        <p><strong>No piensa de verdad.</strong> Solo imita lo que aprendió.</p>
+                        <p><strong>{t('cannotDo.item1.title')}</strong> {t('cannotDo.item1.description')}</p>
                     </div>
                     <div className={styles.cannotItem}>
                         <span className={styles.cannotIcon}>❌</span>
-                        <p><strong>No siempre tiene razón.</strong> Puede equivocarse.</p>
+                        <p><strong>{t('cannotDo.item2.title')}</strong> {t('cannotDo.item2.description')}</p>
                     </div>
                     <div className={styles.cannotItem}>
                         <span className={styles.cannotIcon}>👀</span>
-                        <p><strong>No reemplaza tu criterio.</strong> Tú decides qué usar.</p>
+                        <p><strong>{t('cannotDo.item3.title')}</strong> {t('cannotDo.item3.description')}</p>
                     </div>
                 </div>
             </div>
@@ -140,14 +144,14 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
             <div className={styles.activityCard}>
                 <h2 className={styles.cardTitle}>
                     <span className={styles.cardIcon}>🎯</span>
-                    Actividad: ¿Verdad o Mentira?
+                    {t('quiz.title')}
                 </h2>
-                <p className={styles.cardText}>Vamos a ver si entendiste. Responde cada pregunta:</p>
+                <p className={styles.cardText}>{t('quiz.instruction')}</p>
                 
                 <div className={styles.quizSimple}>
                     {/* Question 1 */}
                     <div className={styles.quizQuestionItem}>
-                        <p className={styles.quizStatement}>&quot;La IA puede pensar por sí misma&quot;</p>
+                        <p className={styles.quizStatement}>{t('quiz.question1')}</p>
                         <div className={styles.quizButtons}>
                             <button 
                                 className={`${styles.quizBtn} ${quizAnswers[1] ? styles.disabled : ''}`}
@@ -155,7 +159,7 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
                                 disabled={!!quizAnswers[1]}
                                 type="button"
                             >
-                                🟢 VERDAD
+                                {t('quiz.truth')}
                             </button>
                             <button 
                                 className={`${styles.quizBtn} ${quizAnswers[1] ? styles.disabled : ''}`}
@@ -163,7 +167,7 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
                                 disabled={!!quizAnswers[1]}
                                 type="button"
                             >
-                                🔴 MENTIRA
+                                {t('quiz.lie')}
                             </button>
                         </div>
                         {quizAnswers[1] && (
@@ -171,7 +175,7 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
                                 {quizAnswers[1].isCorrect ? (
                                     <div className={styles.feedbackCorrect}>
                                         <span className={styles.feedbackIcon}>✅</span>
-                                        <p>¡Correcto!</p>
+                                        <p>{t('quiz.correct')}</p>
                                     </div>
                                 ) : (
                                     <div className={styles.feedbackIncorrect}>
@@ -185,7 +189,7 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
 
                     {/* Question 2 */}
                     <div className={styles.quizQuestionItem}>
-                        <p className={styles.quizStatement}>&quot;La IA puede ayudarme a escribir textos&quot;</p>
+                        <p className={styles.quizStatement}>{t('quiz.question2')}</p>
                         <div className={styles.quizButtons}>
                             <button 
                                 className={`${styles.quizBtn} ${quizAnswers[2] ? styles.disabled : ''}`}
@@ -193,7 +197,7 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
                                 disabled={!!quizAnswers[2]}
                                 type="button"
                             >
-                                🟢 VERDAD
+                                {t('quiz.truth')}
                             </button>
                             <button 
                                 className={`${styles.quizBtn} ${quizAnswers[2] ? styles.disabled : ''}`}
@@ -201,7 +205,7 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
                                 disabled={!!quizAnswers[2]}
                                 type="button"
                             >
-                                🔴 MENTIRA
+                                {t('quiz.lie')}
                             </button>
                         </div>
                         {quizAnswers[2] && (
@@ -209,7 +213,7 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
                                 {quizAnswers[2].isCorrect ? (
                                     <div className={styles.feedbackCorrect}>
                                         <span className={styles.feedbackIcon}>✅</span>
-                                        <p>¡Correcto!</p>
+                                        <p>{t('quiz.correct')}</p>
                                     </div>
                                 ) : (
                                     <div className={styles.feedbackIncorrect}>
@@ -223,7 +227,7 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
 
                     {/* Question 3 */}
                     <div className={styles.quizQuestionItem}>
-                        <p className={styles.quizStatement}>&quot;La IA siempre dice la verdad&quot;</p>
+                        <p className={styles.quizStatement}>{t('quiz.question3')}</p>
                         <div className={styles.quizButtons}>
                             <button 
                                 className={`${styles.quizBtn} ${quizAnswers[3] ? styles.disabled : ''}`}
@@ -231,7 +235,7 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
                                 disabled={!!quizAnswers[3]}
                                 type="button"
                             >
-                                🟢 VERDAD
+                                {t('quiz.truth')}
                             </button>
                             <button 
                                 className={`${styles.quizBtn} ${quizAnswers[3] ? styles.disabled : ''}`}
@@ -239,7 +243,7 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
                                 disabled={!!quizAnswers[3]}
                                 type="button"
                             >
-                                🔴 MENTIRA
+                                {t('quiz.lie')}
                             </button>
                         </div>
                         {quizAnswers[3] && (
@@ -247,7 +251,7 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
                                 {quizAnswers[3].isCorrect ? (
                                     <div className={styles.feedbackCorrect}>
                                         <span className={styles.feedbackIcon}>✅</span>
-                                        <p>¡Correcto!</p>
+                                        <p>{t('quiz.correct')}</p>
                                     </div>
                                 ) : (
                                     <div className={styles.feedbackIncorrect}>
@@ -265,29 +269,29 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
             <div className={styles.ethicsCard}>
                 <div className={styles.ethicsCardHeader}>
                     <span className={styles.ethicsIcon}>🤔</span>
-                    <h3>Momento de reflexión</h3>
+                    <h3>{t('ethics.title')}</h3>
                 </div>
                 <div className={styles.ethicsReflection}>
-                    <p>La IA aprende de datos que los humanos creamos. Si esos datos tienen errores o prejuicios, la IA también los tendrá.</p>
+                    <p>{t('ethics.text')}</p>
                 </div>
                 <div className={styles.ethicsQuestion}>
                     <span className={styles.ethicsQuestionIcon}>💬</span>
-                    <p>¿Cómo crees que esto podría afectar a tu negocio?</p>
+                    <p>{t('ethics.question')}</p>
                 </div>
                 <button 
                     className={styles.btnWhatsapp}
-                    onClick={() => handleWhatsAppShare('¿Cómo crees que los errores de la IA podrían afectar a un negocio pequeño? 🤔')}
+                    onClick={handleWhatsAppShare}
                     type="button"
                 >
                     <span className={styles.whatsappIcon}>📱</span>
-                    COMPARTIR EN EL GRUPO
+                    {t('ethics.shareButton')}
                 </button>
             </div>
 
             {/* Success Criteria - Completion */}
             <SuccessCriteria 
                 mode="completion"
-                completionText={MODULE_COMPLETION}
+                completionText={t('completion')}
             />
 
             {/* Navigation */}
@@ -298,7 +302,7 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
                         onClick={onPrev}
                         type="button"
                     >
-                        ← ANTERIOR
+                        ← {tCommon('previous')}
                     </button>
                 )}
                 <button 
@@ -306,7 +310,7 @@ export default function Module1({ onNext, onPrev, showNotification, hidePrev, tr
                     onClick={handleNext}
                     type="button"
                 >
-                    SIGUIENTE →
+                    {tCommon('next')} →
                 </button>
             </div>
         </div>

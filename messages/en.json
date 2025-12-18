@@ -1,0 +1,688 @@
+{
+    "common": {
+        "next": "NEXT",
+        "previous": "PREVIOUS",
+        "copy": "COPY",
+        "close": "Close",
+        "loading": "Loading..."
+    },
+    "header": {
+        "title": "MujerTech",
+        "help": "Help"
+    },
+    "glossary": {
+        "title": "📖 Words we use",
+        "searchPlaceholder": "Search word...",
+        "empty": "No words found",
+        "terms": {
+            "app": {
+                "term": "App",
+                "definition": "A program that lives on your phone. Example: WhatsApp is an app."
+            },
+            "boton": {
+                "term": "Button",
+                "definition": "A box on the screen that does something when you tap it."
+            },
+            "chatgpt": {
+                "term": "ChatGPT",
+                "definition": "An AI app that helps you write text. It's free."
+            },
+            "canva": {
+                "term": "Canva",
+                "definition": "An app for creating beautiful images and designs. Has a free version."
+            },
+            "copiar": {
+                "term": "Copy",
+                "definition": "Save text to use elsewhere. Tap and hold, then choose \"Copy\"."
+            },
+            "descargar": {
+                "term": "Download",
+                "definition": "Save something from the internet to your phone."
+            },
+            "ia": {
+                "term": "AI",
+                "definition": "Artificial Intelligence. Very smart computer programs that can create text, images, and more."
+            },
+            "imagenGenerada": {
+                "term": "Generated image",
+                "definition": "An image created by AI, not a real photo taken with a camera."
+            },
+            "internet": {
+                "term": "Internet",
+                "definition": "The network that connects computers and phones worldwide. You need internet to use ChatGPT and Canva."
+            },
+            "pegar": {
+                "term": "Paste",
+                "definition": "Put the text you copied in a new place. Tap and hold where you want to paste."
+            },
+            "prompt": {
+                "term": "Prompt",
+                "definition": "The message you write to AI to ask for something. Like when you ask someone for something via WhatsApp."
+            },
+            "redesSociales": {
+                "term": "Social media",
+                "definition": "Apps where you share photos and messages with others. Example: WhatsApp, Instagram, Facebook."
+            },
+            "tono": {
+                "term": "Tone",
+                "definition": "How a text \"sounds\". It can be friendly, professional, fun, etc."
+            }
+        }
+    },
+    "progress": {
+        "preparation": "Preparation",
+        "blockOf": "Block {current} of {total}",
+        "modules": {
+            "presessionCheck": "Start",
+            "presession": "Basic practice",
+            "welcome": "Welcome",
+            "module1": "What is AI",
+            "module2": "Prompts & Tools",
+            "module4": "Create images",
+            "module6": "Congratulations!"
+        }
+    },
+    "nav": {
+        "welcome": "Home",
+        "module1": "AI",
+        "module2": "Prompts",
+        "module4": "Image",
+        "module6": "Done"
+    },
+    "presessionCheck": {
+        "greeting": "Hello!",
+        "question": "Before we start, we want to know:",
+        "mainQuestion": "Is this your first time taking a workshop on your phone?",
+        "yesHelp": "YES, HELP ME PRACTICE",
+        "noSkip": "I KNOW HOW, GO TO WORKSHOP"
+    },
+    "presession": {
+        "step1": {
+            "title": "Let's practice together",
+            "text1": "This workshop is made for your phone.",
+            "text2": "I'll teach you how to use it step by step.",
+            "encouragement": "Don't worry, it's very easy!",
+            "button": "START →"
+        },
+        "step2": {
+            "title": "What is a BUTTON?",
+            "text": "A button is a box that does something when you tap it.",
+            "instruction": "👇 Tap the green button:",
+            "buttonText": "TAP ME",
+            "buttonSuccess": "DONE! ✓",
+            "feedback": "Great job! You know how to use buttons.",
+            "next": "NEXT →"
+        },
+        "step3": {
+            "title": "How do I TYPE on my phone?",
+            "text": "When you see a box with lines, you can type inside.",
+            "instruction": "👇 Tap the box and type your name:",
+            "placeholder": "Type here...",
+            "feedback": "Excellent! You know how to type on your phone.",
+            "next": "NEXT →"
+        },
+        "step4": {
+            "title": "How do I COPY text?",
+            "text": "Sometimes you need to copy something to use it elsewhere.",
+            "copyStep1": "Tap and hold your finger on the text",
+            "copyStep2": "A menu appears, tap \"Copy\"",
+            "copyStep3": "Go where you want to paste it",
+            "copyStep4": "Tap and hold, then \"Paste\"",
+            "tip": "Don't worry if you don't master it now. The workshop has buttons that copy for you.",
+            "button": "GOT IT →"
+        },
+        "step5": {
+            "title": "How do I NAVIGATE this workshop?",
+            "helpBtn": "The Help button explains difficult words",
+            "nextBtn": "Next buttons take you forward",
+            "prevBtn": "Previous buttons take you back",
+            "progressBar": "The bar above shows your progress",
+            "next": "NEXT →"
+        },
+        "step6": {
+            "title": "You're ready!",
+            "text": "Now you know everything you need to use this workshop.",
+            "learnedTitle": "You learned to:",
+            "learned1": "✅ Use buttons",
+            "learned2": "✅ Type in text fields",
+            "learned3": "✅ Navigate the workshop",
+            "button": "START THE WORKSHOP →"
+        }
+    },
+    "welcome": {
+        "heroTitle": "Welcome to the AI Workshop!",
+        "heroSubtitle": "Learn to use Artificial Intelligence for your business",
+        "duration": "⏱️ Duration: 45 minutes",
+        "context": {
+            "title": "What moment are we in?",
+            "text1": "We are living through a huge change in the world.",
+            "text2": "Now there are computer programs that can:",
+            "item1": "✍️ Write texts",
+            "item2": "🎨 Create images",
+            "item3": "💡 Give you ideas for your business",
+            "text3": "These programs are called <strong>Artificial Intelligence</strong> or <strong>AI</strong>."
+        },
+        "benefits": {
+            "title": "Why does this matter for YOUR business?",
+            "subtitle": "With AI you can:",
+            "time": {
+                "title": "Save time",
+                "description": "What used to take hours now takes minutes"
+            },
+            "more": {
+                "title": "Do more with less",
+                "description": "Create content yourself when you need it"
+            },
+            "sell": {
+                "title": "Sell more",
+                "description": "Create attractive content for your social media"
+            }
+        },
+        "objectives": {
+            "title": "Today you will learn",
+            "item1": "What AI is (explained simply)",
+            "item2": "How to talk to AI so it helps you",
+            "item3": "How to create beautiful images for your business",
+            "item4": "How to use AI safely"
+        },
+        "community": {
+            "title": "Connect with other women learning AI",
+            "description": "Join our WhatsApp community where entrepreneurs like you share ideas, questions, and experiences using AI in their businesses.",
+            "benefit1": "✨ Share your questions",
+            "benefit2": "💡 Learn from others",
+            "benefit3": "🤝 Make connections",
+            "button": "JOIN THE COMMUNITY"
+        },
+        "experience": {
+            "title": "Before we start, tell us:",
+            "question": "How much do you know about AI?",
+            "never": "I've never used it",
+            "little": "I know what it is but don't use it",
+            "some": "I use it sometimes",
+            "lots": "I use it often"
+        },
+        "businessType": {
+            "title": "What type of business do you have?",
+            "subtitle": "This helps us personalize your experience",
+            "product": "I sell products (food, clothing, crafts...)",
+            "service": "I offer services (cleaning, beauty, consulting...)"
+        },
+        "confidence": {
+            "title": "📊 How confident do you feel using AI tools?",
+            "subtitle": "Be honest, there's no right answer"
+        },
+        "startButton": "START THE WORKSHOP →"
+    },
+    "notifications": {
+        "skipPresession": "Perfect! Let's go straight to the workshop",
+        "presessionComplete": "Great! You're ready for the workshop 🎉",
+        "jumpModule": "Let's go! 🚀",
+        "experience": {
+            "nunca": "Perfect! This workshop is made for you. Let's go step by step.",
+            "poco": "Great, today you'll go from theory to practice.",
+            "algo": "Awesome, you'll learn tricks to improve your results.",
+            "mucho": "Excellent! You'll discover new ways to use AI."
+        },
+        "shareSuccess": "Thanks for sharing! 💚",
+        "copied": "Copied! 📋",
+        "copyFailed": "Could not copy. Select the text manually.",
+        "promptReady": "Your message is ready! 🎉",
+        "fillBusiness": "Please write what you sell or do",
+        "fillNeed": "Please choose what you need",
+        "fillTone": "Please choose a tone"
+    },
+    "confidenceRating": {
+        "labels": {
+            "1": "Not confident",
+            "2": "A little confident",
+            "3": "Somewhat confident",
+            "4": "Quite confident",
+            "5": "Very confident"
+        },
+        "scaleMin": "Not confident",
+        "scaleMax": "Very confident",
+        "comparison": {
+            "title": "Look at your progress!",
+            "before": "BEFORE:",
+            "after": "NOW:",
+            "improved": "You went up {points} {pointsLabel}! 📈",
+            "same": "You kept your confidence! 💪",
+            "lower": "That's okay, practice will build your confidence 💚",
+            "point": "point",
+            "points": "points"
+        }
+    },
+    "module1": {
+        "title": "What is Artificial Intelligence?",
+        "subtitle": "Explained simply",
+        "duration": "⏱️ 10 minutes",
+        "outcomes": {
+            "item1": "Explain what AI is in your own words",
+            "item2": "Know what AI can and CANNOT do"
+        },
+        "completion": "Now you understand what AI is and how it can help your business.",
+        "explanation": {
+            "title": "AI is like a very smart assistant",
+            "text": "Imagine you have an assistant who:",
+            "item1": "📚 Read millions of books",
+            "item2": "🖼️ Saw millions of images",
+            "item3": "💬 Learned to write very well",
+            "conclusion": "That's AI. <strong>You can ask for help and it responds.</strong>"
+        },
+        "canDo": {
+            "title": "What AI CAN do",
+            "item1": "Write texts for your social media",
+            "item2": "Give you ideas for your business",
+            "item3": "Create beautiful images",
+            "item4": "Help you write messages"
+        },
+        "cannotDo": {
+            "title": "What AI CANNOT do",
+            "item1": {
+                "title": "It doesn't really think.",
+                "description": "It only imitates what it learned."
+            },
+            "item2": {
+                "title": "It's not always right.",
+                "description": "It can make mistakes."
+            },
+            "item3": {
+                "title": "It doesn't replace your judgment.",
+                "description": "You decide what to use."
+            }
+        },
+        "quiz": {
+            "title": "Activity: True or False?",
+            "instruction": "Let's see if you understood. Answer each question:",
+            "question1": "\"AI can think for itself\"",
+            "question2": "\"AI can help me write texts\"",
+            "question3": "\"AI always tells the truth\"",
+            "truth": "🟢 TRUE",
+            "lie": "🔴 FALSE",
+            "correct": "Correct!",
+            "explanation1": "AI doesn't really think. It only imitates patterns it learned.",
+            "explanation2": "Yes, it can help you write. That's one of its best features.",
+            "explanation3": "AI can make mistakes. You should always review what it gives you."
+        },
+        "ethics": {
+            "title": "Moment of reflection",
+            "text": "AI learns from data that humans created. If that data has errors or biases, the AI will have them too.",
+            "question": "How do you think this could affect your business?",
+            "shareButton": "SHARE IN THE GROUP",
+            "shareText": "How do you think AI errors could affect a small business? 🤔"
+        },
+        "successCriteria": {
+            "introTitle": "By the end of this module you will be able to:",
+            "completionTitle": "You did it!"
+        }
+    },
+    "module2": {
+        "title": "How to talk to AI",
+        "subtitle": "Learn to ask for what you need",
+        "duration": "⏱️ 15 minutes",
+        "outcomes": {
+            "item1": "Write a clear message to AI so it helps you",
+            "item2": "Know the free tools you can use today"
+        },
+        "completion": "Now you know how to talk to AI to get good results.",
+        "whatIsPrompt": {
+            "title": "What is a \"prompt\"?",
+            "text1": "A <strong>prompt</strong> is the message you write to the AI.",
+            "text2": "It's like when you ask someone for something on WhatsApp.",
+            "exampleLabel": "Prompt example:",
+            "exampleText": "\"Give me 3 ideas to post on Instagram about my soap business\""
+        },
+        "goldenRule": {
+            "title": "The golden rule",
+            "text": "The clearer you ask things to the AI, the better it will help you.",
+            "bad": "Bad:",
+            "badExample": "\"Give me ideas\"",
+            "good": "Good:",
+            "goodExample": "\"Give me 3 Instagram post ideas about natural soaps, with a friendly tone\""
+        },
+        "method": {
+            "title": "The 4-step method",
+            "intro": "To write a good message to AI, follow these steps:",
+            "step1": {
+                "title": "Who are you?",
+                "description": "Tell it about yourself and your business",
+                "example": "\"I have a natural soap business\""
+            },
+            "step2": {
+                "title": "What do you need?",
+                "description": "Tell it exactly what you want",
+                "example": "\"I need 3 texts for WhatsApp\""
+            },
+            "step3": {
+                "title": "How do you want it?",
+                "description": "Describe how the result should look",
+                "example": "\"Short, with emojis\""
+            },
+            "step4": {
+                "title": "What tone?",
+                "description": "Formal, friendly, fun?",
+                "example": "\"Friendly and warm tone\""
+            }
+        },
+        "maria": {
+            "title": "Complete Example: María and her Soaps",
+            "subtitle": "Let's see how María uses AI for her business",
+            "step1": {
+                "title": "Meet María",
+                "text1": "María sells <strong>handmade soaps</strong> in Bogotá.",
+                "text2": "Her business is called <strong>\"Grandma's Soaps\"</strong>.",
+                "text3": "She sells through WhatsApp and at local fairs.",
+                "problem": "😰 <strong>Her problem:</strong> She doesn't know what to post on her WhatsApp status."
+            },
+            "step2": {
+                "title": "María thinks about what she needs",
+                "what": "<strong>What does she sell?</strong> → Natural soaps",
+                "need": "<strong>What does she need?</strong> → Texts for WhatsApp",
+                "how": "<strong>How does she want it?</strong> → Short with emojis",
+                "tone": "<strong>What tone?</strong> → Friendly"
+            },
+            "step3": {
+                "title": "María writes her message to AI",
+                "label": "The complete message:",
+                "copyButton": "📋 COPY THIS MESSAGE"
+            },
+            "step4": {
+                "title": "AI responds",
+                "label": "🤖 AI gave her these options:",
+                "option1Label": "🧼✨ <strong>Option 1:</strong>",
+                "option1Text": "\"Have you tried our oatmeal soaps? Your skin will thank you 🥰 Write me!\"",
+                "option2Label": "🌿🧴 <strong>Option 2:</strong>",
+                "option2Text": "\"Natural ingredients + lots of love = soaps that care for your skin 💚 Want to know more?\"",
+                "option3Label": "🎁 <strong>Option 3:</strong>",
+                "option3Text": "\"Perfect little gift for someone special: handmade soap made with love 💝 Ask me!\""
+            },
+            "result": {
+                "title": "María now has content to post!",
+                "time": "⏱️ 5 min",
+                "timeLabel": "Total time",
+                "alone": "🙋‍♀️ Alone",
+                "aloneLabel": "She did it herself",
+                "options": "📝 3",
+                "optionsLabel": "Options",
+                "note": "Before, María didn't know what to write. Now she has several options to choose from!"
+            },
+            "prompt": "I'm María, I have a handmade natural soap business in Bogotá.\n\nI need 3 short texts to post on my WhatsApp status.\n\nMake them short, with emojis, and invite people to ask via WhatsApp.\n\nUse a friendly and warm tone, like talking to a friend."
+        },
+        "yourTurn": {
+            "title": "Now it's your turn!",
+            "intro": "Let's create your first message for AI:",
+            "step1Label": "What do you sell or do?",
+            "step1Placeholder": "Example: homemade cookies, clothing, cleaning services...",
+            "step2Label": "What do you need? (choose one)",
+            "step3Label": "What tone do you want? (choose one)",
+            "generateButton": "✨ CREATE MY MESSAGE",
+            "resultLabel": "Your message for AI:",
+            "copyButton": "📋 COPY MY MESSAGE",
+            "nextStepHint": "💡 <strong>Next step:</strong> Copy this message and paste it in ChatGPT or Claude to see what AI responds.",
+            "needs": {
+                "social": "Ideas for social media",
+                "message": "A message for clients",
+                "names": "Names for a product"
+            },
+            "tones": {
+                "friendly": "Friendly",
+                "professional": "Professional",
+                "fun": "Fun"
+            }
+        },
+        "tools": {
+            "dividerTitle": "Tools you can use TODAY",
+            "dividerSubtitle": "Learn the easiest AI apps",
+            "chatgpt": {
+                "title": "ChatGPT",
+                "price": "FREE",
+                "what": "<strong>What is it?</strong> An AI that chats with you and helps you write.",
+                "forWhat": "<strong>What is it for?</strong>",
+                "use1": "✍️ Write texts for social media",
+                "use2": "💡 Give you ideas for your business",
+                "use3": "📧 Draft messages and emails",
+                "use4": "❓ Answer questions",
+                "howTo": "<strong>How to use it?</strong>",
+                "step1": "Go to <strong><link>chatgpt.com</link></strong> on your phone",
+                "step2": "Create a free account (with your email)",
+                "step3": "Write your message and send it"
+            },
+            "canva": {
+                "title": "Canva",
+                "price": "FREE (with paid options)",
+                "what": "<strong>What is it?</strong> An app to create beautiful designs and images.",
+                "forWhat": "<strong>What is it for?</strong>",
+                "use1": "🖼️ Create images for social media",
+                "use2": "📋 Make menus and catalogs",
+                "use3": "🎨 Design simple logos",
+                "use4": "✨ Generate images with AI",
+                "howTo": "<strong>How to use it?</strong>",
+                "step1": "Go to <strong><link>canva.com</link></strong> or download the app from your store",
+                "step2": "Create a free account",
+                "step3": "Choose a template and customize it"
+            },
+            "tip": {
+                "title": "Important tip",
+                "text": "Start with <strong>ChatGPT</strong> for texts and <strong>Canva</strong> for images. They're free and easy to use. You don't need more for now!"
+            }
+        },
+        "ethics": {
+            "title": "Moment of reflection",
+            "text": "When you give information to AI, that data can be used to train new models. That's why it's important not to share sensitive information about your business or clients.",
+            "question": "What information about your business would you NOT give to AI?",
+            "shareButton": "SHARE IN THE GROUP",
+            "shareText": "What information about your business would you NOT give to AI? 🔒"
+        }
+    },
+    "module4": {
+        "title": "Create images with AI",
+        "subtitle": "Using Canva for your business",
+        "duration": "⏱️ 10 minutes",
+        "outcomes": {
+            "item1": "Create an image with AI using Canva",
+            "item2": "Write clear descriptions to get good images"
+        },
+        "completion": "Now you know how to create images with AI for your business.",
+        "intro": {
+            "title": "Images sell",
+            "text1": "A good image can make more people interested in your product or service.",
+            "text2": "With AI, you can create professional images without knowing how to design.",
+            "examples": {
+                "title": "What can you use AI images for?",
+                "item1": "📱 Posts for social media",
+                "item2": "🏷️ Images for promotions",
+                "item3": "📋 Product catalogs",
+                "item4": "🎨 Backgrounds and decorations"
+            }
+        },
+        "canvaIntro": {
+            "title": "What is Canva?",
+            "text": "Canva is a free app to create designs. It has an AI feature that creates images from text.",
+            "features": {
+                "item1": "✅ Free (with paid options)",
+                "item2": "✅ Easy to use on your phone",
+                "item3": "✅ Has AI to create images",
+                "item4": "✅ Thousands of ready templates"
+            }
+        },
+        "howTo": {
+            "title": "How to create an image with AI in Canva",
+            "step1": {
+                "number": "1",
+                "title": "Open Canva",
+                "description": "Go to canva.com or open the app on your phone. If you don't have an account, create one for free."
+            },
+            "step2": {
+                "number": "2",
+                "title": "Find \"Magic Media\"",
+                "description": "On the main screen, search for \"Magic Media\" or \"AI Image\"."
+            },
+            "step3": {
+                "number": "3",
+                "title": "Write your description",
+                "description": "Describe the image you want. The more details you give, the better the result."
+            },
+            "step4": {
+                "number": "4",
+                "title": "Generate!",
+                "description": "Tap the generate button and wait a few seconds. Canva will show you several options."
+            }
+        },
+        "promptTips": {
+            "title": "Tips for describing your image",
+            "tip1": {
+                "title": "Be specific",
+                "bad": "\"A soap\"",
+                "good": "\"A handmade lavender soap on a wooden table\""
+            },
+            "tip2": {
+                "title": "Include the style",
+                "examples": "Photography, illustration, minimalist, colorful, professional..."
+            },
+            "tip3": {
+                "title": "Mention the colors",
+                "example": "\"With pastel tones\" or \"In vibrant colors\""
+            },
+            "tip4": {
+                "title": "Describe the setting",
+                "example": "\"Natural light\", \"White background\", \"In a cozy kitchen\""
+            }
+        },
+        "maria": {
+            "title": "Example: María creates an image for her soap",
+            "step1": {
+                "title": "María needs an image",
+                "text": "She wants to post a beautiful photo of her soaps, but she doesn't have a professional camera."
+            },
+            "step2": {
+                "title": "She writes her description:",
+                "prompt": "Handmade lavender and oatmeal soaps on a rustic wooden table, soft natural light, product photography style, purple and beige tones, blurred background",
+                "copyButton": "📋 COPY DESCRIPTION"
+            },
+            "step3": {
+                "title": "And she gets this!",
+                "description": "AI creates several professional image options that María can use on her social media."
+            },
+            "result": {
+                "text": "María now has professional images for her social media, and she did it herself in minutes!",
+                "time": "⏱️ 2 minutes",
+                "timeLabel": "Total time",
+                "cost": "💰 Free",
+                "costLabel": "Cost",
+                "options": "🖼️ 4",
+                "optionsLabel": "Options"
+            }
+        },
+        "yourTurn": {
+            "title": "Create your first image!",
+            "intro": "Follow these steps:",
+            "step1": {
+                "number": "1",
+                "text": "Open Canva on your phone or computer"
+            },
+            "step2": {
+                "number": "2",
+                "text": "Search for \"Magic Media\" or \"AI Image\""
+            },
+            "step3": {
+                "number": "3",
+                "text": "Copy this example description or write your own:",
+                "examplePrompt": "Handmade product on wooden table, natural light, professional photography style, warm colors",
+                "copyButton": "📋 COPY DESCRIPTION"
+            },
+            "step4": {
+                "number": "4",
+                "text": "Generate and choose your favorite!"
+            },
+            "openCanvaButton": "OPEN CANVA →"
+        },
+        "ethics": {
+            "title": "Important about AI images",
+            "point1": {
+                "title": "They are not real photos",
+                "text": "Images created by AI are not photographs. If you sell products, your customers expect to see the real product."
+            },
+            "point2": {
+                "title": "Use them honestly",
+                "text": "AI images are perfect for: backgrounds, decorations, style ideas. But always show real photos of your products."
+            },
+            "point3": {
+                "title": "The rights are yours",
+                "text": "The images you create in Canva with AI you can use for your business."
+            },
+            "question": "How would you use AI images in your business honestly?",
+            "shareButton": "SHARE IN THE GROUP",
+            "shareText": "How would you use AI images in your business honestly? 🎨"
+        }
+    },
+    "successCriteria": {
+        "introTitle": "By the end of this module you will be able to:",
+        "completionTitle": "You did it!"
+    },
+    "module6": {
+        "title": "Congratulations!",
+        "subtitle": "You completed the AI workshop",
+        "heroText": "Now you have new tools to grow your business.",
+        "summary": {
+            "title": "What you learned today",
+            "item1": "What AI is and how it can help you",
+            "item2": "How to write clear messages for AI",
+            "item3": "How to create images with Canva",
+            "item4": "How to use AI ethically and safely"
+        },
+        "confidence": {
+            "title": "See how your confidence grew",
+            "subtitle": "Let's compare how you felt at the start vs now"
+        },
+        "nextSteps": {
+            "title": "What's next?",
+            "step1": {
+                "title": "Practice",
+                "text": "Use ChatGPT or Canva at least once this week"
+            },
+            "step2": {
+                "title": "Share",
+                "text": "Tell another entrepreneur what you learned"
+            },
+            "step3": {
+                "title": "Connect",
+                "text": "Join our WhatsApp community"
+            }
+        },
+        "community": {
+            "title": "Keep learning with us",
+            "text": "In our community we share tips, answer questions, and celebrate each other's wins.",
+            "button": "JOIN THE COMMUNITY"
+        },
+        "certificate": {
+            "title": "Your certificate",
+            "text": "You completed the AI Workshop for Entrepreneurs by MujerTech.",
+            "downloadButton": "DOWNLOAD CERTIFICATE",
+            "shareButton": "SHARE ON WHATSAPP"
+        },
+        "finalMessage": {
+            "title": "Remember",
+            "text": "AI is a tool. You are the expert in your business. Use technology to amplify what you already know how to do.",
+            "emoji": "💚"
+        },
+        "restartButton": "BACK TO START"
+    },
+    "resumeModal": {
+        "title": "Welcome back!",
+        "lastTimeAt": "Last time you reached:",
+        "whatToDo": "What would you like to do?",
+        "btnResume": "YES, CONTINUE WHERE I LEFT OFF",
+        "btnJump": "GO TO ANOTHER MODULE",
+        "btnStartFresh": "START FROM SCRATCH",
+        "jumpTitle": "Where do you want to go?",
+        "jumpSubtitle": "Choose a module:",
+        "btnBack": "← BACK",
+        "modules": {
+            "welcome": "Welcome",
+            "module1": "What is AI",
+            "module2": "Prompts & Tools",
+            "module4": "Create images",
+            "module6": "Congratulations"
+        }
+    }
+}

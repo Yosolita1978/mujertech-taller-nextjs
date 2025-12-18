@@ -1,14 +1,18 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
 import styles from './ModuleNavBar.module.css';
 
 const NAV_ITEMS = [
-    { id: 'welcome', icon: '🏠', label: 'Inicio' },
-    { id: 'module1', icon: '🤖', label: 'IA' },
-    { id: 'module2', icon: '💬', label: 'Prompts' },
-    { id: 'module4', icon: '🎨', label: 'Imagen' },
-    { id: 'module6', icon: '🎉', label: 'Final' }
+    { id: 'welcome', icon: '🏠' },
+    { id: 'module1', icon: '🤖' },
+    { id: 'module2', icon: '💬' },
+    { id: 'module4', icon: '🎨' },
+    { id: 'module6', icon: '🎉' }
 ];
 
 export default function ModuleNavBar({ currentModule, onModuleChange, isVisible }) {
+    const t = useTranslations('nav');
     const currentIndex = NAV_ITEMS.findIndex(item => item.id === currentModule);
 
     const getItemState = (index) => {
@@ -27,7 +31,7 @@ export default function ModuleNavBar({ currentModule, onModuleChange, isVisible 
                     type="button"
                 >
                     <span className={styles.navItemIcon}>{item.icon}</span>
-                    <span className={styles.navItemLabel}>{item.label}</span>
+                    <span className={styles.navItemLabel}>{t(item.id)}</span>
                 </button>
             ))}
         </nav>

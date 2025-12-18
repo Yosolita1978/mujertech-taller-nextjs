@@ -1,0 +1,688 @@
+{
+    "common": {
+        "next": "SIGUIENTE",
+        "previous": "ANTERIOR",
+        "copy": "COPIAR",
+        "close": "Cerrar",
+        "loading": "Cargando..."
+    },
+    "header": {
+        "title": "MujerTech",
+        "help": "Ayuda"
+    },
+    "glossary": {
+        "title": "📖 Palabras que usamos",
+        "searchPlaceholder": "Buscar palabra...",
+        "empty": "No se encontraron palabras",
+        "terms": {
+            "app": {
+                "term": "App",
+                "definition": "Un programa que vive en tu celular. Ejemplo: WhatsApp es una app."
+            },
+            "boton": {
+                "term": "Botón",
+                "definition": "Un cuadro en la pantalla que hace algo cuando lo tocas."
+            },
+            "chatgpt": {
+                "term": "ChatGPT",
+                "definition": "Una app de inteligencia artificial que te ayuda a escribir textos. Es gratis."
+            },
+            "canva": {
+                "term": "Canva",
+                "definition": "Una app para crear imágenes y diseños bonitos. Tiene versión gratis."
+            },
+            "copiar": {
+                "term": "Copiar",
+                "definition": "Guardar un texto para usarlo en otro lugar. Tocas y mantienes, luego eliges \"Copiar\"."
+            },
+            "descargar": {
+                "term": "Descargar",
+                "definition": "Guardar algo de internet en tu celular."
+            },
+            "ia": {
+                "term": "IA",
+                "definition": "Inteligencia Artificial. Programas de computadora muy inteligentes que pueden crear textos, imágenes y más."
+            },
+            "imagenGenerada": {
+                "term": "Imagen generada",
+                "definition": "Una imagen creada por la IA, no es una foto real tomada con cámara."
+            },
+            "internet": {
+                "term": "Internet",
+                "definition": "La red que conecta computadoras y celulares en todo el mundo. Necesitas internet para usar ChatGPT y Canva."
+            },
+            "pegar": {
+                "term": "Pegar",
+                "definition": "Poner el texto que copiaste en un lugar nuevo. Tocas y mantienes donde quieres pegar."
+            },
+            "prompt": {
+                "term": "Prompt",
+                "definition": "El mensaje que le escribes a la IA para pedirle algo. Como cuando le pides algo a alguien por WhatsApp."
+            },
+            "redesSociales": {
+                "term": "Redes sociales",
+                "definition": "Apps donde compartes fotos y mensajes con otras personas. Ejemplo: WhatsApp, Instagram, Facebook."
+            },
+            "tono": {
+                "term": "Tono",
+                "definition": "La forma en que \"suena\" un texto. Puede ser amigable, profesional, divertido, etc."
+            }
+        }
+    },
+    "progress": {
+        "preparation": "Preparación",
+        "blockOf": "Bloque {current} de {total}",
+        "modules": {
+            "presessionCheck": "Inicio",
+            "presession": "Práctica básica",
+            "welcome": "Bienvenida",
+            "module1": "Qué es la IA",
+            "module2": "Prompts y Herramientas",
+            "module4": "Crear imágenes",
+            "module6": "¡Felicitaciones!"
+        }
+    },
+    "nav": {
+        "welcome": "Inicio",
+        "module1": "IA",
+        "module2": "Prompts",
+        "module4": "Imagen",
+        "module6": "Final"
+    },
+    "presessionCheck": {
+        "greeting": "¡Hola!",
+        "question": "Antes de empezar, queremos saber:",
+        "mainQuestion": "¿Es tu primera vez cursando un taller en el celular?",
+        "yesHelp": "SÍ, AYÚDAME A PRACTICAR",
+        "noSkip": "YA SÉ CÓMO, IR AL TALLER"
+    },
+    "presession": {
+        "step1": {
+            "title": "Vamos a practicar juntas",
+            "text1": "Este taller está hecho para tu celular.",
+            "text2": "Te voy a enseñar cómo usarlo paso a paso.",
+            "encouragement": "¡No te preocupes, es muy fácil!",
+            "button": "EMPEZAR →"
+        },
+        "step2": {
+            "title": "¿Qué es un BOTÓN?",
+            "text": "Un botón es un cuadro que hace algo cuando lo tocas.",
+            "instruction": "👇 Toca el botón verde:",
+            "buttonText": "TÓCAME",
+            "buttonSuccess": "¡LISTO! ✓",
+            "feedback": "¡Muy bien! Ya sabes usar botones.",
+            "next": "SIGUIENTE →"
+        },
+        "step3": {
+            "title": "¿Cómo ESCRIBO en el celular?",
+            "text": "Cuando ves un cuadro con líneas, puedes escribir dentro.",
+            "instruction": "👇 Toca el cuadro y escribe tu nombre:",
+            "placeholder": "Escribe aquí...",
+            "feedback": "¡Excelente! Ya sabes escribir en el celular.",
+            "next": "SIGUIENTE →"
+        },
+        "step4": {
+            "title": "¿Cómo COPIO texto?",
+            "text": "A veces necesitas copiar algo para usarlo en otro lugar.",
+            "copyStep1": "Toca y mantén el dedo sobre el texto",
+            "copyStep2": "Aparece un menú, toca \"Copiar\"",
+            "copyStep3": "Ve donde quieres pegarlo",
+            "copyStep4": "Toca y mantén, luego \"Pegar\"",
+            "tip": "No te preocupes si no lo dominas ahora. En el taller hay botones que copian por ti.",
+            "button": "ENTENDIDO →"
+        },
+        "step5": {
+            "title": "¿Cómo NAVEGO este taller?",
+            "helpBtn": "El botón Ayuda te explica palabras difíciles",
+            "nextBtn": "Los botones Siguiente te llevan adelante",
+            "prevBtn": "Los botones Anterior te llevan atrás",
+            "progressBar": "La barra arriba muestra tu progreso",
+            "next": "SIGUIENTE →"
+        },
+        "step6": {
+            "title": "¡Ya estás lista!",
+            "text": "Ahora sabes todo lo necesario para usar este taller.",
+            "learnedTitle": "Aprendiste a:",
+            "learned1": "✅ Usar botones",
+            "learned2": "✅ Escribir en campos de texto",
+            "learned3": "✅ Navegar el taller",
+            "button": "EMPEZAR EL TALLER →"
+        }
+    },
+    "welcome": {
+        "heroTitle": "¡Bienvenida al Taller de IA!",
+        "heroSubtitle": "Aprende a usar Inteligencia Artificial para tu negocio",
+        "duration": "⏱️ Duración: 45 minutos",
+        "context": {
+            "title": "¿En qué momento estamos?",
+            "text1": "Estamos viviendo un cambio muy grande en el mundo.",
+            "text2": "Ahora existen programas de computadora que pueden:",
+            "item1": "✍️ Escribir textos",
+            "item2": "🎨 Crear imágenes",
+            "item3": "💡 Darte ideas para tu negocio",
+            "text3": "Estos programas se llaman <strong>Inteligencia Artificial</strong> o <strong>IA</strong>."
+        },
+        "benefits": {
+            "title": "¿Por qué esto importa para TU negocio?",
+            "subtitle": "Con la IA puedes:",
+            "time": {
+                "title": "Ahorrar tiempo",
+                "description": "Lo que antes tomaba horas, ahora toma minutos"
+            },
+            "more": {
+                "title": "Hacer más con menos",
+                "description": "Crea contenido tú misma cuando lo necesites"
+            },
+            "sell": {
+                "title": "Vender más",
+                "description": "Crea contenido atractivo para tus redes"
+            }
+        },
+        "objectives": {
+            "title": "Hoy vas a aprender",
+            "item1": "Qué es la IA (explicado fácil)",
+            "item2": "Cómo hablarle a la IA para que te ayude",
+            "item3": "Cómo crear imágenes bonitas para tu negocio",
+            "item4": "Cómo usar la IA de forma segura"
+        },
+        "community": {
+            "title": "Conecta con otras mujeres aprendiendo IA",
+            "description": "Únete a nuestra comunidad de WhatsApp donde emprendedoras como tú comparten ideas, preguntas y experiencias usando IA en sus negocios.",
+            "benefit1": "✨ Comparte tus dudas",
+            "benefit2": "💡 Aprende de otras",
+            "benefit3": "🤝 Haz conexiones",
+            "button": "UNIRME A LA COMUNIDAD"
+        },
+        "experience": {
+            "title": "Antes de empezar, cuéntanos:",
+            "question": "¿Cuánto sabes de IA?",
+            "never": "Nunca la he usado",
+            "little": "Sé qué es pero no la uso",
+            "some": "La uso a veces",
+            "lots": "La uso seguido"
+        },
+        "businessType": {
+            "title": "¿Qué tipo de negocio tienes?",
+            "subtitle": "Esto nos ayuda a personalizar tu experiencia",
+            "product": "Vendo productos (comida, ropa, artesanías...)",
+            "service": "Ofrezco servicios (limpieza, belleza, asesoría...)"
+        },
+        "confidence": {
+            "title": "📊 ¿Qué tan segura te sientes usando herramientas de IA?",
+            "subtitle": "Sé honesta, no hay respuesta correcta"
+        },
+        "startButton": "EMPEZAR EL TALLER →"
+    },
+    "notifications": {
+        "skipPresession": "¡Perfecto! Vamos directo al taller",
+        "presessionComplete": "¡Muy bien! Ya estás lista para el taller 🎉",
+        "jumpModule": "¡Vamos allá! 🚀",
+        "experience": {
+            "nunca": "¡Perfecto! Este taller está hecho para ti. Vamos paso a paso.",
+            "poco": "Muy bien, hoy vas a pasar de la teoría a la práctica.",
+            "algo": "Genial, vas a aprender trucos para mejorar tus resultados.",
+            "mucho": "¡Excelente! Descubrirás nuevas formas de usar la IA."
+        },
+        "shareSuccess": "¡Gracias por compartir! 💚",
+        "copied": "¡Copiado! 📋",
+        "copyFailed": "No se pudo copiar. Selecciona el texto manualmente.",
+        "promptReady": "¡Tu mensaje está listo! 🎉",
+        "fillBusiness": "Por favor escribe qué vendes o haces",
+        "fillNeed": "Por favor elige qué necesitas",
+        "fillTone": "Por favor elige un tono"
+    },
+    "confidenceRating": {
+        "labels": {
+            "1": "Nada segura",
+            "2": "Poco segura",
+            "3": "Más o menos",
+            "4": "Bastante segura",
+            "5": "Muy segura"
+        },
+        "scaleMin": "Nada segura",
+        "scaleMax": "Muy segura",
+        "comparison": {
+            "title": "¡Mira tu progreso!",
+            "before": "ANTES:",
+            "after": "AHORA:",
+            "improved": "¡Subiste {points} {pointsLabel}! 📈",
+            "same": "¡Mantienes tu confianza! 💪",
+            "lower": "Está bien, la práctica te dará más confianza 💚",
+            "point": "punto",
+            "points": "puntos"
+        }
+    },
+    "module1": {
+        "title": "¿Qué es la Inteligencia Artificial?",
+        "subtitle": "Explicado de forma simple",
+        "duration": "⏱️ 10 minutos",
+        "outcomes": {
+            "item1": "Explicar qué es la IA en tus propias palabras",
+            "item2": "Saber qué puede y qué NO puede hacer la IA"
+        },
+        "completion": "Ahora entiendes qué es la IA y cómo puede ayudarte en tu negocio.",
+        "explanation": {
+            "title": "La IA es como una asistente muy inteligente",
+            "text": "Imagina que tienes una asistente que:",
+            "item1": "📚 Leyó millones de libros",
+            "item2": "🖼️ Vio millones de imágenes",
+            "item3": "💬 Aprendió a escribir muy bien",
+            "conclusion": "Esa es la IA. <strong>Le puedes pedir ayuda y te responde.</strong>"
+        },
+        "canDo": {
+            "title": "Lo que SÍ puede hacer la IA",
+            "item1": "Escribir textos para tus redes sociales",
+            "item2": "Darte ideas para tu negocio",
+            "item3": "Crear imágenes bonitas",
+            "item4": "Ayudarte a escribir mensajes"
+        },
+        "cannotDo": {
+            "title": "Lo que NO puede hacer la IA",
+            "item1": {
+                "title": "No piensa de verdad.",
+                "description": "Solo imita lo que aprendió."
+            },
+            "item2": {
+                "title": "No siempre tiene razón.",
+                "description": "Puede equivocarse."
+            },
+            "item3": {
+                "title": "No reemplaza tu criterio.",
+                "description": "Tú decides qué usar."
+            }
+        },
+        "quiz": {
+            "title": "Actividad: ¿Verdad o Mentira?",
+            "instruction": "Vamos a ver si entendiste. Responde cada pregunta:",
+            "question1": "\"La IA puede pensar por sí misma\"",
+            "question2": "\"La IA puede ayudarme a escribir textos\"",
+            "question3": "\"La IA siempre dice la verdad\"",
+            "truth": "🟢 VERDAD",
+            "lie": "🔴 MENTIRA",
+            "correct": "¡Correcto!",
+            "explanation1": "La IA no piensa de verdad. Solo imita patrones que aprendió.",
+            "explanation2": "Sí puede ayudarte a escribir, es una de sus mejores funciones.",
+            "explanation3": "La IA puede equivocarse. Siempre debes revisar lo que te da."
+        },
+        "ethics": {
+            "title": "Momento de reflexión",
+            "text": "La IA aprende de datos que los humanos creamos. Si esos datos tienen errores o prejuicios, la IA también los tendrá.",
+            "question": "¿Cómo crees que esto podría afectar a tu negocio?",
+            "shareButton": "COMPARTIR EN EL GRUPO",
+            "shareText": "¿Cómo crees que los errores de la IA podrían afectar a un negocio pequeño? 🤔"
+        },
+        "successCriteria": {
+            "introTitle": "Al terminar este módulo podrás:",
+            "completionTitle": "¡Lo lograste!"
+        }
+    },
+    "module2": {
+        "title": "Cómo hablarle a la IA",
+        "subtitle": "Aprende a pedir lo que necesitas",
+        "duration": "⏱️ 15 minutos",
+        "outcomes": {
+            "item1": "Escribir un mensaje claro a la IA para que te ayude",
+            "item2": "Conocer las herramientas gratuitas que puedes usar hoy"
+        },
+        "completion": "Ahora sabes cómo hablarle a la IA para obtener buenos resultados.",
+        "whatIsPrompt": {
+            "title": "¿Qué es un \"prompt\"?",
+            "text1": "Un <strong>prompt</strong> es el mensaje que le escribes a la IA.",
+            "text2": "Es como cuando le pides algo a alguien por WhatsApp.",
+            "exampleLabel": "Ejemplo de prompt:",
+            "exampleText": "\"Dame 3 ideas para publicar en Instagram sobre mi negocio de jabones\""
+        },
+        "goldenRule": {
+            "title": "La regla de oro",
+            "text": "Entre más claro le pidas las cosas a la IA, mejor te va a ayudar.",
+            "bad": "Malo:",
+            "badExample": "\"Dame ideas\"",
+            "good": "Bueno:",
+            "goodExample": "\"Dame 3 ideas de posts para Instagram sobre jabones naturales, con un tono amigable\""
+        },
+        "method": {
+            "title": "El método de los 4 pasos",
+            "intro": "Para escribir un buen mensaje a la IA, sigue estos pasos:",
+            "step1": {
+                "title": "¿Quién eres?",
+                "description": "Cuéntale sobre ti y tu negocio",
+                "example": "\"Tengo un negocio de jabones naturales\""
+            },
+            "step2": {
+                "title": "¿Qué necesitas?",
+                "description": "Dile exactamente qué quieres",
+                "example": "\"Necesito 3 textos para WhatsApp\""
+            },
+            "step3": {
+                "title": "¿Cómo lo quieres?",
+                "description": "Describe cómo debe verse el resultado",
+                "example": "\"Cortos, con emojis\""
+            },
+            "step4": {
+                "title": "¿Qué tono?",
+                "description": "¿Formal, amigable, divertido?",
+                "example": "\"Tono amigable y cercano\""
+            }
+        },
+        "maria": {
+            "title": "Ejemplo Completo: María y sus Jabones",
+            "subtitle": "Veamos cómo María usa la IA para su negocio",
+            "step1": {
+                "title": "Conoce a María",
+                "text1": "María vende <strong>jabones artesanales</strong> en Bogotá.",
+                "text2": "Su negocio se llama <strong>\"Jabones de la Abuela\"</strong>.",
+                "text3": "Vende por WhatsApp y en ferias locales.",
+                "problem": "😰 <strong>Su problema:</strong> No sabe qué publicar en su estado de WhatsApp."
+            },
+            "step2": {
+                "title": "María piensa qué necesita",
+                "what": "<strong>¿Qué vende?</strong> → Jabones naturales",
+                "need": "<strong>¿Qué necesita?</strong> → Textos para WhatsApp",
+                "how": "<strong>¿Cómo lo quiere?</strong> → Cortos con emojis",
+                "tone": "<strong>¿Qué tono?</strong> → Amigable"
+            },
+            "step3": {
+                "title": "María escribe su mensaje a la IA",
+                "label": "El mensaje completo:",
+                "copyButton": "📋 COPIAR ESTE MENSAJE"
+            },
+            "step4": {
+                "title": "La IA le responde",
+                "label": "🤖 La IA le dio estas opciones:",
+                "option1Label": "🧼✨ <strong>Opción 1:</strong>",
+                "option1Text": "\"¿Ya probaste nuestros jabones de avena? Tu piel te lo va a agradecer 🥰 ¡Escríbeme!\"",
+                "option2Label": "🌿🧴 <strong>Opción 2:</strong>",
+                "option2Text": "\"Ingredientes naturales + mucho amor = jabones que cuidan tu piel 💚 ¿Te cuento más?\"",
+                "option3Label": "🎁 <strong>Opción 3:</strong>",
+                "option3Text": "\"Regalito perfecto para alguien especial: jabón artesanal hecho con cariño 💝 ¡Pregúntame!\""
+            },
+            "result": {
+                "title": "¡María ya tiene contenido para publicar!",
+                "time": "⏱️ 5 min",
+                "timeLabel": "Tiempo total",
+                "alone": "🙋‍♀️ Sola",
+                "aloneLabel": "Lo hizo ella misma",
+                "options": "📝 3",
+                "optionsLabel": "Opciones",
+                "note": "Antes, María no sabía qué escribir. ¡Ahora tiene varias opciones para elegir!"
+            },
+            "prompt": "Soy María, tengo un negocio de jabones artesanales naturales en Bogotá.\n\nNecesito 3 textos cortos para publicar en mi estado de WhatsApp.\n\nQue sean cortos, con emojis, y que inviten a preguntar por WhatsApp.\n\nUsa un tono amigable y cercano, como si le hablara a una amiga."
+        },
+        "yourTurn": {
+            "title": "¡Ahora es tu turno!",
+            "intro": "Vamos a crear tu primer mensaje para la IA:",
+            "step1Label": "¿Qué vendes o haces?",
+            "step1Placeholder": "Ejemplo: galletas caseras, ropa, servicios de limpieza...",
+            "step2Label": "¿Qué necesitas? (elige una)",
+            "step3Label": "¿Qué tono quieres? (elige uno)",
+            "generateButton": "✨ CREAR MI MENSAJE",
+            "resultLabel": "Tu mensaje para la IA:",
+            "copyButton": "📋 COPIAR MI MENSAJE",
+            "nextStepHint": "💡 <strong>Siguiente paso:</strong> Copia este mensaje y pégalo en ChatGPT o Claude para ver qué te responde la IA.",
+            "needs": {
+                "social": "Ideas para redes sociales",
+                "message": "Un mensaje para clientes",
+                "names": "Nombres para un producto"
+            },
+            "tones": {
+                "friendly": "Amigable",
+                "professional": "Profesional",
+                "fun": "Divertido"
+            }
+        },
+        "tools": {
+            "dividerTitle": "Herramientas que puedes usar HOY",
+            "dividerSubtitle": "Conoce las apps de IA más fáciles",
+            "chatgpt": {
+                "title": "ChatGPT",
+                "price": "GRATIS",
+                "what": "<strong>¿Qué es?</strong> Una IA que conversa contigo y te ayuda a escribir.",
+                "forWhat": "<strong>¿Para qué sirve?</strong>",
+                "use1": "✍️ Escribir textos para redes sociales",
+                "use2": "💡 Darte ideas para tu negocio",
+                "use3": "📧 Redactar mensajes y correos",
+                "use4": "❓ Responder preguntas",
+                "howTo": "<strong>¿Cómo usarlo?</strong>",
+                "step1": "Entra a <strong><link>chatgpt.com</link></strong> en tu celular",
+                "step2": "Crea una cuenta gratis (con tu correo)",
+                "step3": "Escribe tu mensaje y envíalo"
+            },
+            "canva": {
+                "title": "Canva",
+                "price": "GRATIS (con opciones de pago)",
+                "what": "<strong>¿Qué es?</strong> Una app para crear diseños e imágenes bonitas.",
+                "forWhat": "<strong>¿Para qué sirve?</strong>",
+                "use1": "🖼️ Crear imágenes para redes sociales",
+                "use2": "📋 Hacer menús y catálogos",
+                "use3": "🎨 Diseñar logos simples",
+                "use4": "✨ Generar imágenes con IA",
+                "howTo": "<strong>¿Cómo usarlo?</strong>",
+                "step1": "Entra a <strong><link>canva.com</link></strong> o descarga la app de tu tienda",
+                "step2": "Crea una cuenta gratis",
+                "step3": "Elige una plantilla y personalízala"
+            },
+            "tip": {
+                "title": "Tip importante",
+                "text": "Empieza con <strong>ChatGPT</strong> para textos y <strong>Canva</strong> para imágenes. Son gratis y fáciles de usar. ¡No necesitas más por ahora!"
+            }
+        },
+        "ethics": {
+            "title": "Momento de reflexión",
+            "text": "Cuando le das información a la IA, esos datos pueden ser usados para entrenar nuevos modelos. Por eso es importante no compartir información sensible de tu negocio o clientes.",
+            "question": "¿Qué información de tu negocio NO le darías a la IA?",
+            "shareButton": "COMPARTIR EN EL GRUPO",
+            "shareText": "¿Qué información de tu negocio NO le darías a la IA? 🔒"
+        }
+    },
+    "module4": {
+        "title": "Crea imágenes con IA",
+        "subtitle": "Usando Canva para tu negocio",
+        "duration": "⏱️ 10 minutos",
+        "outcomes": {
+            "item1": "Crear una imagen con IA usando Canva",
+            "item2": "Escribir descripciones claras para obtener buenas imágenes"
+        },
+        "completion": "Ahora sabes cómo crear imágenes con IA para tu negocio.",
+        "intro": {
+            "title": "Las imágenes venden",
+            "text1": "Una buena imagen puede hacer que más personas se interesen en tu producto o servicio.",
+            "text2": "Con la IA, puedes crear imágenes profesionales sin saber diseñar.",
+            "examples": {
+                "title": "¿Para qué puedes usar imágenes con IA?",
+                "item1": "📱 Publicaciones para redes sociales",
+                "item2": "🏷️ Imágenes para promociones",
+                "item3": "📋 Catálogos de productos",
+                "item4": "🎨 Fondos y decoraciones"
+            }
+        },
+        "canvaIntro": {
+            "title": "¿Qué es Canva?",
+            "text": "Canva es una app gratuita para crear diseños. Tiene una función de IA que crea imágenes a partir de texto.",
+            "features": {
+                "item1": "✅ Gratis (con opciones de pago)",
+                "item2": "✅ Fácil de usar en el celular",
+                "item3": "✅ Tiene IA para crear imágenes",
+                "item4": "✅ Miles de plantillas listas"
+            }
+        },
+        "howTo": {
+            "title": "Cómo crear una imagen con IA en Canva",
+            "step1": {
+                "number": "1",
+                "title": "Abre Canva",
+                "description": "Entra a canva.com o abre la app en tu celular. Si no tienes cuenta, créala gratis."
+            },
+            "step2": {
+                "number": "2",
+                "title": "Busca \"Magic Media\"",
+                "description": "En la pantalla principal, busca \"Magic Media\" o \"Imagen con IA\"."
+            },
+            "step3": {
+                "number": "3",
+                "title": "Escribe tu descripción",
+                "description": "Describe la imagen que quieres. Mientras más detalles des, mejor será el resultado."
+            },
+            "step4": {
+                "number": "4",
+                "title": "¡Genera!",
+                "description": "Toca el botón de generar y espera unos segundos. Canva te mostrará varias opciones."
+            }
+        },
+        "promptTips": {
+            "title": "Consejos para describir tu imagen",
+            "tip1": {
+                "title": "Sé específica",
+                "bad": "\"Un jabón\"",
+                "good": "\"Un jabón artesanal de lavanda sobre una mesa de madera\""
+            },
+            "tip2": {
+                "title": "Incluye el estilo",
+                "examples": "Fotografía, ilustración, minimalista, colorido, profesional..."
+            },
+            "tip3": {
+                "title": "Menciona los colores",
+                "example": "\"Con tonos pastel\" o \"En colores vibrantes\""
+            },
+            "tip4": {
+                "title": "Describe el ambiente",
+                "example": "\"Luz natural\", \"Fondo blanco\", \"En una cocina acogedora\""
+            }
+        },
+        "maria": {
+            "title": "Ejemplo: María crea una imagen para su jabón",
+            "step1": {
+                "title": "María necesita una imagen",
+                "text": "Quiere publicar una foto bonita de sus jabones, pero no tiene una cámara profesional."
+            },
+            "step2": {
+                "title": "Escribe su descripción:",
+                "prompt": "Jabones artesanales de lavanda y avena sobre una mesa de madera rústica, luz natural suave, estilo fotografía de producto, tonos morados y beige, fondo difuminado",
+                "copyButton": "📋 COPIAR DESCRIPCIÓN"
+            },
+            "step3": {
+                "title": "¡Y obtiene esto!",
+                "description": "La IA crea varias opciones de imágenes profesionales que María puede usar en sus redes."
+            },
+            "result": {
+                "text": "María ahora tiene imágenes profesionales para sus redes sociales, ¡y lo hizo ella misma en minutos!",
+                "time": "⏱️ 2 minutos",
+                "timeLabel": "Tiempo total",
+                "cost": "💰 Gratis",
+                "costLabel": "Costo",
+                "options": "🖼️ 4",
+                "optionsLabel": "Opciones"
+            }
+        },
+        "yourTurn": {
+            "title": "¡Crea tu primera imagen!",
+            "intro": "Sigue estos pasos:",
+            "step1": {
+                "number": "1",
+                "text": "Abre Canva en tu celular o computadora"
+            },
+            "step2": {
+                "number": "2",
+                "text": "Busca \"Magic Media\" o \"Imagen con IA\""
+            },
+            "step3": {
+                "number": "3",
+                "text": "Copia esta descripción de ejemplo o escribe la tuya:",
+                "examplePrompt": "Producto artesanal sobre mesa de madera, luz natural, estilo fotografía profesional, colores cálidos",
+                "copyButton": "📋 COPIAR DESCRIPCIÓN"
+            },
+            "step4": {
+                "number": "4",
+                "text": "¡Genera y elige tu favorita!"
+            },
+            "openCanvaButton": "ABRIR CANVA →"
+        },
+        "ethics": {
+            "title": "Importante sobre imágenes con IA",
+            "point1": {
+                "title": "No son fotos reales",
+                "text": "Las imágenes creadas por IA no son fotografías. Si vendes productos, tus clientes esperan ver el producto real."
+            },
+            "point2": {
+                "title": "Úsalas con honestidad",
+                "text": "Las imágenes con IA son perfectas para: fondos, decoraciones, ideas de estilo. Pero siempre muestra fotos reales de tus productos."
+            },
+            "point3": {
+                "title": "Los derechos son tuyos",
+                "text": "Las imágenes que creas en Canva con IA puedes usarlas para tu negocio."
+            },
+            "question": "¿Cómo usarías imágenes de IA en tu negocio de forma honesta?",
+            "shareButton": "COMPARTIR EN EL GRUPO",
+            "shareText": "¿Cómo usarías imágenes de IA en tu negocio de forma honesta? 🎨"
+        }
+    },
+    "successCriteria": {
+        "introTitle": "Al terminar este módulo podrás:",
+        "completionTitle": "¡Lo lograste!"
+    },
+    "module6": {
+        "title": "¡Felicitaciones!",
+        "subtitle": "Completaste el taller de IA",
+        "heroText": "Ahora tienes nuevas herramientas para hacer crecer tu negocio.",
+        "summary": {
+            "title": "Lo que aprendiste hoy",
+            "item1": "Qué es la IA y cómo puede ayudarte",
+            "item2": "Cómo escribir mensajes claros para la IA",
+            "item3": "Cómo crear imágenes con Canva",
+            "item4": "Cómo usar la IA de forma ética y segura"
+        },
+        "confidence": {
+            "title": "Mira cómo creció tu confianza",
+            "subtitle": "Comparemos cómo te sentías al inicio vs ahora"
+        },
+        "nextSteps": {
+            "title": "¿Qué sigue?",
+            "step1": {
+                "title": "Practica",
+                "text": "Usa ChatGPT o Canva al menos una vez esta semana"
+            },
+            "step2": {
+                "title": "Comparte",
+                "text": "Cuéntale a otra emprendedora lo que aprendiste"
+            },
+            "step3": {
+                "title": "Conecta",
+                "text": "Únete a nuestra comunidad de WhatsApp"
+            }
+        },
+        "community": {
+            "title": "Sigue aprendiendo con nosotras",
+            "text": "En nuestra comunidad compartimos tips, respondemos dudas y celebramos los logros de cada una.",
+            "button": "UNIRME A LA COMUNIDAD"
+        },
+        "certificate": {
+            "title": "Tu certificado",
+            "text": "Completaste el Taller de IA para Emprendedoras de MujerTech.",
+            "downloadButton": "DESCARGAR CERTIFICADO",
+            "shareButton": "COMPARTIR EN WHATSAPP"
+        },
+        "finalMessage": {
+            "title": "Recuerda",
+            "text": "La IA es una herramienta. Tú eres la experta en tu negocio. Usa la tecnología para potenciar lo que ya sabes hacer.",
+            "emoji": "💚"
+        },
+        "restartButton": "VOLVER AL INICIO"
+    },
+    "resumeModal": {
+        "title": "¡Hola de nuevo!",
+        "lastTimeAt": "La última vez llegaste a:",
+        "whatToDo": "¿Qué te gustaría hacer?",
+        "btnResume": "SÍ, CONTINUAR DONDE LO DEJÉ",
+        "btnJump": "IR A OTRO MÓDULO",
+        "btnStartFresh": "EMPEZAR DESDE CERO",
+        "jumpTitle": "¿A dónde quieres ir?",
+        "jumpSubtitle": "Elige el módulo:",
+        "btnBack": "← VOLVER",
+        "modules": {
+            "welcome": "Bienvenida",
+            "module1": "Qué es la IA",
+            "module2": "Prompts y Herramientas",
+            "module4": "Crear imágenes",
+            "module6": "Felicitaciones"
+        }
+    }
+}
