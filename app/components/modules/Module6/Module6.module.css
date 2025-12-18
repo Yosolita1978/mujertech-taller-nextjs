@@ -27,33 +27,16 @@
 .heroSubtitle {
     font-size: 1.1rem;
     opacity: 0.95;
-    margin-bottom: var(--spacing-sm);
-}
-
-.heroText {
-    font-size: 1rem;
-    opacity: 0.9;
     margin: 0;
 }
 
 @keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
-/* Cards Base */
-.card {
-    background: white;
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-}
-
-.cardTitle {
+/* Section Title */
+.sectionTitle {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
@@ -62,14 +45,22 @@
     margin-bottom: var(--spacing-md);
 }
 
-.cardIcon {
-    font-size: 1.5rem;
+.sectionTitle span {
+    font-size: 1.4rem;
 }
 
-.cardSubtitle {
-    color: var(--gray);
-    font-size: 0.95rem;
-    margin-bottom: var(--spacing-md);
+/* Confidence Card */
+.confidenceCard {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 2px solid var(--primary);
+    text-align: center;
+}
+
+.confidenceCard .sectionTitle {
+    justify-content: center;
 }
 
 /* Summary Card */
@@ -81,129 +72,212 @@
     border-left: 4px solid var(--success);
 }
 
-.learnedItems {
+.summaryList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-sm);
 }
 
-.learnedItem {
+.summaryList li {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
     padding: var(--spacing-sm);
     background: var(--success-light);
     border-radius: var(--radius-sm);
-}
-
-.learnedCheck {
-    font-size: 1.2rem;
-    min-width: 24px;
-}
-
-.learnedItem p {
-    margin: 0;
-    color: var(--dark);
     font-size: 0.95rem;
 }
 
-/* Confidence Card */
-.confidenceCard {
+.summaryList li::before {
+    content: '✅';
+    font-size: 1.1rem;
+}
+
+/* Rules Card */
+.rulesCard {
     background: white;
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
-    border: 2px solid var(--primary);
+    border-left: 4px solid var(--warning);
 }
 
-.confidenceCard .cardTitle {
-    justify-content: center;
-    text-align: center;
-}
-
-.confidenceCard .cardSubtitle {
-    text-align: center;
-}
-
-.noBeforeRating {
-    text-align: center;
-    color: var(--gray);
-    font-size: 0.9rem;
-    font-style: italic;
-    margin-top: var(--spacing-md);
-}
-
-/* Next Steps */
-.nextStepsList {
+.rulesList {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
 }
 
-.nextStep {
+.ruleItem {
     display: flex;
     align-items: flex-start;
     gap: var(--spacing-md);
     padding: var(--spacing-md);
-    background: var(--gray-light);
+    background: #fffbeb;
     border-radius: var(--radius-md);
 }
 
-.stepNumber {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
+.ruleIcon {
+    font-size: 1.5rem;
     min-width: 32px;
-    background: var(--primary);
-    color: white;
-    border-radius: 50%;
-    font-weight: 700;
-    font-size: 0.9rem;
 }
 
-.nextStep h3 {
+.ruleItem h3 {
     font-size: 1rem;
     color: var(--dark);
     margin: 0 0 var(--spacing-xs) 0;
 }
 
-.nextStep p {
+.ruleItem p {
     font-size: 0.9rem;
     color: var(--gray);
     margin: 0;
 }
 
-/* Community Card */
-.communityCard {
+/* Teaser Section */
+.teaserSection {
     background: white;
-    padding: var(--spacing-xl);
+    padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
-    text-align: center;
-    border: 2px solid #25D366;
 }
 
-.communityCard h2 {
-    font-size: 1.2rem;
-    color: var(--dark);
-    margin-bottom: var(--spacing-sm);
-}
-
-.communityCard p {
+.teaserSubtitle {
     color: var(--gray);
     font-size: 0.95rem;
     margin-bottom: var(--spacing-lg);
 }
 
-.btnCommunity {
-    display: inline-flex;
+.teaserGrid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.teaserCard {
+    position: relative;
+    padding: var(--spacing-lg);
+    background: var(--gray-light);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+}
+
+.teaserBadge {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    background: var(--secondary);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    text-transform: uppercase;
+}
+
+.teaserIcon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: var(--spacing-sm);
+}
+
+.teaserCard h3 {
+    font-size: 1rem;
+    color: var(--dark);
+    margin: 0 0 var(--spacing-xs) 0;
+}
+
+.teaserCard > p {
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin: 0 0 var(--spacing-md) 0;
+}
+
+.teaserExample {
+    background: white;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--primary);
+}
+
+.exampleLabel {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.teaserExample p {
+    font-size: 0.85rem;
+    color: var(--dark);
+    margin: 0;
+    font-style: italic;
+}
+
+/* Email Section */
+.emailSection {
+    background: white;
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+}
+
+.emailIcon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: var(--spacing-sm);
+}
+
+.emailSection h2 {
+    font-size: 1.3rem;
+    color: var(--dark);
+    margin: 0 0 var(--spacing-sm) 0;
+}
+
+.emailSection > p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    margin: 0 0 var(--spacing-lg) 0;
+}
+
+.emailForm {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.emailInputGroup {
+    display: flex;
+    flex-direction: column;
     gap: var(--spacing-sm);
-    padding: var(--spacing-md) var(--spacing-xl);
-    background: #25D366;
+    width: 100%;
+    max-width: 400px;
+}
+
+.emailInput {
+    padding: var(--spacing-md);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.emailInput:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.emailButton {
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--primary);
     color: white;
     border: none;
     border-radius: var(--radius-md);
@@ -211,12 +285,57 @@
     font-weight: 700;
     cursor: pointer;
     transition: background 0.2s;
-    -webkit-user-select: none;
-    user-select: none;
+    white-space: nowrap;
 }
 
-.btnCommunity:active {
-    background: #1da851;
+.emailButton:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.emailButton:not(:disabled):active {
+    background: var(--primary-dark);
+}
+
+.noSpam {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin: 0;
+}
+
+.skipButton {
+    background: none;
+    border: 2px solid var(--border);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    color: var(--gray);
+    cursor: pointer;
+}
+
+.skipButton:active {
+    background: var(--gray-light);
+}
+
+.emailSuccess {
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+.emailSuccess span {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: var(--spacing-sm);
+}
+
+.emailSuccess h3 {
+    color: var(--success);
+    margin: 0 0 var(--spacing-xs) 0;
+}
+
+.emailSuccess p {
+    color: var(--gray);
+    margin: 0;
 }
 
 /* Certificate Section */
@@ -229,32 +348,48 @@
     border: 2px solid var(--secondary);
 }
 
-.certificateSection h2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-sm);
-    font-size: 1.3rem;
-    color: var(--dark);
+.certIcon {
+    font-size: 2.5rem;
+    display: block;
     margin-bottom: var(--spacing-sm);
 }
 
-.certificateIcon {
-    font-size: 1.5rem;
+.certificateSection h2 {
+    font-size: 1.3rem;
+    color: var(--dark);
+    margin: 0 0 var(--spacing-sm) 0;
 }
 
-.certificateSection p {
+.certificateSection > p {
     color: var(--gray);
     font-size: 0.95rem;
-    margin-bottom: var(--spacing-lg);
+    margin: 0 0 var(--spacing-lg) 0;
 }
 
-.btnShare {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+.certificateForm {
+    display: flex;
+    flex-direction: column;
     gap: var(--spacing-sm);
-    padding: var(--spacing-md) var(--spacing-xl);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.certificateInput {
+    padding: var(--spacing-md);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.certificateInput:focus {
+    outline: none;
+    border-color: var(--secondary);
+}
+
+.certificateButton {
+    padding: var(--spacing-md) var(--spacing-lg);
     background: var(--secondary);
     color: white;
     border: none;
@@ -263,39 +398,83 @@
     font-weight: 700;
     cursor: pointer;
     transition: background 0.2s;
-    -webkit-user-select: none;
-    user-select: none;
 }
 
-.btnShare:active {
+.certificateButton:active {
     background: #e55566;
 }
 
-/* Final Message */
-.finalMessage {
-    text-align: center;
-    padding: var(--spacing-xl);
-    background: var(--primary-light);
+/* Tasks Card */
+.tasksCard {
+    background: white;
+    padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border-left: 4px solid var(--primary);
+}
+
+.tasksList {
+    margin: 0;
+    padding-left: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.tasksList li {
+    font-size: 0.95rem;
+    color: var(--dark);
+    padding: var(--spacing-xs) 0;
+}
+
+.tasksList li::marker {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* Feedback Card */
+.feedbackCard {
+    background: var(--primary-light);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    text-align: center;
     border: 2px solid var(--primary);
 }
 
-.finalMessage h2 {
-    font-size: 1.3rem;
-    color: var(--primary);
-    margin-bottom: var(--spacing-sm);
-}
-
-.finalMessage p {
+.feedbackCard h2 {
+    font-size: 1.2rem;
     color: var(--dark);
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: var(--spacing-md);
+    margin: 0 0 var(--spacing-sm) 0;
 }
 
-.finalEmoji {
-    font-size: 3rem;
-    display: block;
+.feedbackCard > p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    margin: 0 0 var(--spacing-sm) 0;
+}
+
+.feedbackBenefit {
+    background: white;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin: var(--spacing-md) 0 !important;
+    font-size: 0.9rem;
+}
+
+.feedbackButton {
+    padding: var(--spacing-md) var(--spacing-xl);
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.feedbackButton:active {
+    background: var(--primary-dark);
 }
 
 /* Navigation Buttons */
@@ -303,12 +482,13 @@
     display: flex;
     justify-content: space-between;
     gap: var(--spacing-md);
-    margin-top: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
     padding-top: var(--spacing-lg);
     border-top: 1px solid var(--border);
 }
 
-.btnNav {
+.btnPrev,
+.btnRestart {
     padding: var(--spacing-md) var(--spacing-lg);
     font-size: 1rem;
     font-weight: 600;
@@ -318,8 +498,6 @@
     min-height: 50px;
     flex: 1;
     max-width: 180px;
-    -webkit-user-select: none;
-    user-select: none;
 }
 
 .btnPrev {
@@ -340,10 +518,27 @@
 
 .btnRestart:active {
     background: var(--primary-dark);
-    transform: scale(0.98);
 }
 
 /* Responsive */
+@media (min-width: 480px) {
+    .emailInputGroup {
+        flex-direction: row;
+    }
+    
+    .emailInput {
+        flex: 1;
+    }
+    
+    .certificateForm {
+        flex-direction: row;
+    }
+    
+    .certificateInput {
+        flex: 1;
+    }
+}
+
 @media (min-width: 768px) {
     .heroSection h1 {
         font-size: 2.2rem;
@@ -353,23 +548,36 @@
         font-size: 5rem;
     }
     
+    .teaserGrid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
     .navButtons {
         justify-content: center;
         gap: var(--spacing-lg);
     }
-    
-    .btnNav {
-        max-width: 200px;
-    }
 }
 
 @media (min-width: 1024px) {
-    .btnCommunity:hover {
-        background: #1da851;
+    .teaserGrid {
+        grid-template-columns: repeat(3, 1fr);
     }
     
-    .btnShare:hover {
+    .emailButton:not(:disabled):hover {
+        background: var(--primary-dark);
+    }
+    
+    .certificateButton:hover {
         background: #e55566;
+    }
+    
+    .feedbackButton:hover {
+        background: var(--primary-dark);
+    }
+    
+    .skipButton:hover {
+        background: var(--gray-light);
     }
     
     .btnPrev:hover {

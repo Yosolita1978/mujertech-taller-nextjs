@@ -229,7 +229,15 @@
         "promptReady": "¡Tu mensaje está listo! 🎉",
         "fillBusiness": "Por favor escribe qué vendes o haces",
         "fillNeed": "Por favor elige qué necesitas",
-        "fillTone": "Por favor elige un tono"
+        "fillTone": "Por favor elige un tono",
+        "confidenceRated": "¡Gracias por tu respuesta! 🎉",
+        "emailRequired": "Por favor escribe tu correo",
+        "emailInvalid": "Por favor escribe un correo válido",
+        "emailSuccess": "¡Gracias! Te avisaremos pronto 💌",
+        "emailError": "Hubo un error. Intenta de nuevo.",
+        "nameRequired": "Por favor escribe tu nombre",
+        "certificateGenerating": "Generando tu certificado... ⏳",
+        "certificateDownloaded": "¡Certificado descargado! 🎉"
     },
     "confidenceRating": {
         "labels": {
@@ -621,49 +629,105 @@
     },
     "module6": {
         "title": "¡Felicitaciones!",
-        "subtitle": "Completaste el taller de IA",
-        "heroText": "Ahora tienes nuevas herramientas para hacer crecer tu negocio.",
-        "summary": {
-            "title": "Lo que aprendiste hoy",
-            "item1": "Qué es la IA y cómo puede ayudarte",
-            "item2": "Cómo escribir mensajes claros para la IA",
-            "item3": "Cómo crear imágenes con Canva",
-            "item4": "Cómo usar la IA de forma ética y segura"
+        "subtitle": "Completaste el taller",
+        "celebration": {
+            "title": "¡Lo lograste!",
+            "text": "Has completado el Taller Introductorio de IA de MujerTech"
         },
         "confidence": {
-            "title": "Mira cómo creció tu confianza",
-            "subtitle": "Comparemos cómo te sentías al inicio vs ahora"
+            "title": "¿Y ahora? ¿Qué tan segura te sientes usando IA?"
         },
-        "nextSteps": {
-            "title": "¿Qué sigue?",
-            "step1": {
-                "title": "Practica",
-                "text": "Usa ChatGPT o Canva al menos una vez esta semana"
+        "summary": {
+            "title": "Hoy aprendiste",
+            "item1": "Qué es la Inteligencia Artificial",
+            "item2": "Cómo hablarle a la IA para que te ayude",
+            "item3": "Qué herramientas puedes usar (ChatGPT y Canva)",
+            "item4": "Cómo crear imágenes para tu negocio",
+            "item5": "Cómo usar la IA de forma segura"
+        },
+        "goldenRules": {
+            "title": "Recuerda las 3 reglas de oro",
+            "rule1": {
+                "title": "Protege la información privada",
+                "description": "Nunca le des a la IA datos personales de tus clientes"
             },
-            "step2": {
-                "title": "Comparte",
-                "text": "Cuéntale a otra emprendedora lo que aprendiste"
+            "rule2": {
+                "title": "Siempre revisa antes de publicar",
+                "description": "La IA puede equivocarse. Lee todo antes de usar."
             },
-            "step3": {
-                "title": "Conecta",
-                "text": "Únete a nuestra comunidad de WhatsApp"
+            "rule3": {
+                "title": "Sé honesta con tus clientes",
+                "description": "Si una imagen es de IA, no digas que es foto real."
             }
         },
-        "community": {
-            "title": "Sigue aprendiendo con nosotras",
-            "text": "En nuestra comunidad compartimos tips, respondemos dudas y celebramos los logros de cada una.",
-            "button": "UNIRME A LA COMUNIDAD"
+        "teaser": {
+            "title": "¿Qué más puedes aprender?",
+            "subtitle": "Esto es solo el comienzo. Mira todo lo que la IA puede hacer por tu negocio:",
+            "badge": "Próximamente",
+            "exampleLabel": "Ejemplo:",
+            "card1": {
+                "title": "Analiza tus datos con IA",
+                "description": "Aprende a usar IA para entender qué productos se venden más, en qué horarios, y por qué.",
+                "example": "\"Tus jabones de lavanda se venden 3x más los viernes. ¿Quieres promocionarlos ese día?\""
+            },
+            "card2": {
+                "title": "Revisa la salud de tu negocio",
+                "description": "¿Estás ganando o perdiendo? La IA te ayuda a ver tu negocio con claridad.",
+                "example": "\"Este mes gastaste más en materiales. Considera subir precios o reducir costos.\""
+            },
+            "card3": {
+                "title": "Marketing automático",
+                "description": "Crea campañas para Instagram y WhatsApp que se adaptan a cada cliente.",
+                "example": "\"Hola María, vimos que te gustaron nuestros jabones. ¡Tenemos uno nuevo de menta!\""
+            },
+            "card4": {
+                "title": "Tu asistente virtual 24/7",
+                "description": "Configura un chatbot que responde preguntas de clientes mientras duermes.",
+                "example": "\"¡Hola! Sí tenemos jabones de lavanda. Cuestan $15.000 y hacemos envíos a toda Colombia.\""
+            },
+            "card5": {
+                "title": "Predice tu próximo mes",
+                "description": "Usa IA para saber cuánto vas a vender y planear mejor tu inventario.",
+                "example": "\"Basado en tu historial, el próximo mes venderás ~45 jabones. Prepara materiales para 50.\""
+            }
+        },
+        "emailCapture": {
+            "title": "¿Quieres aprender todo esto?",
+            "subtitle": "Déjanos tu correo y te avisamos cuando abramos el próximo curso.",
+            "placeholder": "Tu correo electrónico",
+            "button": "QUIERO APRENDER MÁS",
+            "sending": "ENVIANDO...",
+            "noSpam": "Odiamos el spam tanto como tú. Solo te escribiremos cuando tengamos algo valioso.",
+            "skip": "Ahora no, gracias",
+            "successTitle": "¡Listo! Te avisaremos pronto.",
+            "successText": "Revisa tu correo en los próximos días."
         },
         "certificate": {
-            "title": "Tu certificado",
-            "text": "Completaste el Taller de IA para Emprendedoras de MujerTech.",
-            "downloadButton": "DESCARGAR CERTIFICADO",
-            "shareButton": "COMPARTIR EN WHATSAPP"
+            "title": "Obtén tu certificado",
+            "subtitle": "Escribe tu nombre para generar tu certificado:",
+            "placeholder": "Tu nombre completo",
+            "downloadButton": "DESCARGAR MI CERTIFICADO",
+            "certificateTitle": "CERTIFICADO",
+            "certifiesText": "Se certifica que",
+            "completedText": "ha completado exitosamente el",
+            "workshopLine1": "TALLER INTRODUCTORIO DE IA",
+            "workshopLine2": "PARA EMPRENDEDORAS",
+            "skills": "✓ Fundamentos de IA   ✓ Creación de prompts   ✓ Herramientas de IA   ✓ Generación de imágenes   ✓ Uso ético",
+            "dateLabel": "Fecha:",
+            "duration": "Duración: 2 horas"
         },
-        "finalMessage": {
-            "title": "Recuerda",
-            "text": "La IA es una herramienta. Tú eres la experta en tu negocio. Usa la tecnología para potenciar lo que ya sabes hacer.",
-            "emoji": "💚"
+        "tasks": {
+            "title": "Tu tarea para mañana",
+            "task1": "Abre ChatGPT y pide una idea para tu negocio",
+            "task2": "Abre Canva y crea una imagen simple",
+            "task3": "Comparte tu experiencia en el grupo de WhatsApp"
+        },
+        "feedback": {
+            "title": "¡Tu opinión es muy importante!",
+            "text1": "Ayúdanos a mejorar este taller con tu feedback.",
+            "text2": "Solo te tomará <strong>2 minutos</strong> y nos ayuda mucho.",
+            "benefit": "<strong>¿Qué ganas tú?</strong> Las personas que nos den feedback serán las <strong>primeras invitadas</strong> a nuestro próximo curso completo de IA.",
+            "button": "DARNOS TUS OPINIONES"
         },
         "restartButton": "VOLVER AL INICIO"
     },

@@ -229,7 +229,15 @@
         "promptReady": "Your message is ready! 🎉",
         "fillBusiness": "Please write what you sell or do",
         "fillNeed": "Please choose what you need",
-        "fillTone": "Please choose a tone"
+        "fillTone": "Please choose a tone",
+        "confidenceRated": "Thanks for your response! 🎉",
+        "emailRequired": "Please enter your email",
+        "emailInvalid": "Please enter a valid email",
+        "emailSuccess": "Thanks! We'll let you know soon 💌",
+        "emailError": "There was an error. Please try again.",
+        "nameRequired": "Please enter your name",
+        "certificateGenerating": "Generating your certificate... ⏳",
+        "certificateDownloaded": "Certificate downloaded! 🎉"
     },
     "confidenceRating": {
         "labels": {
@@ -621,49 +629,105 @@
     },
     "module6": {
         "title": "Congratulations!",
-        "subtitle": "You completed the AI workshop",
-        "heroText": "Now you have new tools to grow your business.",
-        "summary": {
-            "title": "What you learned today",
-            "item1": "What AI is and how it can help you",
-            "item2": "How to write clear messages for AI",
-            "item3": "How to create images with Canva",
-            "item4": "How to use AI ethically and safely"
+        "subtitle": "You completed the workshop",
+        "celebration": {
+            "title": "You did it!",
+            "text": "You have completed the MujerTech Introductory AI Workshop"
         },
         "confidence": {
-            "title": "See how your confidence grew",
-            "subtitle": "Let's compare how you felt at the start vs now"
+            "title": "And now? How confident do you feel using AI?"
         },
-        "nextSteps": {
-            "title": "What's next?",
-            "step1": {
-                "title": "Practice",
-                "text": "Use ChatGPT or Canva at least once this week"
+        "summary": {
+            "title": "Today you learned",
+            "item1": "What Artificial Intelligence is",
+            "item2": "How to talk to AI so it helps you",
+            "item3": "What tools you can use (ChatGPT and Canva)",
+            "item4": "How to create images for your business",
+            "item5": "How to use AI safely"
+        },
+        "goldenRules": {
+            "title": "Remember the 3 golden rules",
+            "rule1": {
+                "title": "Protect private information",
+                "description": "Never give AI personal data about your clients"
             },
-            "step2": {
-                "title": "Share",
-                "text": "Tell another entrepreneur what you learned"
+            "rule2": {
+                "title": "Always review before publishing",
+                "description": "AI can make mistakes. Read everything before using."
             },
-            "step3": {
-                "title": "Connect",
-                "text": "Join our WhatsApp community"
+            "rule3": {
+                "title": "Be honest with your clients",
+                "description": "If an image is AI-generated, don't say it's a real photo."
             }
         },
-        "community": {
-            "title": "Keep learning with us",
-            "text": "In our community we share tips, answer questions, and celebrate each other's wins.",
-            "button": "JOIN THE COMMUNITY"
+        "teaser": {
+            "title": "What else can you learn?",
+            "subtitle": "This is just the beginning. Look at everything AI can do for your business:",
+            "badge": "Coming soon",
+            "exampleLabel": "Example:",
+            "card1": {
+                "title": "Analyze your data with AI",
+                "description": "Learn to use AI to understand which products sell more, at what times, and why.",
+                "example": "\"Your lavender soaps sell 3x more on Fridays. Want to promote them that day?\""
+            },
+            "card2": {
+                "title": "Check your business health",
+                "description": "Are you winning or losing? AI helps you see your business clearly.",
+                "example": "\"This month you spent more on materials. Consider raising prices or reducing costs.\""
+            },
+            "card3": {
+                "title": "Automatic marketing",
+                "description": "Create campaigns for Instagram and WhatsApp that adapt to each client.",
+                "example": "\"Hi María, we saw you liked our soaps. We have a new mint one!\""
+            },
+            "card4": {
+                "title": "Your 24/7 virtual assistant",
+                "description": "Set up a chatbot that answers customer questions while you sleep.",
+                "example": "\"Hi! Yes, we have lavender soaps. They cost $15,000 and we ship all over Colombia.\""
+            },
+            "card5": {
+                "title": "Predict your next month",
+                "description": "Use AI to know how much you'll sell and plan your inventory better.",
+                "example": "\"Based on your history, next month you'll sell ~45 soaps. Prepare materials for 50.\""
+            }
+        },
+        "emailCapture": {
+            "title": "Want to learn all this?",
+            "subtitle": "Leave us your email and we'll notify you when we open the next course.",
+            "placeholder": "Your email address",
+            "button": "I WANT TO LEARN MORE",
+            "sending": "SENDING...",
+            "noSpam": "We hate spam as much as you do. We'll only write when we have something valuable.",
+            "skip": "Not now, thanks",
+            "successTitle": "Done! We'll let you know soon.",
+            "successText": "Check your email in the coming days."
         },
         "certificate": {
-            "title": "Your certificate",
-            "text": "You completed the AI Workshop for Entrepreneurs by MujerTech.",
-            "downloadButton": "DOWNLOAD CERTIFICATE",
-            "shareButton": "SHARE ON WHATSAPP"
+            "title": "Get your certificate",
+            "subtitle": "Enter your name to generate your certificate:",
+            "placeholder": "Your full name",
+            "downloadButton": "DOWNLOAD MY CERTIFICATE",
+            "certificateTitle": "CERTIFICATE",
+            "certifiesText": "This certifies that",
+            "completedText": "has successfully completed the",
+            "workshopLine1": "INTRODUCTORY AI WORKSHOP",
+            "workshopLine2": "FOR ENTREPRENEURS",
+            "skills": "✓ AI Fundamentals   ✓ Prompt Creation   ✓ AI Tools   ✓ Image Generation   ✓ Ethical Use",
+            "dateLabel": "Date:",
+            "duration": "Duration: 2 hours"
         },
-        "finalMessage": {
-            "title": "Remember",
-            "text": "AI is a tool. You are the expert in your business. Use technology to amplify what you already know how to do.",
-            "emoji": "💚"
+        "tasks": {
+            "title": "Your task for tomorrow",
+            "task1": "Open ChatGPT and ask for an idea for your business",
+            "task2": "Open Canva and create a simple image",
+            "task3": "Share your experience in the WhatsApp group"
+        },
+        "feedback": {
+            "title": "Your opinion is very important!",
+            "text1": "Help us improve this workshop with your feedback.",
+            "text2": "It will only take you <strong>2 minutes</strong> and helps us a lot.",
+            "benefit": "<strong>What do you get?</strong> People who give us feedback will be the <strong>first invited</strong> to our next complete AI course.",
+            "button": "GIVE US YOUR FEEDBACK"
         },
         "restartButton": "BACK TO START"
     },
