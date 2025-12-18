@@ -6,6 +6,7 @@ import GoogleAnalytics from '../components/GoogleAnalytics/GoogleAnalytics';
 import MicrosoftClarity from '../components/MicrosoftClarity/MicrosoftClarity';
 import StructuredData from '../components/StructuredData/StructuredData';
 import { locales } from '../../i18n/config';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata = {
     title: {
@@ -103,6 +104,7 @@ export default async function LocaleLayout({ children, params }) {
                 <StructuredData />
                 <GoogleAnalytics />
                 <MicrosoftClarity />
+                <SpeedInsights />
             </head>
             <body suppressHydrationWarning>
                 <NextIntlClientProvider messages={messages}>
