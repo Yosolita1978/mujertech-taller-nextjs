@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './Welcome.module.css';
 import ConfidenceRating from '../../ConfidenceRating/ConfidenceRating';
 import { useConfidence } from '../../../lib/useConfidence';
+import CommunityCard from '../../CommunityCard/CommunityCard';
 
 const EXPERIENCE_OPTIONS = [
     { id: 'nunca', icon: '🆕', label: 'Nunca la he usado' },
@@ -128,6 +129,9 @@ export default function Welcome({ onNext }) {
                     </div>
                 </div>
             </div>
+
+            {/* Community Card */}
+            <CommunityCard />
 
             {/* Experience Question */}
             <div className={styles.questionCard}>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './Module6.module.css';
 import ConfidenceRating, { ConfidenceComparison } from '../../ConfidenceRating/ConfidenceRating';
 import { useConfidence } from '../../../lib/useConfidence';
+import CommunityCard from '../../CommunityCard/CommunityCard';
 
 const LEARNED_ITEMS = [
     'Qué es la Inteligencia Artificial',
@@ -311,6 +312,9 @@ export default function Module6({ onPrev, onGoToStart, showNotification, userPro
                 <h2>¡Lo lograste!</h2>
                 <p>Has completado el Taller Introductorio de IA de MujerTech</p>
             </div>
+
+            {/* Community Card */}
+            <CommunityCard />
 
             {/* After Confidence Rating */}
             <div className={styles.confidenceCard}>
