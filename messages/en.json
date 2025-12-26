@@ -90,11 +90,14 @@
         "module6": "Done"
     },
     "presessionCheck": {
-        "greeting": "Hello!",
-        "question": "Before we start, we want to know:",
-        "mainQuestion": "Is this your first time taking a workshop on your phone?",
-        "yesHelp": "YES, HELP ME PRACTICE",
-        "noSkip": "I KNOW HOW, GO TO WORKSHOP"
+        "title": "Learn AI for Your Business!",
+        "valueIntro": "In 45 minutes you'll learn:",
+        "value1": "🤖 What Artificial Intelligence is",
+        "value2": "💬 How to ask AI for help",
+        "value3": "🎨 How to create images for your business",
+        "duration": "⏱️ Free • At your pace • On your phone",
+        "startWorkshop": "START NOW →",
+        "needHelp": "First time using a workshop on your phone? Practice here"
     },
     "presession": {
         "step1": {

@@ -8,30 +8,34 @@ export default function PresessionCheck({ onStartPresession, onSkipPresession })
 
     return (
         <section className={styles.container}>
-            <div className={styles.welcomeIcon}>👋</div>
-            <h1 className={styles.title}>{t('greeting')}</h1>
-            <p className={styles.welcomeText}>{t('question')}</p>
+            <div className={styles.welcomeIcon}>🚀</div>
+            <h1 className={styles.title}>{t('title')}</h1>
             
-            <div className={styles.questionBox}>
-                <h2>{t('mainQuestion')}</h2>
+            <div className={styles.valueBox}>
+                <p className={styles.valueIntro}>{t('valueIntro')}</p>
+                <ul className={styles.valueList}>
+                    <li>{t('value1')}</li>
+                    <li>{t('value2')}</li>
+                    <li>{t('value3')}</li>
+                </ul>
+                <p className={styles.duration}>{t('duration')}</p>
             </div>
-            
-            <div className={styles.choiceButtons}>
-                <button 
-                    className={`${styles.btnLarge} ${styles.btnPrimary}`}
-                    onClick={onStartPresession}
-                    type="button"
-                >
-                    {t('yesHelp')}
-                </button>
-                <button 
-                    className={`${styles.btnLarge} ${styles.btnSecondary}`}
-                    onClick={onSkipPresession}
-                    type="button"
-                >
-                    {t('noSkip')}
-                </button>
-            </div>
+
+            <button 
+                className={`${styles.btnLarge} ${styles.btnPrimary}`}
+                onClick={onSkipPresession}
+                type="button"
+            >
+                {t('startWorkshop')}
+            </button>
+
+            <button 
+                className={styles.btnHelp}
+                onClick={onStartPresession}
+                type="button"
+            >
+                {t('needHelp')}
+            </button>
         </section>
     );
 }

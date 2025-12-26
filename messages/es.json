@@ -90,11 +90,14 @@
         "module6": "Final"
     },
     "presessionCheck": {
-        "greeting": "¡Hola!",
-        "question": "Antes de empezar, queremos saber:",
-        "mainQuestion": "¿Es tu primera vez cursando un taller en el celular?",
-        "yesHelp": "SÍ, AYÚDAME A PRACTICAR",
-        "noSkip": "YA SÉ CÓMO, IR AL TALLER"
+        "title": "¡Aprende IA para tu Negocio!",
+        "valueIntro": "En 45 minutos aprenderás:",
+        "value1": "🤖 Qué es la Inteligencia Artificial",
+        "value2": "💬 Cómo pedirle ayuda a la IA",
+        "value3": "🎨 Cómo crear imágenes para tu negocio",
+        "duration": "⏱️ Gratis • A tu ritmo • En tu celular",
+        "startWorkshop": "EMPEZAR AHORA →",
+        "needHelp": "¿Primera vez usando un taller en el celular? Practica aquí"
     },
     "presession": {
         "step1": {

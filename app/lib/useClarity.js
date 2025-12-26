@@ -3,7 +3,6 @@
 import { useEffect, useCallback } from 'react';
 
 export function useClarity(currentModule) {
-    // Track module changes
     useEffect(() => {
         if (typeof window === 'undefined' || !window.clarity) return;
         if (!currentModule) return;
@@ -12,9 +11,13 @@ export function useClarity(currentModule) {
         window.clarity('event', `module_${currentModule}`);
     }, [currentModule]);
 
-    // Custom event tracker
     const trackEvent = useCallback((eventName, eventData) => {
-        if (typeof window === 'undefined' || !window.clarity) return;
+        console.log('[Clarity Event]', eventName, eventData);
+        
+        if (typeof window === 'undefined' || !window.clarity) {
+            console.warn('[Clarity] window.clarity not available');
+            return;
+        }
 
         window.clarity('event', eventName);
 
@@ -25,10 +28,8 @@ export function useClarity(currentModule) {
         }
     }, []);
 
-    // Set custom tag
     const setTag = useCallback((key, value) => {
         if (typeof window === 'undefined' || !window.clarity) return;
-
         window.clarity('set', key, String(value));
     }, []);
 
