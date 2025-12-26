@@ -91,7 +91,7 @@
     },
     "presessionCheck": {
         "title": "¡Aprende IA para tu Negocio!",
-        "valueIntro": "Aquí aprenderás:",
+        "valueIntro": "En este taller aprenderás:",
         "value1": "🤖 Qué es la Inteligencia Artificial",
         "value2": "💬 Cómo pedirle ayuda a la IA",
         "value3": "🎨 Cómo crear imágenes para tu negocio",
@@ -155,7 +155,7 @@
     "welcome": {
         "heroTitle": "¡Bienvenida al Taller de IA!",
         "heroSubtitle": "Aprende a usar Inteligencia Artificial para tu negocio",
-        "duration": "⏱️ Duración: 45 minutos",
+        "duration": "⏱️ A tu ritmo • Gratis",
         "context": {
             "title": "¿En qué momento estamos?",
             "text1": "Estamos viviendo un cambio muy grande en el mundo.",
@@ -751,5 +751,16 @@
             "module4": "Crear imágenes",
             "module6": "Felicitaciones"
         }
+    },
+    "facebookPrompt": {
+        "title": "¡Abre en tu navegador!",
+        "description": "Estás viendo esto dentro de Facebook. Para una mejor experiencia, abre el taller en Chrome o Safari.",
+        "howTo": "¿Cómo hacerlo?",
+        "step1": "Toca los 3 puntos (⋮) arriba a la derecha",
+        "step2": "Selecciona \"Abrir en navegador\"",
+        "step3": "¡Listo! El taller funcionará mejor",
+        "copyLink": "📋 COPIAR ENLACE",
+        "copied": "✅ ¡COPIADO!",
+        "continueAnyway": "Continuar aquí de todos modos"
     }
 }

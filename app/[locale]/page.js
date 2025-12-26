@@ -9,6 +9,7 @@ import Glossary from '../components/Glossary/Glossary';
 import Notification from '../components/Notification/Notification';
 import Timer from '../components/Timer/Timer';
 import ResumeModal from '../components/ResumeModal/ResumeModal';
+import FacebookBrowserPrompt from '../components/FacebookBrowserPrompt/FacebookBrowserPrompt';
 import PresessionCheck from '../components/modules/PresessionCheck/PresessionCheck';
 import Presession from '../components/modules/Presession/Presession';
 import Welcome from '../components/modules/Welcome/Welcome';
@@ -227,6 +228,7 @@ export default function Home() {
 
     return (
         <>
+            <FacebookBrowserPrompt />
             <Header onGlossaryOpen={handleGlossaryOpen} />
             <ProgressBar currentModule={currentModule} />
             

@@ -91,11 +91,11 @@
     },
     "presessionCheck": {
         "title": "Learn AI for Your Business!",
-        "valueIntro": "Here you'll learn:",
+        "valueIntro": "In this workshop you'll learn:",
         "value1": "🤖 What Artificial Intelligence is",
         "value2": "💬 How to ask AI for help",
         "value3": "🎨 How to create images for your business",
-        "duration": "⏱️ Free • At your pace • On your phone",
+        "duration": "⏱️ Free • At your own pace • On your phone",
         "startWorkshop": "START NOW →",
         "needHelp": "First time using a workshop on your phone? Practice here"
     },
@@ -155,7 +155,7 @@
     "welcome": {
         "heroTitle": "Welcome to the AI Workshop!",
         "heroSubtitle": "Learn to use Artificial Intelligence for your business",
-        "duration": "⏱️ Duration: 45 minutes",
+        "duration": "⏱️ At your own pace • Free",
         "context": {
             "title": "What moment are we in?",
             "text1": "We are living through a huge change in the world.",
@@ -751,5 +751,16 @@
             "module4": "Create images",
             "module6": "Congratulations"
         }
+    },
+    "facebookPrompt": {
+        "title": "Open in your browser!",
+        "description": "You're viewing this inside Facebook. For a better experience, open the workshop in Chrome or Safari.",
+        "howTo": "How to do it?",
+        "step1": "Tap the 3 dots (⋮) at the top right",
+        "step2": "Select \"Open in browser\"",
+        "step3": "Done! The workshop will work better",
+        "copyLink": "📋 COPY LINK",
+        "copied": "✅ COPIED!",
+        "continueAnyway": "Continue here anyway"
     }
 }
