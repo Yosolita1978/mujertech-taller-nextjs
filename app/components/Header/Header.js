@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import styles from './Header.module.css';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
@@ -11,10 +12,13 @@ export default function Header({ onGlossaryOpen }) {
         <header className={styles.header}>
             <div className={styles.headerContent}>
                 <div className={styles.logo}>
-                    <img
+                    <Image
                         src="/images/logomujertech1.png"
                         alt="MujerTech Logo"
+                        width={28}
+                        height={28}
                         className={styles.logoImage}
+                        priority
                     />
                     <span>{t('title')}</span>
                 </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import styles from './Welcome.module.css';
 import ConfidenceRating from '../../ConfidenceRating/ConfidenceRating';
@@ -51,10 +52,14 @@ export default function Welcome({ onNext }) {
         <div className={styles.moduleContent}>
             {/* Hero Section */}
             <section className={styles.heroSection}>
-                <img 
-                    src="/images/bannerlogo1.png" 
-                    alt="MujerTech" 
+                <Image
+                    src="/images/bannerlogo1.png"
+                    alt="MujerTech"
+                    width={300}
+                    height={120}
                     className={styles.heroLogo}
+                    priority
+                    sizes="(max-width: 768px) 100vw, 300px"
                 />
                 <h1 className={styles.heroTitle}>{t('heroTitle')}</h1>
                 <p className={styles.heroSubtitle}>{t('heroSubtitle')}</p>

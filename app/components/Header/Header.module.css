@@ -31,8 +31,9 @@
 }
 
 .logoImage {
-    height: 28px;
-    width: auto;
+    width: 28px;
+    height: auto;
+    object-fit: contain;
 }
 
 .headerRight {
@@ -79,7 +80,8 @@
     }
     
     .logoImage {
-        height: 24px;
+        width: 24px;
+        height: auto;
     }
     
     .glossaryBtn {

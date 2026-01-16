@@ -10,13 +10,36 @@ import Notification from '../components/Notification/Notification';
 import Timer from '../components/Timer/Timer';
 import ResumeModal from '../components/ResumeModal/ResumeModal';
 import FacebookBrowserPrompt from '../components/FacebookBrowserPrompt/FacebookBrowserPrompt';
+import dynamic from 'next/dynamic';
 import PresessionCheck from '../components/modules/PresessionCheck/PresessionCheck';
 import Presession from '../components/modules/Presession/Presession';
 import Welcome from '../components/modules/Welcome/Welcome';
-import Module1 from '../components/modules/Module1/Module1';
-import Module2 from '../components/modules/Module2/Module2';
-import Module4 from '../components/modules/Module4/Module4';
-import Module6 from '../components/modules/Module6/Module6';
+
+// Lazy-load modules (only when user navigates there)
+function ModuleLoadingFallback() {
+    return (
+        <div style={{
+            padding: '40px',
+            textAlign: 'center',
+            color: 'var(--gray)'
+        }}>
+            <p>Cargando...</p>
+        </div>
+    );
+}
+
+const Module1 = dynamic(() => import('../components/modules/Module1/Module1'), {
+    loading: () => <ModuleLoadingFallback />
+});
+const Module2 = dynamic(() => import('../components/modules/Module2/Module2'), {
+    loading: () => <ModuleLoadingFallback />
+});
+const Module4 = dynamic(() => import('../components/modules/Module4/Module4'), {
+    loading: () => <ModuleLoadingFallback />
+});
+const Module6 = dynamic(() => import('../components/modules/Module6/Module6'), {
+    loading: () => <ModuleLoadingFallback />
+});
 import { useNotification } from '../lib/useNotification';
 import { useProgress } from '../lib/useProgress';
 import { useClarity } from '../lib/useClarity';

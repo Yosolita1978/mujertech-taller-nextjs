@@ -14,8 +14,10 @@
 }
 
 .heroLogo {
-    max-height: 120px;
-    width: auto;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    object-fit: contain;
     margin-bottom: var(--spacing-lg);
 }
 
@@ -307,7 +309,7 @@
 
 @media (min-width: 768px) {
     .heroLogo {
-        max-height: 150px;
+        max-width: 350px;
     }
     
     .heroTitle {
