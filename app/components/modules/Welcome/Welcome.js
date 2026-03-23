@@ -2,18 +2,20 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import { useTranslations, useLocale } from 'next-intl';
 import styles from './Welcome.module.css';
 import ConfidenceRating from '../../ConfidenceRating/ConfidenceRating';
 import { useConfidence } from '../../../lib/useConfidence';
 import CommunityCard from '../../CommunityCard/CommunityCard';
 
-export default function Welcome({ onNext, onGoToCapstone }) {
+export default function Welcome({ onNext }) {
     const [selectedExperience, setSelectedExperience] = useState(null);
     const [selectedBusinessType, setSelectedBusinessType] = useState(null);
     const [selectedConfidence, setSelectedConfidence] = useState(null);
     const { saveBeforeRating } = useConfidence();
-    
+    const locale = useLocale();
+
     const t = useTranslations('welcome');
 
     const EXPERIENCE_OPTIONS = [
@@ -83,15 +85,12 @@ export default function Welcome({ onNext, onGoToCapstone }) {
                         <li>{t('projectStory.focus3')}</li>
                     </ul>
                 </div>
-                {onGoToCapstone && (
-                    <button
-                        className={styles.btnCapstone}
-                        onClick={onGoToCapstone}
-                        type="button"
-                    >
-                        {t('projectStory.button')}
-                    </button>
-                )}
+                <Link
+                    href={`/${locale}/prompts`}
+                    className={styles.btnCapstone}
+                >
+                    {t('projectStory.button')}
+                </Link>
             </div>
 
             {/* Context Card */}
