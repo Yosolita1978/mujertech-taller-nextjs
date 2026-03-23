@@ -10,15 +10,18 @@ export default function ProgressBar({ currentModule }) {
     
     const currentIndex = DISPLAY_MODULES.indexOf(currentModule);
     const isPreSession = currentModule === 'presessionCheck' || currentModule === 'presession';
-    
+    const isCapstone = currentModule === 'capstone';
+
     const totalModules = DISPLAY_MODULES.length;
-    const progress = isPreSession ? 0 : ((currentIndex + 1) / totalModules) * 100;
-    
-    const blockText = isPreSession 
+    const progress = (isPreSession || isCapstone) ? 0 : ((currentIndex + 1) / totalModules) * 100;
+
+    const blockText = (isPreSession || isCapstone)
         ? t('preparation')
         : t('blockOf', { current: currentIndex + 1, total: totalModules });
-    
-    const sectionName = t(`modules.${currentModule}`);
+
+    const sectionName = isCapstone
+        ? t('modules.capstone')
+        : t(`modules.${currentModule}`);
 
     return (
         <div className={styles.progressIndicator}>

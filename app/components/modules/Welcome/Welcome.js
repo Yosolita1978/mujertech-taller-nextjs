@@ -8,7 +8,7 @@ import ConfidenceRating from '../../ConfidenceRating/ConfidenceRating';
 import { useConfidence } from '../../../lib/useConfidence';
 import CommunityCard from '../../CommunityCard/CommunityCard';
 
-export default function Welcome({ onNext }) {
+export default function Welcome({ onNext, onGoToCapstone }) {
     const [selectedExperience, setSelectedExperience] = useState(null);
     const [selectedBusinessType, setSelectedBusinessType] = useState(null);
     const [selectedConfidence, setSelectedConfidence] = useState(null);
@@ -65,6 +65,34 @@ export default function Welcome({ onNext }) {
                 <p className={styles.heroSubtitle}>{t('heroSubtitle')}</p>
                 <span className={styles.timeBadge}>{t('duration')}</span>
             </section>
+
+            {/* Project Story Card */}
+            <div className={`${styles.card} ${styles.projectStoryCard}`}>
+                <h2 className={styles.cardTitle}>
+                    <span className={styles.cardIcon}>📚</span>
+                    {t('projectStory.title')}
+                </h2>
+                <p className={styles.cardText} dangerouslySetInnerHTML={{ __html: t.raw('projectStory.text1') }} />
+                <p className={styles.cardText}>{t('projectStory.text2')}</p>
+                <div className={styles.capstoneHighlight}>
+                    <span className={styles.capstoneTag}>{t('projectStory.capstoneTag')}</span>
+                    <h3>{t('projectStory.capstoneTitle')}</h3>
+                    <ul className={styles.capstoneFocusList}>
+                        <li>{t('projectStory.focus1')}</li>
+                        <li>{t('projectStory.focus2')}</li>
+                        <li>{t('projectStory.focus3')}</li>
+                    </ul>
+                </div>
+                {onGoToCapstone && (
+                    <button
+                        className={styles.btnCapstone}
+                        onClick={onGoToCapstone}
+                        type="button"
+                    >
+                        {t('projectStory.button')}
+                    </button>
+                )}
+            </div>
 
             {/* Context Card */}
             <div className={styles.card}>

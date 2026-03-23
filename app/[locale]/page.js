@@ -40,6 +40,9 @@ const Module4 = dynamic(() => import('../components/modules/Module4/Module4'), {
 const Module6 = dynamic(() => import('../components/modules/Module6/Module6'), {
     loading: () => <ModuleLoadingFallback />
 });
+const Capstone = dynamic(() => import('../components/modules/Capstone/Capstone'), {
+    loading: () => <ModuleLoadingFallback />
+});
 import { useNotification } from '../lib/useNotification';
 import { useProgress } from '../lib/useProgress';
 import { useClarity } from '../lib/useClarity';
@@ -79,7 +82,7 @@ export default function Home() {
     const { trackEvent, setTag } = useClarity(currentModule);
     const t = useTranslations('notifications');
 
-    const isNavVisible = currentModule !== 'presessionCheck' && currentModule !== 'presession';
+    const isNavVisible = currentModule !== 'presessionCheck' && currentModule !== 'presession' && currentModule !== 'capstone';
 
     const isFirstRender = useRef(true);
 
@@ -183,7 +186,10 @@ export default function Home() {
                 );
             case 'welcome':
                 return (
-                    <Welcome onNext={handleWelcomeNext} />
+                    <Welcome
+                        onNext={handleWelcomeNext}
+                        onGoToCapstone={() => handleModuleChange('capstone')}
+                    />
                 );
             case 'module1':
                 return (
@@ -224,6 +230,14 @@ export default function Home() {
                         userProfile={userProfile}
                         trackEvent={trackEvent}
                         setTag={setTag}
+                    />
+                );
+            case 'capstone':
+                return (
+                    <Capstone
+                        onBack={() => handleModuleChange('welcome')}
+                        showNotification={showNotification}
+                        trackEvent={trackEvent}
                     />
                 );
             default:

@@ -79,7 +79,8 @@
             "module1": "Qué es la IA",
             "module2": "Prompts y Herramientas",
             "module4": "Crear imágenes",
-            "module6": "¡Felicitaciones!"
+            "module6": "¡Felicitaciones!",
+            "capstone": "Nuevo Módulo"
         }
     },
     "nav": {
@@ -214,7 +215,18 @@
             "title": "📊 ¿Qué tan segura te sientes usando herramientas de IA?",
             "subtitle": "Sé honesta, no hay respuesta correcta"
         },
-        "startButton": "EMPEZAR EL TALLER →"
+        "startButton": "EMPEZAR EL TALLER →",
+        "projectStory": {
+            "title": "Sobre Este Proyecto",
+            "text1": "Este taller nació como parte del <strong>MujerTech: AI & Business Bootcamp</strong>, una experiencia de aprendizaje diseñada para mujeres latinas y emprendedoras.",
+            "text2": "El bootcamp combinó fundamentos de negocios, uso práctico de IA, mentoría y un ambiente de aprendizaje culturalmente relevante.",
+            "capstoneTag": "NUEVO MÓDULO",
+            "capstoneTitle": "Aprende a comunicarte mejor con la IA para apoyar tu negocio",
+            "focus1": "Escribe prompts más claros y útiles para tu negocio",
+            "focus2": "Usa el método Contexto + Tarea + Output de forma simple",
+            "focus3": "Aprende a revisar, ajustar y mejorar las respuestas de la IA",
+            "button": "VER EL PROYECTO"
+        }
     },
     "notifications": {
         "skipPresession": "¡Perfecto! Vamos directo al taller",
@@ -762,5 +774,193 @@
         "copyLink": "📋 COPIAR ENLACE",
         "copied": "✅ ¡COPIADO!",
         "continueAnyway": "Continuar aquí de todos modos"
+    },
+    "capstone": {
+        "backButton": "VOLVER AL TALLER",
+        "stepOf": "Paso {current} de {total}",
+        "nextStep": "SIGUIENTE",
+        "prevStep": "ANTERIOR",
+        "step0": {
+            "title": "Escritura de Prompts para Mujeres Emprendedoras",
+            "subtitle": "Aprende a pedirle a la IA exactamente lo que necesitas para tu negocio",
+            "duration": "15-20 minutos",
+            "welcome1": "Escribir buenos prompts (instrucciones para la IA) es una habilidad que cualquiera puede practicar.",
+            "welcome2": "No necesitas ser técnica ni experta. Solo necesitas saber qué quieres y cómo pedirlo.",
+            "welcome3": "En esta lección vas a aprender un método simple para hablarle a la IA y obtener respuestas útiles para tu negocio.",
+            "encouragement": "Si puedes escribir un mensaje de WhatsApp, puedes escribir un buen prompt."
+        },
+        "step1": {
+            "title": "Lo que vas a aprender",
+            "objective1": "Puedo reconocer qué hace que un prompt sea efectivo",
+            "objective2": "Puedo escribir un prompt claro para una tarea de mi negocio",
+            "objective3": "Puedo revisar lo que me da la IA y mejorar mi prompt si es necesario",
+            "note": "No hay respuestas incorrectas aquí. Esto es práctica, y cada intento te hace mejor."
+        },
+        "step2": {
+            "title": "¿Por qué importan los prompts?",
+            "text1": "La IA no lee tu mente. Solo puede trabajar con lo que tú le das.",
+            "rule": "Prompt vago = respuesta vaga. Prompt claro = respuesta más útil.",
+            "example1Label": "Prompt vago:",
+            "example1": "Dame ideas de marketing.",
+            "example1Result": "La IA te da ideas genéricas que no sirven para tu negocio específico.",
+            "example2Label": "Prompt claro:",
+            "example2": "Tengo un negocio de velas artesanales para mamás ocupadas. Dame 5 ideas de publicaciones para Instagram para promociones de primavera en un tono amigable y motivador.",
+            "example2Result": "La IA te da ideas específicas para TU negocio, TU audiencia, y TU estilo.",
+            "takeaway": "La diferencia no es magia — es claridad. Y eso es exactamente lo que vas a aprender."
+        },
+        "step3": {
+            "title": "El Método CTO: Tu Fórmula para Buenos Prompts",
+            "intro": "CTO son tres cosas simples que incluyes en cada prompt:",
+            "context": {
+                "letter": "C",
+                "title": "Contexto",
+                "description": "Lo que la IA necesita saber sobre ti y tu situación",
+                "example": "\"Tengo una panadería pequeña en mi barrio. Vendo por WhatsApp y en persona.\""
+            },
+            "task": {
+                "letter": "T",
+                "title": "Tarea",
+                "description": "Lo que quieres que la IA haga por ti",
+                "example": "\"Necesito 3 mensajes para invitar a mis clientes a probar mi nuevo pan de yuca.\""
+            },
+            "output": {
+                "letter": "O",
+                "title": "Output",
+                "description": "Cómo quieres que sea la respuesta",
+                "example": "\"Que sean cortos (máximo 2 líneas), con emojis, en un tono cálido y cercano.\""
+            },
+            "tip": "No tienes que memorizar esto. Con la práctica, se vuelve natural."
+        },
+        "step4": {
+            "title": "Prompt Débil vs. Prompt Fuerte",
+            "intro": "Veamos ejemplos reales lado a lado:",
+            "example1": {
+                "weakLabel": "Prompt débil:",
+                "weak": "Escríbeme algo para vender mis productos.",
+                "strongLabel": "Prompt fuerte:",
+                "strong": "Tengo un negocio de jabones artesanales naturales. Escríbeme 3 textos cortos para mi estado de WhatsApp que inviten a mis clientes a comprar jabones como regalo de cumpleaños. Usa un tono amigable y con emojis.",
+                "whyTitle": "¿Por qué funciona mejor?",
+                "why1": "Dice qué tipo de negocio es (contexto)",
+                "why2": "Dice exactamente qué necesita (tarea)",
+                "why3": "Dice cómo quiere la respuesta (output)"
+            },
+            "example2": {
+                "weakLabel": "Prompt débil:",
+                "weak": "Dame nombres para mi negocio.",
+                "strongLabel": "Prompt fuerte:",
+                "strong": "Estoy empezando un negocio de postres saludables para oficinas en la ciudad. Necesito 5 nombres creativos para mi marca. Que suenen frescos, modernos y fáciles de recordar.",
+                "whyTitle": "¿Por qué funciona mejor?",
+                "why1": "Explica el tipo de negocio y audiencia",
+                "why2": "Pide una cantidad específica",
+                "why3": "Describe el estilo deseado"
+            }
+        },
+        "step5": {
+            "title": "Ejemplo Guiado: De Débil a Fuerte",
+            "intro": "Vamos a ver cómo transformar un prompt paso a paso.",
+            "originalLabel": "Prompt original (débil):",
+            "original": "Dame ideas para mi negocio.",
+            "problem": "Este prompt es muy vago. La IA no sabe qué tipo de negocio tienes, qué necesitas, ni cómo quieres la respuesta.",
+            "transformTitle": "Transformación con el método CTO:",
+            "contextLabel": "Contexto:",
+            "contextText": "\"Tengo un negocio de limpieza del hogar. Atiendo familias en mi colonia.\"",
+            "taskLabel": "Tarea:",
+            "taskText": "\"Dame 5 ideas de publicaciones para Facebook para conseguir nuevos clientes.\"",
+            "outputLabel": "Output:",
+            "outputText": "\"Que sean amigables, con emojis, y que incluyan un llamado a la acción.\"",
+            "revisedLabel": "Prompt revisado (fuerte):",
+            "revised": "Tengo un negocio de limpieza del hogar. Atiendo familias en mi colonia.\n\nDame 5 ideas de publicaciones para Facebook para conseguir nuevos clientes.\n\nQue sean amigables, con emojis, y que incluyan un llamado a la acción.",
+            "sampleResponseLabel": "Ejemplo de respuesta de la IA:",
+            "sampleResponse1": "\"✨🏠 ¿Tu casa necesita un respiro? ¡Nosotras nos encargamos! Limpieza profunda con productos seguros para tu familia. Escríbenos hoy y recibe 10% de descuento en tu primera limpieza. 💚\"",
+            "sampleResponse2": "\"📸 Antes y después de una de nuestras limpiezas. ¿Quieres ver la diferencia en tu hogar? ¡Agenda tu cita! 🧹✨\"",
+            "reflectionTitle": "¿Qué mejoró?",
+            "reflection1": "La respuesta es específica para un negocio de limpieza",
+            "reflection2": "El tono es amigable, como se pidió",
+            "reflection3": "Incluye llamados a la acción",
+            "reflectionHuman": "Pero recuerda: tú decides si la respuesta funciona para TU negocio. La IA propone, tú decides."
+        },
+        "step6": {
+            "title": "Tu Turno: Escribe Tu Propio Prompt",
+            "intro": "Ahora es tu turno de practicar. Usa el método CTO para crear tu propio prompt.",
+            "contextLabel": "Contexto: ¿Qué hace tu negocio? ¿A quién le vendes?",
+            "contextPlaceholder": "Ejemplo: Tengo un negocio de galletas decoradas. Vendo para fiestas y eventos...",
+            "taskLabel": "Tarea: ¿Qué necesitas que la IA haga?",
+            "taskPlaceholder": "Ejemplo: Necesito 3 ideas de promociones para el Día de las Madres...",
+            "outputLabel": "Output: ¿Cómo quieres la respuesta?",
+            "outputPlaceholder": "Ejemplo: Que sean cortas, con emojis, en un tono alegre...",
+            "generateButton": "VER MI PROMPT COMPLETO",
+            "resultLabel": "Tu prompt usando el método CTO:",
+            "copyButton": "COPIAR MI PROMPT",
+            "hint": "Copia este prompt y pégalo en ChatGPT o Claude para ver qué te responde la IA.",
+            "fillAll": "Por favor completa los tres campos para generar tu prompt"
+        },
+        "step7": {
+            "title": "No Confíes Ciegamente en la IA",
+            "intro": "La IA es una herramienta muy útil, pero no es perfecta. Siempre debes revisar lo que te da.",
+            "question1Title": "¿Es preciso?",
+            "question1Text": "La IA puede inventar datos o dar información incorrecta. Verifica los hechos importantes.",
+            "question2Title": "¿Le sirve a mi audiencia?",
+            "question2Text": "Tú conoces a tus clientes mejor que la IA. ¿El contenido les hablaría a ellos?",
+            "question3Title": "¿Suena como mi marca?",
+            "question3Text": "Tu negocio tiene su propia voz. Si la respuesta no suena como tú, cámbiala.",
+            "question4Title": "¿Qué cambiaría?",
+            "question4Text": "Siempre pregúntate qué mejorarías. Editar la respuesta de la IA es parte del proceso.",
+            "summary": "La IA es tu asistente, no tu jefa. Tú tienes la última palabra."
+        },
+        "step8": {
+            "title": "Comprueba lo que Aprendiste",
+            "intro": "Responde estas preguntas rápidas. No te preocupes — no hay calificación.",
+            "q1": {
+                "question": "¿Cuáles son características de un buen prompt? (elige todas las correctas)",
+                "option1": "Es corto y vago para que la IA tenga libertad",
+                "option2": "Incluye contexto sobre tu negocio",
+                "option3": "Describe la tarea que quieres que haga",
+                "option4": "Explica cómo quieres la respuesta",
+                "correct": "option2,option3,option4",
+                "feedback_correct": "Exacto. Un buen prompt incluye contexto, tarea y cómo quieres la respuesta.",
+                "feedback_incorrect": "Un prompt vago da resultados vagos. Un buen prompt incluye contexto, tarea y formato de respuesta."
+            },
+            "q2": {
+                "question": "¿Cuál de estos es un prompt más fuerte?",
+                "option1": "\"Dame ideas para vender más\"",
+                "option2": "\"Tengo una tienda de ropa juvenil en Instagram. Dame 5 ideas de Reels cortos para promocionar mi nueva colección de verano. Que sean divertidos y con música trending.\"",
+                "correct": "option2",
+                "feedback_correct": "Correcto. El segundo prompt tiene contexto, tarea específica y describe el output deseado.",
+                "feedback_incorrect": "El segundo es más fuerte porque incluye contexto (tienda de ropa juvenil), tarea (5 ideas de Reels) y output (divertidos, con música trending)."
+            },
+            "q3": {
+                "question": "Después de recibir una respuesta de la IA, ¿qué deberías hacer?",
+                "option1": "Publicarla tal cual sin revisar",
+                "option2": "Revisarla, verificar que sea correcta y editarla según tu estilo",
+                "correct": "option2",
+                "feedback_correct": "Exacto. Siempre revisa, verifica y personaliza. La IA propone, tú decides.",
+                "feedback_incorrect": "La respuesta correcta es revisar y editar. Nunca publiques sin revisar primero."
+            },
+            "reflectionLabel": "Reflexión rápida:",
+            "reflectionQuestion": "¿Cuál es una cosa que cambiarías en cómo usas la IA después de esta lección?",
+            "reflectionPlaceholder": "Escribe tu reflexión aquí..."
+        },
+        "step9": {
+            "title": "Guía Rápida: El Método CTO",
+            "subtitle": "Guarda esto para usarlo después",
+            "formulaTitle": "La Fórmula",
+            "formulaC": "CONTEXTO — Cuéntale sobre ti y tu negocio",
+            "formulaT": "TAREA — Dile qué necesitas",
+            "formulaO": "OUTPUT — Describe cómo quieres la respuesta",
+            "tipsTitle": "Tips Rápidos",
+            "tip1": "Sé específica: mientras más detalles, mejor resultado",
+            "tip2": "Incluye tu audiencia: ¿a quién le vendes?",
+            "tip3": "Pide un tono: amigable, profesional, divertido...",
+            "tip4": "Pide una cantidad: \"dame 3 ideas\" es mejor que \"dame ideas\"",
+            "tip5": "Siempre revisa: la IA es tu asistente, no tu reemplazo",
+            "exampleTitle": "Ejemplo Completo",
+            "examplePrompt": "Tengo un negocio de postres saludables para oficinas.\n\nNecesito 3 textos para mi estado de WhatsApp anunciando un nuevo menú semanal.\n\nQue sean cortos, con emojis, en un tono fresco y profesional.",
+            "copyButton": "COPIAR GUÍA COMPLETA",
+            "closingTitle": "Sigue Practicando",
+            "closingText1": "Escribir buenos prompts es como cualquier habilidad — mejora con la práctica.",
+            "closingText2": "Ya diste el primer paso. Ahora abre ChatGPT o Claude, usa tu método CTO, y empieza a experimentar.",
+            "closingText3": "Tú eres capaz de usar la IA de forma inteligente y creativa para tu negocio.",
+            "finalButton": "VOLVER AL TALLER"
+        }
     }
 }

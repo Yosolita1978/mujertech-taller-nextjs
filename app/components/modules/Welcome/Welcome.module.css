@@ -73,6 +73,82 @@
     margin-bottom: 0;
 }
 
+/* Project Story Card */
+.projectStoryCard {
+    border-left: 4px solid var(--secondary);
+}
+
+.capstoneHighlight {
+    background: var(--gradient-soft);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin: var(--spacing-md) 0;
+    border: 1px solid var(--primary-light);
+}
+
+.capstoneTag {
+    display: inline-block;
+    background: var(--secondary);
+    color: white;
+    padding: 2px var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.capstoneHighlight h3 {
+    color: var(--primary);
+    font-size: 1rem;
+    margin: 0 0 var(--spacing-sm) 0;
+}
+
+.capstoneHighlight p {
+    color: var(--dark);
+    font-size: 0.9rem;
+    margin: 0 0 var(--spacing-sm) 0;
+}
+
+.capstoneFocusList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.capstoneFocusList li {
+    padding: var(--spacing-xs) 0;
+    font-size: 0.9rem;
+    color: var(--dark);
+}
+
+.capstoneFocusList li::before {
+    content: "✓ ";
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.btnCapstone {
+    width: 100%;
+    padding: var(--spacing-md);
+    background: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: var(--spacing-sm);
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.btnCapstone:active {
+    background: #e55566;
+    transform: scale(0.98);
+}
+
 /* Highlight Card */
 .highlightCard {
     background: var(--gradient);
@@ -335,5 +411,9 @@
     .businessTypeBtn:hover {
         border-color: var(--secondary);
         background: var(--secondary-light);
+    }
+
+    .btnCapstone:hover {
+        background: #e55566;
     }
 }
